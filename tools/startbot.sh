@@ -304,39 +304,115 @@ function restart_bot {
 
 # Update crontab
 function update_crontab {
-    echo "Updating crontab for the bot..."
-    local existing_cron
-    existing_cron=$(crontab -l 2>/dev/null | grep -v "$BOT_SCRIPT" | grep -v "startbot.sh check")
+    # Check if crontab is installed
+    if ! command -v crontab >/dev/null 2>&1; then
+        echo "ERROR: crontab command not found"
+        echo "Please install cron/crontab:"
+        echo "  Debian/Ubuntu: sudo apt-get install cron"
+        echo "  RedHat/CentOS: sudo yum install cronie"
+        echo "  Arch Linux: sudo pacman -S cronie"
+        log_activity "Failed to update crontab: crontab command not found"
+        return 1
+    fi
 
-    # Add new cron jobs
+    echo "Updating crontab for the bot..."
+    
     # Virtual environment is REQUIRED
     if [ ! -f "$VENV_PATH/bin/activate" ]; then
         echo "ERROR: Virtual environment not found at $VENV_PATH"
         echo "This bot requires a virtual environment."
         echo "Please run ./install.sh to set up the environment."
         log_activity "Failed to update crontab: Virtual environment not found"
-        exit 1
+        return 1
     fi
+
+    # Get existing crontab entries (handle case where no crontab exists yet)
+    local existing_cron
+    if crontab -l >/dev/null 2>&1; then
+        # Crontab exists, get entries excluding bot-related ones
+        existing_cron=$(crontab -l 2>/dev/null | grep -v "$BOT_SCRIPT" | grep -v "startbot.sh check")
+        local crontab_exit=$?
+        if [ $crontab_exit -ne 0 ] && [ $crontab_exit -ne 1 ]; then
+            # Exit code 1 means no crontab exists (normal), other codes are errors
+            echo "ERROR: Failed to read existing crontab (exit code: $crontab_exit)"
+            log_activity "Failed to update crontab: Could not read existing crontab"
+            return 1
+        fi
+    else
+        # No crontab exists yet, that's fine
+        existing_cron=""
+    fi
+
+    # Prepare new crontab entries
     START_CMD="cd $BOT_DIRECTORY && source $VENV_PATH/bin/activate && python3 $BOT_SCRIPT"
-    (echo "$existing_cron"; echo "@reboot $START_CMD >/dev/null 2>&1"; echo "$CRON_CHECK_INTERVAL cd $BOT_DIRECTORY && $BOT_DIRECTORY/tools/startbot.sh check >/dev/null 2>&1") | crontab -
-    echo "Crontab updated."
-    log_activity "Crontab updated for bot reboot and periodic checks."
+    local new_crontab
+    new_crontab=$(echo "$existing_cron"; echo "@reboot $START_CMD >/dev/null 2>&1"; echo "$CRON_CHECK_INTERVAL cd $BOT_DIRECTORY && $BOT_DIRECTORY/tools/startbot.sh check >/dev/null 2>&1")
+    
+    # Update crontab and check if it succeeded
+    if echo "$new_crontab" | crontab -; then
+        echo "Crontab updated successfully."
+        log_activity "Crontab updated for bot reboot and periodic checks."
+        return 0
+    else
+        echo "ERROR: Failed to update crontab"
+        echo "The crontab command returned a non-zero exit code"
+        echo "Check crontab permissions and configuration"
+        log_activity "Failed to update crontab: crontab - command failed"
+        return 1
+    fi
 }
 
 # Remove bot entries from crontab
 function remove_cron_entries {
+    # Check if crontab is installed
+    if ! command -v crontab >/dev/null 2>&1; then
+        echo "ERROR: crontab command not found"
+        echo "Please install cron/crontab:"
+        echo "  Debian/Ubuntu: sudo apt-get install cron"
+        echo "  RedHat/CentOS: sudo yum install cronie"
+        echo "  Arch Linux: sudo pacman -S cronie"
+        log_activity "Failed to remove cron entries: crontab command not found"
+        return 1
+    fi
+
     echo "Removing bot cron entries..."
+    
+    # Check if crontab exists
+    if ! crontab -l >/dev/null 2>&1; then
+        echo "No crontab found. Nothing to remove."
+        log_activity "Attempted to remove cron entries: No crontab found"
+        return 0
+    fi
+
+    # Get remaining crontab entries (excluding bot-related ones)
     local remaining_cron
     remaining_cron=$(crontab -l 2>/dev/null | grep -v "$BOT_SCRIPT" | grep -v "startbot.sh check")
+    local read_exit=$?
+    
+    if [ $read_exit -ne 0 ] && [ $read_exit -ne 1 ]; then
+        echo "ERROR: Failed to read crontab (exit code: $read_exit)"
+        log_activity "Failed to remove cron entries: Could not read crontab"
+        return 1
+    fi
 
     # Update the crontab without bot entries
-    echo "$remaining_cron" | crontab -
-    if ! crontab -l | grep -q "$BOT_SCRIPT" && ! crontab -l | grep -q "startbot.sh check"; then
-        echo "Cron entries for the bot removed."
-        log_activity "Cron entries for bot removed."
+    if echo "$remaining_cron" | crontab -; then
+        # Verify removal was successful
+        if crontab -l 2>/dev/null | grep -q "$BOT_SCRIPT" || crontab -l 2>/dev/null | grep -q "startbot.sh check"; then
+            echo "WARNING: Some bot cron entries may still remain"
+            echo "Please check manually: crontab -l"
+            log_activity "Warning: Some bot cron entries may still remain after removal"
+            return 1
+        else
+            echo "Cron entries for the bot removed successfully."
+            log_activity "Cron entries for bot removed successfully."
+            return 0
+        fi
     else
-        echo "Failed to remove some or all cron entries for the bot."
-        log_activity "Failed to remove some or all cron entries for bot."
+        echo "ERROR: Failed to update crontab"
+        echo "The crontab command returned a non-zero exit code"
+        log_activity "Failed to remove cron entries: crontab - command failed"
+        return 1
     fi
 }
 
@@ -392,9 +468,11 @@ case "$1" in
         ;;
     cron)
         update_crontab
+        exit $?
         ;;
     remove-cron)
         remove_cron_entries
+        exit $?
         ;;
     *)
         echo "Usage: $0 { start | stop | restart | check | cron | remove-cron }"
