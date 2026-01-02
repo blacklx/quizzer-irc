@@ -197,16 +197,31 @@ class QuizzerBot(SingleServerIRCBot):
             admins: List of admin nicknames
             bind_address: Optional IP address or hostname to bind to (IPv4 or IPv6)
         """
+        # Convert bind_address to tuple format if specified
+        # socket.bind() requires (host, port) tuple, not just a string
+        bind_address_tuple = None
+        if bind_address:
+            bind_address = str(bind_address).strip()
+            # Check if it's IPv6 (contains colons)
+            if ':' in bind_address and not bind_address.count(':') == 1:
+                # IPv6 address - format: (host, port, flowinfo, scopeid)
+                # For binding, we use port 0 (let OS choose) and 0 for flowinfo/scopeid
+                bind_address_tuple = (bind_address, 0, 0, 0)
+            else:
+                # IPv4 address - format: (host, port)
+                # For binding, we use port 0 (let OS choose)
+                bind_address_tuple = (bind_address, 0)
+        
         # Create Factory with bind_address if specified
         if use_ssl:
             factory = Factory(
-                bind_address=bind_address,
+                bind_address=bind_address_tuple,
                 wrapper=lambda sock: ssl.create_default_context().wrap_socket(sock, server_hostname=server)
             )
         else:
-            factory = Factory(bind_address=bind_address)
+            factory = Factory(bind_address=bind_address_tuple)
         
-        # Store bind_address for logging
+        # Store bind_address for logging (original string)
         self.bind_address = bind_address
         if bind_address:
             logger.info(f"Will bind to local address: {bind_address}")
