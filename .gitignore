@@ -137,3 +137,6 @@ otdb/EARLY_EXIT.md
 otdb/FETCH_ALL.md
 otdb/RATE_LIMIT_FIX.md
 otdb/TEST_RESULTS.md
+
+# Release notes (kept locally, copy manually when creating releases)
+RELEASE_NOTES_*.md
