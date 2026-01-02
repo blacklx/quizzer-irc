@@ -144,7 +144,116 @@ admin_settings:
       # "YourNick": ["*!*@trusted.host", "*!*@*.example.com"]
 ```
 
-### 3.2 Set Environment Variable
+### 3.2 Admin Verification Methods
+
+The bot supports four admin verification methods. Choose the one that best fits your IRC network:
+
+#### Method 1: NickServ (Default - Recommended)
+
+**Best for:** IRC networks with NickServ service (most networks)
+
+**How it works:** The bot verifies admins by checking with NickServ that they are identified to their registered account.
+
+**Setup:**
+1. Set `verification_method: "nickserv"` in `config.yaml`
+2. Ensure `use_nickserv: true` in `nickserv_settings`
+3. Admins must be identified to NickServ before using admin commands
+4. No additional configuration needed
+
+**Usage:** Admins simply identify to NickServ, then use admin commands normally.
+
+#### Method 2: Password-Based
+
+**Best for:** IRC networks without NickServ, or when you want password-based control
+
+**How it works:** Admins verify with a password via `!admin verify <password>`, which grants a session (default: 1 hour). Passwords are automatically hashed with bcrypt.
+
+**Setup:**
+1. Set `verification_method: "password"` in `config.yaml`
+2. Add admin passwords to `.env` file:
+   ```bash
+   ADMIN_PASSWORD_YourNick=your_secure_password_123
+   ADMIN_PASSWORD_AdminNick2=another_password_456
+   ```
+3. Configure password settings (optional):
+   ```yaml
+   password_settings:
+     session_timeout: 3600      # Session duration (1 hour default)
+     max_attempts: 3            # Failed attempts before lockout
+     lockout_duration: 300       # Lockout duration (5 minutes default)
+   ```
+
+**Usage:**
+- First time: Admin sends `!admin verify <password>` via PM to bot
+- Session is created and lasts for `session_timeout` seconds
+- During session, admin can use all admin commands
+- After session expires, admin must verify again
+
+**Security features:**
+- Passwords are automatically hashed (bcrypt) on first use
+- Rate limiting prevents brute force attacks
+- Session-based (no need to enter password for every command)
+
+#### Method 3: Hostmask-Based
+
+**Best for:** Trusted networks where admins have static hostmasks
+
+**How it works:** Admins are automatically verified if their hostmask matches configured patterns. No password needed.
+
+**Setup:**
+1. Set `verification_method: "hostmask"` in `config.yaml`
+2. Configure hostmasks in `config.yaml`:
+   ```yaml
+   hostmask_settings:
+     hostmasks:
+       "YourNick": ["*!*@trusted.host", "*!*@*.example.com"]
+       "AdminNick2": ["*!user@*.domain.com"]
+   ```
+3. Use wildcards: `*` matches anything
+   - `*!*@host.com` - Matches any user from host.com
+   - `*!user@*.domain.com` - Matches user from any subdomain
+   - `nick!user@host.com` - Exact match
+
+**Usage:** Admins are automatically verified when they match a configured hostmask. No commands needed.
+
+**Security note:** Only use this on trusted networks. Hostmasks can be spoofed on some networks.
+
+#### Method 4: Combined
+
+**Best for:** Maximum flexibility - supports both password and hostmask
+
+**How it works:** Admins can verify via password (with session) OR automatically via hostmask. Either method works.
+
+**Setup:**
+1. Set `verification_method: "combined"` in `config.yaml`
+2. Configure both password and hostmask settings (see Methods 2 and 3 above)
+3. Add passwords to `.env` file
+4. Configure hostmasks in `config.yaml`
+
+**Usage:**
+- If hostmask matches: Admin is automatically verified
+- If hostmask doesn't match: Admin can use `!admin verify <password>` to create a session
+- Both methods work simultaneously
+
+**Admin Commands:**
+Once verified, admins can use commands via PM to the bot:
+- `!admin stop_game` - Stop current quiz
+- `!admin restart` - Restart bot
+- `!admin stop` - Stop bot
+- `!admin stats` - Show bot statistics
+- `!admin set_rate_limit <seconds>` - Change rate limit
+- `!admin msg <target> <message>` - Send message from bot
+
+**Password-based only commands:**
+- `!admin verify <password>` - Verify and start session
+- `!admin add_admin <nick> <password>` - Add new admin
+- `!admin remove_admin <nick>` - Remove admin
+- `!admin set_password <nick> <password>` - Set/update password
+- `!admin list_admins` - List all admins
+
+See `README.md` for complete command reference.
+
+### 3.3 Set Environment Variable
 
 **Important:** Never put your NickServ password in `config.yaml`. Use an environment variable instead:
 
@@ -249,7 +358,13 @@ python3 -c "from quiz_game import QuizGame; qg = QuizGame('#test', 15, 25); prin
 
 ### Option A: Direct Run (for testing)
 
+**Note:** You must activate the virtual environment first:
+
 ```bash
+# Activate virtual environment
+source .venv/bin/activate
+
+# Run the bot
 python3 run.py
 ```
 
@@ -291,8 +406,6 @@ python3 run.py
 Create `/etc/systemd/system/quizzer.service`:
 
 ```ini
-
-```ini
 [Unit]
 Description=Quizzer IRC Bot
 After=network.target
@@ -302,13 +415,16 @@ Type=simple
 User=quizzer
 WorkingDirectory=/home/quizzer/quizzer
 Environment="NICKSERV_PASSWORD=your_password_here"
-ExecStart=/usr/bin/python3 /home/quizzer/quizzer/run.py
+# IMPORTANT: Use the venv Python, not system Python
+ExecStart=/home/quizzer/quizzer/.venv/bin/python3 /home/quizzer/quizzer/run.py
 Restart=always
 RestartSec=10
 
 [Install]
 WantedBy=multi-user.target
 ```
+
+**Note:** Update the paths (`/home/quizzer/quizzer`) to match your actual bot directory location.
 
 Then:
 
