@@ -80,10 +80,17 @@ function check_bot {
     if is_bot_running; then
         echo "Bot is running."
         log_activity "Bot running check: Bot is running."
+        return 0
     else
         echo "Bot is not running."
         log_activity "Bot running check: Bot is not running."
-        start_bot
+        echo "Attempting to start bot..."
+        if start_bot; then
+            return 0
+        else
+            log_activity "Bot running check: Failed to start bot"
+            return 1
+        fi
     fi
 }
 
@@ -92,26 +99,97 @@ function start_bot {
     if is_bot_running; then
         echo "Bot is already running."
         log_activity "Attempted to start bot, but it's already running."
-    else
-        # Check if venv exists (REQUIRED)
-        if [ ! -f "$VENV_PATH/bin/activate" ]; then
-            echo "ERROR: Virtual environment not found at $VENV_PATH"
-            echo "This bot requires a virtual environment."
-            echo "Please run ./install.sh to set up the environment."
-            log_activity "Failed to start bot: Virtual environment not found"
-            exit 1
+        return 0
+    fi
+    
+    # Check if venv exists (REQUIRED)
+    if [ ! -f "$VENV_PATH/bin/activate" ]; then
+        echo "ERROR: Virtual environment not found at $VENV_PATH"
+        echo "This bot requires a virtual environment."
+        echo "Please run ./install.sh to set up the environment."
+        log_activity "Failed to start bot: Virtual environment not found"
+        return 1
+    fi
+    
+    # Check if bot script exists
+    if [ ! -f "$BOT_DIRECTORY/$BOT_SCRIPT" ]; then
+        echo "ERROR: Bot script not found: $BOT_DIRECTORY/$BOT_SCRIPT"
+        log_activity "Failed to start bot: Script not found"
+        return 1
+    fi
+    
+    # Check if config.yaml exists
+    if [ ! -f "$BOT_DIRECTORY/config.yaml" ]; then
+        echo "ERROR: Configuration file not found: $BOT_DIRECTORY/config.yaml"
+        echo "Please copy config.yaml.example to config.yaml and configure it."
+        log_activity "Failed to start bot: config.yaml not found"
+        return 1
+    fi
+    
+    echo "Starting bot in a new screen session..."
+    log_activity "Attempting to start bot..."
+    
+    # Start bot in screen session with error output captured
+    screen -dmS $SCREEN_NAME bash -c "cd $BOT_DIRECTORY; source $VENV_PATH/bin/activate; python3 $BOT_SCRIPT 2>&1 | tee -a $LOG_FILE"
+    
+    # Wait a moment for the bot to start
+    sleep 2
+    
+    # Check if screen session was created
+    if ! screen -list | grep -q "$SCREEN_NAME"; then
+        echo "ERROR: Failed to create screen session"
+        echo "Check if screen is installed: which screen"
+        log_activity "Failed to start bot: Screen session creation failed"
+        return 1
+    fi
+    
+    # Wait a bit more and check if bot process is running
+    sleep 1
+    
+    # Check if bot is actually running
+    if ! is_bot_running; then
+        echo "ERROR: Bot failed to start"
+        echo "Checking screen session for errors..."
+        
+        # Try to capture error output from screen
+        if screen -list | grep -q "$SCREEN_NAME"; then
+            # Get the last few lines from screen session
+            screen -S $SCREEN_NAME -X hardcopy /tmp/quizzer_screen_output.txt 2>/dev/null
+            if [ -f /tmp/quizzer_screen_output.txt ]; then
+                echo "Last output from bot:"
+                tail -20 /tmp/quizzer_screen_output.txt
+                rm -f /tmp/quizzer_screen_output.txt
+            fi
         fi
         
-        echo "Starting bot in a new screen session..."
-        screen -dmS $SCREEN_NAME bash -c "cd $BOT_DIRECTORY; source $VENV_PATH/bin/activate; python3 $BOT_SCRIPT"
-        if is_bot_running; then
-            echo "Bot started."
-            log_activity "Bot started."
-        else
-            echo "Failed to start bot."
-            log_activity "Failed to start bot."
-        fi
+        echo ""
+        echo "Troubleshooting:"
+        echo "1. Check the log file: tail -f $LOG_FILE"
+        echo "2. Attach to screen session: screen -r $SCREEN_NAME"
+        echo "3. Check if Python dependencies are installed: source $VENV_PATH/bin/activate && pip list"
+        echo "4. Verify configuration: python3 -c \"from config import load_config; load_config()\""
+        
+        log_activity "Failed to start bot: Process not running after start attempt"
+        return 1
     fi
+    
+    # Double-check by waiting a bit more and verifying it's still running
+    sleep 2
+    if ! is_bot_running; then
+        echo "ERROR: Bot started but then stopped immediately"
+        echo "This usually indicates a configuration error or missing dependency."
+        echo "Check the log file: tail -f $LOG_FILE"
+        echo "Or attach to screen: screen -r $SCREEN_NAME"
+        log_activity "Failed to start bot: Bot stopped immediately after start"
+        return 1
+    fi
+    
+    echo "✓ Bot started successfully"
+    echo "  Screen session: $SCREEN_NAME"
+    echo "  View output: screen -r $SCREEN_NAME"
+    echo "  Check logs: tail -f $LOG_FILE"
+    log_activity "Bot started successfully"
+    return 0
 }
 
 # Stop bot
@@ -138,18 +216,26 @@ function restart_bot {
     if is_bot_running; then
         echo "Stopping bot..."
         log_activity "Stopping bot..."
-        #stop_bot
-        "$BOT_DIRECTORY/tools/startbot.sh" stop
+        stop_bot
         sleep $SLEEP_DURATION
-        echo "Starting bot in 10 seconds"
-        #start_bot
-        "$BOT_DIRECTORY/tools/startbot.sh" start
-        log_activity "Bot restarted."
+        echo "Starting bot..."
+        if start_bot; then
+            log_activity "Bot restarted successfully."
+            return 0
+        else
+            log_activity "Bot restart failed: Start failed"
+            return 1
+        fi
     else
         echo "Bot is not running, attempting start"
         log_activity "Bot is not running, attempting start"
-        "$BOT_DIRECTORY/tools/startbot.sh" start
-        log_activity "Bot started"
+        if start_bot; then
+            log_activity "Bot started"
+            return 0
+        else
+            log_activity "Bot start failed"
+            return 1
+        fi
     fi
 }
 
@@ -228,15 +314,18 @@ set_script_permissions
 case "$1" in
     start)
         start_bot
+        exit $?
         ;;
     stop)
         stop_bot
         ;;
     restart)
         restart_bot
+        exit $?
         ;;
     check)
         check_bot
+        exit $?
         ;;
     cron)
         update_crontab

@@ -34,6 +34,38 @@ from quiz_game import QuizGame, handle_start_command, handle_join_command, handl
 from category_display import handle_categories_display, get_all_categories
 from database import create_database, store_score, get_leaderboard
 
+# Load .env file if it exists (for environment variables)
+# This ensures .env is loaded even if bot.py is imported directly
+def load_env_file(env_file='.env'):
+    """
+    Load environment variables from .env file.
+    
+    Simple .env file parser - reads KEY=VALUE lines and sets environment variables.
+    Only sets variables that aren't already in the environment.
+    """
+    env_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), env_file)
+    if os.path.exists(env_path):
+        try:
+            with open(env_path, 'r') as f:
+                for line in f:
+                    line = line.strip()
+                    # Skip comments and empty lines
+                    if not line or line.startswith('#'):
+                        continue
+                    # Parse KEY=VALUE
+                    if '=' in line:
+                        key, value = line.split('=', 1)
+                        key = key.strip()
+                        value = value.strip().strip('"').strip("'")
+                        # Only set if not already in environment (env vars take precedence)
+                        if key and value and key not in os.environ:
+                            os.environ[key] = value
+        except Exception as e:
+            logging.warning(f"Could not load .env file: {e}")
+
+# Load .env file before loading configuration
+load_env_file()
+
 # Load configuration
 try:
     with open("config.yaml", 'r') as config_file:
@@ -74,10 +106,10 @@ nickname_retry_interval = config['bot_settings']['nickname_retry_interval']
 use_nickserv = config['nickserv_settings']['use_nickserv']
 nickserv_name = config['nickserv_settings']['nickserv_name']
 nickserv_account = config['nickserv_settings']['nickserv_account']
-# Get password from environment variable, fallback to config for backward compatibility
+# Get password from environment variable (from .env file or system env), fallback to config for backward compatibility
 nickserv_password = os.getenv('NICKSERV_PASSWORD', config['nickserv_settings'].get('nickserv_password', ''))
 if not nickserv_password:
-    raise ValueError("NICKSERV_PASSWORD environment variable must be set, or nickserv_password must be in config.yaml")
+    raise ValueError("NICKSERV_PASSWORD must be set in .env file, as an environment variable, or in config.yaml")
 nickserv_command_format = config['nickserv_settings']['nickserv_command_format']
 
 # Admin settings
