@@ -203,18 +203,40 @@ class QuizzerBot(SingleServerIRCBot):
         use_ipv6 = False
         if bind_address:
             bind_address = str(bind_address).strip()
-            # Check if it's IPv6 (contains multiple colons, not just one for port)
-            # Simple heuristic: IPv6 has more than one colon, or contains ::
-            if '::' in bind_address or (bind_address.count(':') > 1 and not bind_address.startswith('[')):
-                # IPv6 address - use 2-tuple (host, port) with ipv6=True in Factory
-                # Port 0 lets OS choose available port
-                bind_address_tuple = (bind_address, 0)
-                use_ipv6 = True
-            else:
-                # IPv4 address - format: (host, port)
-                # For binding, we use port 0 (let OS choose)
-                bind_address_tuple = (bind_address, 0)
-                use_ipv6 = False
+            # Auto-detect IPv4 vs IPv6 using socket.getaddrinfo()
+            # This is more reliable than string heuristics
+            try:
+                # Try to resolve the address to determine its family
+                addr_info = socket.getaddrinfo(bind_address, 0, socket.AF_UNSPEC, socket.SOCK_STREAM)
+                if addr_info:
+                    family = addr_info[0][0]
+                    if family == socket.AF_INET6:
+                        # IPv6 address - use 2-tuple (host, port) with ipv6=True in Factory
+                        # Port 0 lets OS choose available port
+                        bind_address_tuple = (bind_address, 0)
+                        use_ipv6 = True
+                    elif family == socket.AF_INET:
+                        # IPv4 address - format: (host, port)
+                        # For binding, we use port 0 (let OS choose)
+                        bind_address_tuple = (bind_address, 0)
+                        use_ipv6 = False
+                    else:
+                        logger.warning(f"Unknown address family for bind_address: {bind_address}, defaulting to IPv4")
+                        bind_address_tuple = (bind_address, 0)
+                        use_ipv6 = False
+                else:
+                    logger.warning(f"Could not resolve bind_address: {bind_address}, defaulting to IPv4")
+                    bind_address_tuple = (bind_address, 0)
+                    use_ipv6 = False
+            except (socket.gaierror, OSError) as e:
+                # Fallback to simple heuristic if getaddrinfo fails
+                logger.warning(f"Could not resolve bind_address {bind_address}: {e}, using heuristic detection")
+                if '::' in bind_address or (bind_address.count(':') > 1 and not bind_address.startswith('[')):
+                    bind_address_tuple = (bind_address, 0)
+                    use_ipv6 = True
+                else:
+                    bind_address_tuple = (bind_address, 0)
+                    use_ipv6 = False
         
         # Create Factory with bind_address if specified
         # Note: Factory needs ipv6=True for IPv6 addresses
