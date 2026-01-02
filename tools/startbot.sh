@@ -129,8 +129,27 @@ function start_bot {
     echo "Starting bot in a new screen session..."
     log_activity "Attempting to start bot..."
     
+    # Test if screen works by creating a test session
+    if ! screen -dmS test_session_$$ bash -c "sleep 1" 2>/dev/null; then
+        echo "ERROR: Cannot create screen sessions"
+        echo "Screen may not be properly configured or accessible"
+        echo "Try: screen -dmS test bash -c 'sleep 1' && screen -list"
+        log_activity "Failed to start bot: Screen test session creation failed"
+        return 1
+    fi
+    sleep 0.5
+    if screen -list 2>&1 | grep -q "test_session_$$"; then
+        # Clean up test session
+        screen -S test_session_$$ -X quit 2>/dev/null
+    else
+        echo "WARNING: Screen test session was not found, but continuing anyway..."
+    fi
+    
     # Start bot in screen session with error output captured
-    screen -dmS $SCREEN_NAME bash -c "cd $BOT_DIRECTORY; source $VENV_PATH/bin/activate; python3 $BOT_SCRIPT 2>&1 | tee -a $LOG_FILE"
+    local screen_cmd="cd $BOT_DIRECTORY && source $VENV_PATH/bin/activate && python3 $BOT_SCRIPT 2>&1 | tee -a $LOG_FILE"
+    
+    # Try to create screen session (redirect stderr to see any screen errors)
+    screen -dmS $SCREEN_NAME bash -c "$screen_cmd" 2>>"$LOG_FILE"
     local screen_exit=$?
     
     # Check if screen command itself failed
@@ -138,16 +157,18 @@ function start_bot {
         echo "ERROR: Failed to execute screen command (exit code: $screen_exit)"
         echo "Check if screen is installed: which screen"
         echo "Check screen permissions and configuration"
+        echo "Check log file for details: tail -20 $LOG_FILE"
         log_activity "Failed to start bot: Screen command failed with exit code $screen_exit"
         return 1
     fi
     
-    # Wait a moment for the screen session to be created
+    # Wait a moment for the screen session to be created and initialized
     sleep 1
     
     # Check if screen session was created (handle both "No Sockets" message and actual session list)
     local screen_list_output
     screen_list_output=$(screen -list 2>&1)
+    
     if ! echo "$screen_list_output" | grep -q "$SCREEN_NAME"; then
         # Check if screen is actually working (might just be no sessions yet)
         if echo "$screen_list_output" | grep -q "No Sockets found"; then
@@ -155,10 +176,17 @@ function start_bot {
             sleep 1
             screen_list_output=$(screen -list 2>&1)
             if ! echo "$screen_list_output" | grep -q "$SCREEN_NAME"; then
-                echo "ERROR: Screen session '$SCREEN_NAME' was not created"
-                echo "Screen command executed but session not found"
-                echo "Check screen logs or try manually: screen -dmS $SCREEN_NAME bash"
-                log_activity "Failed to start bot: Screen session not found after creation"
+                echo "ERROR: Screen session '$SCREEN_NAME' was not created or exited immediately"
+                echo "This usually means the command inside screen failed right away"
+                echo ""
+                echo "Troubleshooting:"
+                echo "1. Check the log file for errors:"
+                echo "   tail -50 $LOG_FILE"
+                echo "2. Try running the bot command directly to see errors:"
+                echo "   cd $BOT_DIRECTORY && source $VENV_PATH/bin/activate && python3 $BOT_SCRIPT"
+                echo "3. Verify screen works:"
+                echo "   screen -dmS test bash -c 'sleep 5' && sleep 1 && screen -list"
+                log_activity "Failed to start bot: Screen session not found after creation (likely command failed immediately)"
                 return 1
             fi
         else
@@ -169,23 +197,32 @@ function start_bot {
         fi
     fi
     
-    # Wait a bit more and check if bot process is running
-    sleep 1
+    # Wait a bit more for the bot process to start
+    sleep 2
     
-    # Check if bot is actually running
-    if ! is_bot_running; then
-        echo "ERROR: Bot failed to start"
-        echo "Checking screen session for errors..."
+    # Check if bot process is actually running (screen session might exit if command fails)
+    if ! pgrep -f "$BOT_SCRIPT" > /dev/null; then
+        # Process not running - check if screen session still exists
+        local screen_still_exists=0
+        if screen -list 2>&1 | grep -q "$SCREEN_NAME"; then
+            screen_still_exists=1
+        fi
         
-        # Try to capture error output from screen
-        if screen -list | grep -q "$SCREEN_NAME"; then
-            # Get the last few lines from screen session
+        echo "ERROR: Bot process is not running"
+        if [ $screen_still_exists -eq 1 ]; then
+            echo "Screen session exists but bot process not found"
+            echo "The bot may have crashed or failed to start"
+            # Try to capture error output from screen
             screen -S $SCREEN_NAME -X hardcopy /tmp/quizzer_screen_output.txt 2>/dev/null
             if [ -f /tmp/quizzer_screen_output.txt ]; then
+                echo ""
                 echo "Last output from bot:"
-                tail -20 /tmp/quizzer_screen_output.txt
+                tail -30 /tmp/quizzer_screen_output.txt
                 rm -f /tmp/quizzer_screen_output.txt
             fi
+        else
+            echo "Screen session also not found - command likely failed immediately"
+            echo "This usually means there's an error in the bot startup command"
         fi
         
         echo ""
