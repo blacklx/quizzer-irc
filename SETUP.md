@@ -130,7 +130,10 @@ admin_settings:
   # Verification method: "nickserv" (default), "password", "hostmask", or "combined"
   verification_method: "nickserv"
   
-  admins: ["YourNick"]         # List of admin nicknames
+  # List of admin nicknames (YAML list format)
+  # Single admin: ["YourNick"]
+  # Multiple admins: ["AdminNick1", "AdminNick2", "AdminNick3"]
+  admins: ["YourNick"]
   
   # Password-based verification settings (if verification_method is "password" or "combined")
   password_settings:
