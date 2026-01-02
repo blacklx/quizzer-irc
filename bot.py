@@ -200,26 +200,35 @@ class QuizzerBot(SingleServerIRCBot):
         # Convert bind_address to tuple format if specified
         # socket.bind() requires (host, port) tuple, not just a string
         bind_address_tuple = None
+        use_ipv6 = False
         if bind_address:
             bind_address = str(bind_address).strip()
-            # Check if it's IPv6 (contains colons)
-            if ':' in bind_address and not bind_address.count(':') == 1:
-                # IPv6 address - format: (host, port, flowinfo, scopeid)
-                # For binding, we use port 0 (let OS choose) and 0 for flowinfo/scopeid
-                bind_address_tuple = (bind_address, 0, 0, 0)
+            # Check if it's IPv6 (contains multiple colons, not just one for port)
+            # Simple heuristic: IPv6 has more than one colon, or contains ::
+            if '::' in bind_address or (bind_address.count(':') > 1 and not bind_address.startswith('[')):
+                # IPv6 address - use 2-tuple (host, port) with ipv6=True in Factory
+                # Port 0 lets OS choose available port
+                bind_address_tuple = (bind_address, 0)
+                use_ipv6 = True
             else:
                 # IPv4 address - format: (host, port)
                 # For binding, we use port 0 (let OS choose)
                 bind_address_tuple = (bind_address, 0)
+                use_ipv6 = False
         
         # Create Factory with bind_address if specified
+        # Note: Factory needs ipv6=True for IPv6 addresses
         if use_ssl:
             factory = Factory(
                 bind_address=bind_address_tuple,
+                ipv6=use_ipv6,
                 wrapper=lambda sock: ssl.create_default_context().wrap_socket(sock, server_hostname=server)
             )
         else:
-            factory = Factory(bind_address=bind_address_tuple)
+            factory = Factory(
+                bind_address=bind_address_tuple,
+                ipv6=use_ipv6
+            )
         
         # Store bind_address for logging (original string)
         self.bind_address = bind_address
