@@ -1,56 +1,131 @@
+# ============================================================================
+# Quizzer IRC Bot Configuration
+# ============================================================================
+# Copy this file to config.yaml and customize it for your setup
+#
+# Copyright 2026 blacklx
+# Licensed under the Apache License, Version 2.0
+# ============================================================================
+
+# ============================================================================
+# Quiz Settings
+# ============================================================================
 quiz_settings:
+  # Number of questions per quiz
   question_count: 15
-  answer_time_limit: 25  # seconds
+  
+  # Time limit for answering each question (in seconds)
+  answer_time_limit: 25
+  
+  # Rate limit between user commands (in seconds)
   RATE_LIMIT: 3
 
+# ============================================================================
+# Bot Connection Settings
+# ============================================================================
 bot_settings:
+  # IRC server address
   server: "irc.example.org"
+  
+  # IRC server port (6697 for SSL, 6667 for non-SSL)
   port: 6697
+  
+  # Channel to join
   channel: "#quizzer"
+  
+  # Bot's nickname
   nickname: "Quizzer"
+  
+  # Bot's realname
   realname: "Quizzer"
-  use_ssl: true # if set to False, remember to change port to 6667
-  reconnect_interval: 15 # in seconds, connection retry interval
-  rejoin_interval: 15 # in seconds, how often to attempt rejoin channel if kicked
-  nickname_retry_interval: 30 # in seconds, how often to try to regain botnick if taken
-  # bind_address: Optional - Bind to specific IP address or hostname (IPv4 or IPv6)
-  # Examples:
-  #   bind_address: "192.168.1.100"  # IPv4 address
-  #   bind_address: "2001:db8::1"     # IPv6 address
-  #   bind_address: "eth0"            # Network interface name (if supported)
+  
+  # Use SSL/TLS encryption
+  # If set to False, remember to change port to 6667
+  use_ssl: true
+  
+  # Connection retry interval (in seconds)
+  reconnect_interval: 15
+  
+  # Channel rejoin interval if kicked (in seconds)
+  rejoin_interval: 15
+  
+  # Nickname retry interval if taken (in seconds)
+  nickname_retry_interval: 30
+  
+  # Optional: Bind to specific IP address or hostname (IPv4 or IPv6)
   # Leave empty or omit to use default (all interfaces)
+  # Examples:
+  #   bind_address: "192.168.1.100"    # IPv4 address
+  #   bind_address: "2001:db8::1"     # IPv6 address
   # bind_address: null
 
+# ============================================================================
+# NickServ Authentication Settings
+# ============================================================================
 nickserv_settings:
+  # Enable NickServ authentication
   use_nickserv: True
+  
+  # NickServ service name (usually "N" or "NickServ")
   nickserv_name: "N"
+  
+  # Your NickServ account name
   nickserv_account: "Quizzer"
-  # nickserv_password: Leave empty - use NICKSERV_PASSWORD environment variable or .env file instead
+  
+  # NickServ password - Leave empty!
+  # Use NICKSERV_PASSWORD environment variable or .env file instead
+  # nickserv_password: ""
+  
+  # NickServ command format
   nickserv_command_format: "IDENTIFY {account} {password}"
 
+# ============================================================================
+# Logging Settings
+# ============================================================================
 bot_log_settings:
-  enable_logging: True  # Set to True to see console output
+  # Enable file logging
+  enable_logging: True
+  
+  # Enable debug logging (verbose output)
   enable_debug: True
+  
+  # Log file path
   log_filename: "logs/Quizzer.log"
 
+# ============================================================================
+# Admin Settings
+# ============================================================================
 admin_settings:
-  # Verification method: "nickserv" (default), "password", "hostmask", or "combined"
+  # Admin verification method
+  # Options: "nickserv" (default), "password", "hostmask", or "combined"
   verification_method: "nickserv"
   
-  admins: ["YourNick"]  # List of admin nicknames format: ["AdminNick1", "AdminNick2"]
+  # List of admin nicknames
+  # Format: ["AdminNick1", "AdminNick2", "AdminNick3"]
+  admins: ["YourNick"]
   
-  # Password-based verification settings (if verification_method is "password" or "combined")
+  # Password-based verification settings
+  # (Only used if verification_method is "password" or "combined")
   password_settings:
-    session_timeout: 3600  # Session duration in seconds (default: 1 hour)
-    max_attempts: 3  # Maximum failed password attempts before lockout
-    lockout_duration: 300  # Lockout duration in seconds (default: 5 minutes)
-    # Passwords are stored in .env file as: ADMIN_PASSWORD_<nickname>=password
-    # Passwords are auto-hashed on first use
+    # Session duration in seconds (default: 1 hour)
+    session_timeout: 3600
+    
+    # Maximum failed password attempts before lockout
+    max_attempts: 3
+    
+    # Lockout duration in seconds (default: 5 minutes)
+    lockout_duration: 300
+    
+    # Note: Passwords are stored in .env file as:
+    #   ADMIN_PASSWORD_<nickname>=password
+    # Passwords are automatically hashed on first use
   
-  # Hostmask-based verification settings (if verification_method is "hostmask" or "combined")
+  # Hostmask-based verification settings
+  # (Only used if verification_method is "hostmask" or "combined")
   hostmask_settings:
+    # Hostmask patterns for automatic verification
     # Format: "nickname": ["hostmask1", "hostmask2"]
-    # Wildcards: *!*@host.com, *!user@*.domain.com
+    # Wildcards supported: *!*@host.com, *!user@*.domain.com
     hostmasks:
+      # Example:
       # "YourNick": ["*!*@trusted.host", "*!*@*.example.com"]
-
