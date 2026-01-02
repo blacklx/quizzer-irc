@@ -24,6 +24,7 @@ import time
 import threading
 import yaml
 import os
+import socket
 import irc
 import ssl
 from irc.bot import SingleServerIRCBot
