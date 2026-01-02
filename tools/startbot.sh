@@ -362,21 +362,10 @@ function update_crontab {
     fi
 
     # Prepare new crontab entries
-    # Use full path to venv Python directly (more reliable in cron than 'source activate')
-    # Check which Python executable exists in venv
-    local venv_python
-    if [ -f "$VENV_PATH/bin/python3" ]; then
-        venv_python="$VENV_PATH/bin/python3"
-    elif [ -f "$VENV_PATH/bin/python" ]; then
-        venv_python="$VENV_PATH/bin/python"
-    else
-        echo "ERROR: Python executable not found in virtual environment"
-        log_activity "Failed to update crontab: Python executable not found in venv"
-        return 1
-    fi
-    
-    # Use full paths for cron (cron has minimal environment)
-    START_CMD="cd $BOT_DIRECTORY && $venv_python $BOT_SCRIPT"
+    # Use startbot.sh start instead of running run.py directly
+    # This ensures all validation, error handling, and screen session management is used
+    # Use full path to startbot.sh for cron (cron has minimal environment)
+    START_CMD="cd $BOT_DIRECTORY && $BOT_DIRECTORY/tools/startbot.sh start"
     local new_crontab
     new_crontab=$(echo "$existing_cron"; echo "@reboot $START_CMD >/dev/null 2>&1"; echo "$CRON_CHECK_INTERVAL cd $BOT_DIRECTORY && $BOT_DIRECTORY/tools/startbot.sh check >/dev/null 2>&1")
     
