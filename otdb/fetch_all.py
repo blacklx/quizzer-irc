@@ -20,14 +20,17 @@ limitations under the License.
 
 Version: 0.90
 """
-import requests
-import json
-import time
+# Standard library imports
 import html
-import random
-import os
-import sys
+import json
 import logging
+import os
+import random
+import sys
+import time
+
+# Third-party imports
+import requests
 from collections import defaultdict
 
 # Handle imports - works both as module and standalone script

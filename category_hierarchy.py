@@ -19,8 +19,9 @@ limitations under the License.
 
 Version: 0.90
 """
-import os
+# Standard library imports
 import json
+import os
 from collections import defaultdict
 
 

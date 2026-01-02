@@ -19,24 +19,38 @@ limitations under the License.
 
 Version: 0.90
 """
+# Standard library imports
 import logging
-import time
-import threading
-import yaml
 import os
 import socket
-import irc
 import ssl
+import threading
+import time
+import yaml
+
+# Third-party imports
+import irc
 from irc.bot import SingleServerIRCBot
 from irc.connection import Factory
+
+# Local imports
 from admin import AdminCommands
 from admin_verifier import AdminVerifier
-from quiz_game import QuizGame, handle_start_command, handle_join_command, handle_categories_command, handle_help_command
 from category_display import handle_categories_display, get_all_categories
 from database import create_database, store_score, get_leaderboard
+from quiz_game import (
+    QuizGame,
+    handle_start_command,
+    handle_join_command,
+    handle_categories_command,
+    handle_help_command
+)
 
-# Load .env file if it exists (for environment variables)
-# This ensures .env is loaded even if bot.py is imported directly
+# ============================================================================
+# Environment and Configuration Loading
+# ============================================================================
+
+
 def load_env_file(env_file='.env'):
     """
     Load environment variables from .env file.
@@ -67,7 +81,10 @@ def load_env_file(env_file='.env'):
 # Load .env file before loading configuration
 load_env_file()
 
-# Load configuration
+
+# ============================================================================
+# Configuration Loading and Validation
+# ============================================================================
 try:
     with open("config.yaml", 'r') as config_file:
         config = yaml.safe_load(config_file)
@@ -79,8 +96,14 @@ except yaml.YAMLError as e:
     exit(1)
 required_keys = {
     'quiz_settings': ['question_count', 'answer_time_limit'],
-    'bot_settings': ['server', 'port', 'channel', 'nickname', 'realname', 'use_ssl', 'reconnect_interval', 'rejoin_interval', 'nickname_retry_interval'],
-    'nickserv_settings': ['use_nickserv', 'nickserv_name', 'nickserv_account', 'nickserv_command_format'],
+    'bot_settings': [
+        'server', 'port', 'channel', 'nickname', 'realname', 'use_ssl',
+        'reconnect_interval', 'rejoin_interval', 'nickname_retry_interval'
+    ],
+    'nickserv_settings': [
+        'use_nickserv', 'nickserv_name', 'nickserv_account',
+        'nickserv_command_format'
+    ],
     'bot_log_settings': ['enable_logging', 'enable_debug', 'log_filename'],
     'admin_settings': ['admins']
 }
@@ -92,7 +115,7 @@ for category, keys in required_keys.items():
         if key not in config[category]:
             raise ValueError(f"Missing '{key}' in '{category}' section of config.yaml")
 
-# Bot configuration
+# Extract configuration values
 server = config['bot_settings']['server']
 port = config['bot_settings']['port']
 channel = config['bot_settings']['channel']
@@ -107,15 +130,24 @@ nickname_retry_interval = config['bot_settings']['nickname_retry_interval']
 use_nickserv = config['nickserv_settings']['use_nickserv']
 nickserv_name = config['nickserv_settings']['nickserv_name']
 nickserv_account = config['nickserv_settings']['nickserv_account']
-# Get password from environment variable (from .env file or system env), fallback to config for backward compatibility
-nickserv_password = os.getenv('NICKSERV_PASSWORD', config['nickserv_settings'].get('nickserv_password', ''))
+# Get password from environment variable (from .env file or system env),
+# fallback to config for backward compatibility
+nickserv_password = os.getenv(
+    'NICKSERV_PASSWORD',
+    config['nickserv_settings'].get('nickserv_password', '')
+)
 if not nickserv_password:
-    raise ValueError("NICKSERV_PASSWORD must be set in .env file, as an environment variable, or in config.yaml")
+    raise ValueError(
+        "NICKSERV_PASSWORD must be set in .env file, "
+        "as an environment variable, or in config.yaml"
+    )
 nickserv_command_format = config['nickserv_settings']['nickserv_command_format']
 
 # Admin settings
 admins = config['admin_settings']['admins']
-admin_verification_method = config['admin_settings'].get('verification_method', 'nickserv').lower()
+admin_verification_method = config['admin_settings'].get(
+    'verification_method', 'nickserv'
+).lower()
 admin_password_settings = config['admin_settings'].get('password_settings', {})
 admin_hostmask_settings = config['admin_settings'].get('hostmask_settings', {})
 
@@ -137,32 +169,46 @@ if admin_verification_method in ['password', 'hostmask', 'combined']:
         admin_verifier = None
         admin_verification_method = 'nickserv'
 
+# ============================================================================
+# Logging Setup
+# ============================================================================
+
 # Ensure required directories exist
 os.makedirs('logs', exist_ok=True)
 os.makedirs('db', exist_ok=True)
 
-# Logging and Debug configuration
+# Logging configuration
 enable_logging = config['bot_log_settings']['enable_logging']
 enable_debug = config['bot_log_settings']['enable_debug']
 log_level = logging.DEBUG if enable_debug else logging.INFO
 log_filename = config['bot_log_settings']['log_filename']
 
-# Setting up logging
+# Set up logger
 logger = logging.getLogger('IRC')
 logger.setLevel(log_level)
+
 try:
     file_handler = logging.FileHandler(log_filename)
-    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    formatter = logging.Formatter(
+        '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    )
     file_handler.setFormatter(formatter)
     logger.addHandler(file_handler)
 except (OSError, PermissionError) as e:
     logging.warning(f"Warning: Could not create log file '{log_filename}': {e}")
-    # Continue with console logging only
+
 if enable_logging:
     console_handler = logging.StreamHandler()
-    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    formatter = logging.Formatter(
+        '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    )
     console_handler.setFormatter(formatter)
     logger.addHandler(console_handler)
+
+
+# ============================================================================
+# Main Bot Class
+# ============================================================================
 
 class QuizzerBot(SingleServerIRCBot):
     """
@@ -176,7 +222,27 @@ class QuizzerBot(SingleServerIRCBot):
         channel: IRC channel the bot operates in
         admin_commands: AdminCommands instance for admin functionality
     """
-    def __init__(self, channel, nickname, realname, server, port, use_ssl, nickserv_settings, nickserv_account, nickserv_password, nickserv_command_format, use_nickserv, bot_version, question_count, answer_time_limit, admins, admin_verification_method='nickserv', admin_verifier=None, bind_address=None):
+    def __init__(
+        self,
+        channel,
+        nickname,
+        realname,
+        server,
+        port,
+        use_ssl,
+        nickserv_settings,
+        nickserv_account,
+        nickserv_password,
+        nickserv_command_format,
+        use_nickserv,
+        bot_version,
+        question_count,
+        answer_time_limit,
+        admins,
+        admin_verification_method='nickserv',
+        admin_verifier=None,
+        bind_address=None
+    ):
         """
         Initialize the Quizzer IRC bot.
         
@@ -208,7 +274,9 @@ class QuizzerBot(SingleServerIRCBot):
             # This is more reliable than string heuristics
             try:
                 # Try to resolve the address to determine its family
-                addr_info = socket.getaddrinfo(bind_address, 0, socket.AF_UNSPEC, socket.SOCK_STREAM)
+                addr_info = socket.getaddrinfo(
+                    bind_address, 0, socket.AF_UNSPEC, socket.SOCK_STREAM
+                )
                 if addr_info:
                     family = addr_info[0][0]
                     if family == socket.AF_INET6:
@@ -222,17 +290,28 @@ class QuizzerBot(SingleServerIRCBot):
                         bind_address_tuple = (bind_address, 0)
                         use_ipv6 = False
                     else:
-                        logger.warning(f"Unknown address family for bind_address: {bind_address}, defaulting to IPv4")
+                        logger.warning(
+                            f"Unknown address family for bind_address: "
+                            f"{bind_address}, defaulting to IPv4"
+                        )
                         bind_address_tuple = (bind_address, 0)
                         use_ipv6 = False
                 else:
-                    logger.warning(f"Could not resolve bind_address: {bind_address}, defaulting to IPv4")
+                    logger.warning(
+                        f"Could not resolve bind_address: {bind_address}, "
+                        f"defaulting to IPv4"
+                    )
                     bind_address_tuple = (bind_address, 0)
                     use_ipv6 = False
             except (socket.gaierror, OSError) as e:
                 # Fallback to simple heuristic if getaddrinfo fails
-                logger.warning(f"Could not resolve bind_address {bind_address}: {e}, using heuristic detection")
-                if '::' in bind_address or (bind_address.count(':') > 1 and not bind_address.startswith('[')):
+                logger.warning(
+                    f"Could not resolve bind_address {bind_address}: {e}, "
+                    f"using heuristic detection"
+                )
+                if ('::' in bind_address or
+                    (bind_address.count(':') > 1 and
+                     not bind_address.startswith('['))):
                     bind_address_tuple = (bind_address, 0)
                     use_ipv6 = True
                 else:
@@ -245,7 +324,9 @@ class QuizzerBot(SingleServerIRCBot):
             factory = Factory(
                 bind_address=bind_address_tuple,
                 ipv6=use_ipv6,
-                wrapper=lambda sock: ssl.create_default_context().wrap_socket(sock, server_hostname=server)
+                wrapper=lambda sock: ssl.create_default_context().wrap_socket(
+                    sock, server_hostname=server
+                )
             )
         else:
             factory = Factory(
@@ -258,7 +339,9 @@ class QuizzerBot(SingleServerIRCBot):
         if bind_address:
             logger.info(f"Will bind to local address: {bind_address}")
         
-        SingleServerIRCBot.__init__(self, [(server, port)], nickname, realname, connect_factory=factory)
+        SingleServerIRCBot.__init__(
+            self, [(server, port)], nickname, realname, connect_factory=factory
+        )
 
         # Retrieve quiz settings from the config
         question_count = config['quiz_settings']['question_count']

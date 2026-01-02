@@ -19,28 +19,48 @@ limitations under the License.
 
 Version: 0.90
 """
-import sqlite3
+# Standard library imports
 import logging
 import os
+import sqlite3
 
-# Ensure required directories exist
+# ============================================================================
+# Directory Setup
+# ============================================================================
+
 os.makedirs('logs', exist_ok=True)
 os.makedirs('db', exist_ok=True)
 
-# Set up logging
+# ============================================================================
+# Logging Setup
+# ============================================================================
+
 logger = logging.getLogger('DBManagerLogger')
 logger.setLevel(logging.INFO)
+
 try:
     log_handler = logging.FileHandler('logs/database.log')
-    log_formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    log_formatter = logging.Formatter(
+        '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    )
     log_handler.setFormatter(log_formatter)
     logger.addHandler(log_handler)
 except (OSError, PermissionError) as e:
     # Fallback to console logging if file can't be written
     console_handler = logging.StreamHandler()
-    console_handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
+    console_handler.setFormatter(logging.Formatter(
+        '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    ))
     logger.addHandler(console_handler)
-    logger.warning(f"Could not create log file 'logs/database.log': {e}. Using console logging.")
+    logger.warning(
+        f"Could not create log file 'logs/database.log': {e}. "
+        f"Using console logging."
+    )
+
+
+# ============================================================================
+# Database Functions
+# ============================================================================
 
 def create_database():
     """

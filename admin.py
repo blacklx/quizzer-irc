@@ -19,30 +19,54 @@ limitations under the License.
 
 Version: 0.90
 """
-import subprocess
+# Standard library imports
 import logging
 import os
-import yaml
-from quiz_game import QuizGame
-from admin_verifier import AdminVerifier
+import subprocess
 
-# Ensure required directories exist
+# Third-party imports
+import yaml
+
+# Local imports
+from admin_verifier import AdminVerifier
+from quiz_game import QuizGame
+
+# ============================================================================
+# Directory Setup
+# ============================================================================
+
 os.makedirs('logs', exist_ok=True)
 
-# Set up logging for admin actions
+# ============================================================================
+# Logging Setup
+# ============================================================================
+
 admin_logger = logging.getLogger('AdminLogger')
 admin_logger.setLevel(logging.INFO)
+
 try:
     file_handler = logging.FileHandler('logs/admin_actions.log')
-    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    formatter = logging.Formatter(
+        '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    )
     file_handler.setFormatter(formatter)
     admin_logger.addHandler(file_handler)
 except (OSError, PermissionError) as e:
     # Fallback to console logging if file can't be written
     console_handler = logging.StreamHandler()
-    console_handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
+    console_handler.setFormatter(logging.Formatter(
+        '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    ))
     admin_logger.addHandler(console_handler)
-    admin_logger.warning(f"Could not create log file 'logs/admin_actions.log': {e}. Using console logging.")
+    admin_logger.warning(
+        f"Could not create log file 'logs/admin_actions.log': {e}. "
+        f"Using console logging."
+    )
+
+
+# ============================================================================
+# AdminCommands Class
+# ============================================================================
 
 class AdminCommands:
     """
@@ -51,8 +75,13 @@ class AdminCommands:
     Provides functionality for stopping games, restarting the bot,
     managing rate limits, and other administrative tasks.
     """
-    def __init__(self, quiz_game: QuizGame, admin_nicks, nickserv_name, 
-                 admin_verifier: AdminVerifier = None):
+    def __init__(
+        self,
+        quiz_game: QuizGame,
+        admin_nicks,
+        nickserv_name,
+        admin_verifier: AdminVerifier = None
+    ):
         """
         Initialize AdminCommands.
         

@@ -20,14 +20,19 @@ limitations under the License.
 
 Version: 0.90
 """
-import sys
-import os
+# Standard library imports
 import logging
+import os
+import sys
 
 # Add current directory to path to ensure imports work
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-# Load .env file if it exists (for environment variables)
+# ============================================================================
+# Environment Variable Loading
+# ============================================================================
+
+
 def load_env_file(env_file='.env'):
     """
     Load environment variables from .env file.
@@ -57,17 +62,28 @@ def load_env_file(env_file='.env'):
 # Load .env file before importing bot modules
 load_env_file()
 
+# Local imports
 from bot import QuizzerBot
-from database import create_database
 from config import load_config, ConfigError
+from database import create_database
 
-# Set up logging for run.py
+# ============================================================================
+# Logging Setup
+# ============================================================================
+
 logger = logging.getLogger('RunLogger')
 logger.setLevel(logging.INFO)
 console_handler = logging.StreamHandler()
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+formatter = logging.Formatter(
+    '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
 console_handler.setFormatter(formatter)
 logger.addHandler(console_handler)
+
+
+# ============================================================================
+# Main Function
+# ============================================================================
 
 
 def main():
@@ -88,12 +104,17 @@ def main():
         use_ssl = config.get('bot_settings', 'use_ssl')
         reconnect_interval = config.get('bot_settings', 'reconnect_interval')
         rejoin_interval = config.get('bot_settings', 'rejoin_interval')
-        nickname_retry_interval = config.get('bot_settings', 'nickname_retry_interval')
+        nickname_retry_interval = config.get(
+            'bot_settings', 'nickname_retry_interval'
+        )
+        
         # bind_address is optional - get it if present, otherwise None
-        bind_address = config.config.get('bot_settings', {}).get('bind_address', None)
+        bind_address = config.config.get('bot_settings', {}).get(
+            'bind_address', None
+        )
         if bind_address:
             bind_address = str(bind_address).strip()
-            if not bind_address or bind_address.lower() in ['null', 'none', '']:
+            if bind_address.lower() in ['null', 'none', '']:
                 bind_address = None
         
         use_nickserv = config.get('nickserv_settings', 'use_nickserv')
@@ -108,9 +129,15 @@ def main():
         admin_nicks = config.get('admin_settings', 'admins')
         
         # Admin verification settings
-        admin_verification_method = config.config.get('admin_settings', {}).get('verification_method', 'nickserv').lower()
-        admin_password_settings = config.config.get('admin_settings', {}).get('password_settings', {})
-        admin_hostmask_settings = config.config.get('admin_settings', {}).get('hostmask_settings', {})
+        admin_verification_method = config.config.get(
+            'admin_settings', {}
+        ).get('verification_method', 'nickserv').lower()
+        admin_password_settings = config.config.get(
+            'admin_settings', {}
+        ).get('password_settings', {})
+        admin_hostmask_settings = config.config.get(
+            'admin_settings', {}
+        ).get('hostmask_settings', {})
         
         # Create AdminVerifier if needed
         admin_verifier = None
@@ -140,11 +167,24 @@ def main():
         
         # Create and start bot
         bot = QuizzerBot(
-            channel, nickname, realname, server, port, use_ssl,
-            nickserv_settings, nickserv_account, nickserv_password,
-            nickserv_command_format, use_nickserv, bot_version,
-            question_count, answer_time_limit, admin_nicks,
-            admin_verification_method, admin_verifier, bind_address
+            channel,
+            nickname,
+            realname,
+            server,
+            port,
+            use_ssl,
+            nickserv_settings,
+            nickserv_account,
+            nickserv_password,
+            nickserv_command_format,
+            use_nickserv,
+            bot_version,
+            question_count,
+            answer_time_limit,
+            admin_nicks,
+            admin_verification_method,
+            admin_verifier,
+            bind_address
         )
         bot.start()
         

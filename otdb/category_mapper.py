@@ -19,6 +19,7 @@ limitations under the License.
 
 Version: 0.90
 """
+# Standard library imports
 import html
 
 # Standard category names used by the bot (from original quiz_data)

@@ -22,8 +22,9 @@ limitations under the License.
 
 Version: 0.90
 """
-import sqlite3
+# Standard library imports
 import re
+import sqlite3
 import sys
 
 # Connect to the SQLite database

@@ -19,14 +19,27 @@ limitations under the License.
 
 Version: 0.90
 """
-import yaml
+# Standard library imports
 import os
-from typing import Dict, Any, Optional
+from typing import Any, Dict, Optional
+
+# Third-party imports
+import yaml
+
+
+# ============================================================================
+# Exceptions
+# ============================================================================
 
 
 class ConfigError(Exception):
     """Raised when there's an error loading or validating configuration."""
     pass
+
+
+# ============================================================================
+# Config Class
+# ============================================================================
 
 
 class Config:
@@ -60,10 +73,14 @@ class Config:
         """Validate that all required configuration keys are present."""
         required_keys = {
             'quiz_settings': ['question_count', 'answer_time_limit'],
-            'bot_settings': ['server', 'port', 'channel', 'nickname', 'realname', 'use_ssl', 
-                           'reconnect_interval', 'rejoin_interval', 'nickname_retry_interval'],
-            'nickserv_settings': ['use_nickserv', 'nickserv_name', 'nickserv_account', 
-                                 'nickserv_command_format'],
+            'bot_settings': [
+                'server', 'port', 'channel', 'nickname', 'realname', 'use_ssl',
+                'reconnect_interval', 'rejoin_interval', 'nickname_retry_interval'
+            ],
+            'nickserv_settings': [
+                'use_nickserv', 'nickserv_name', 'nickserv_account',
+                'nickserv_command_format'
+            ],
             'bot_log_settings': ['enable_logging', 'enable_debug', 'log_filename'],
             'admin_settings': ['admins']
         }
@@ -107,8 +124,10 @@ class Config:
         Raises:
             ConfigError: If password is not set
         """
-        password = os.getenv('NICKSERV_PASSWORD', 
-                           self.config['nickserv_settings'].get('nickserv_password', ''))
+        password = os.getenv(
+            'NICKSERV_PASSWORD',
+            self.config['nickserv_settings'].get('nickserv_password', '')
+        )
         if not password:
             raise ConfigError(
                 "NICKSERV_PASSWORD environment variable must be set, "
@@ -117,8 +136,16 @@ class Config:
         return password
 
 
-# Global config instance (loaded on import)
+# ============================================================================
+# Global Configuration Instance
+# ============================================================================
+
 _config_instance: Optional[Config] = None
+
+
+# ============================================================================
+# Public Functions
+# ============================================================================
 
 
 def load_config(config_path: str = "config.yaml") -> Config:

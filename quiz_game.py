@@ -19,14 +19,19 @@ limitations under the License.
 
 Version: 0.90
 """
+# Standard library imports
+import html
+import json
+import logging
+import os
 import random
 import threading
-import logging
 import time
-import json
+
+# Third-party imports
 import yaml
-import html
-import os
+
+# Local imports
 from database import store_score
 
 # Load configuration
@@ -41,8 +46,14 @@ except yaml.YAMLError as e:
     exit(1)
 required_keys = {
     'quiz_settings': ['question_count', 'answer_time_limit', 'RATE_LIMIT'],
-    'bot_settings': ['server', 'port', 'channel', 'nickname', 'realname', 'use_ssl', 'reconnect_interval', 'rejoin_interval', 'nickname_retry_interval'],
-    'nickserv_settings': ['use_nickserv', 'nickserv_name', 'nickserv_account', 'nickserv_command_format'],
+    'bot_settings': [
+        'server', 'port', 'channel', 'nickname', 'realname', 'use_ssl',
+        'reconnect_interval', 'rejoin_interval', 'nickname_retry_interval'
+    ],
+    'nickserv_settings': [
+        'use_nickserv', 'nickserv_name', 'nickserv_account',
+        'nickserv_command_format'
+    ],
     'bot_log_settings': ['enable_logging', 'enable_debug', 'log_filename']
 }
 # Note: nickserv_password is optional in config if NICKSERV_PASSWORD env var is set
@@ -54,29 +65,51 @@ for category, keys in required_keys.items():
         if key not in config[category]:
             raise ValueError(f"Missing '{key}' in '{category}' section of config.yaml")
 
-# Accessing the configuration
+# ============================================================================
+# Configuration
+# ============================================================================
+
 question_count = config['quiz_settings']['question_count']
 answer_time_limit = config['quiz_settings']['answer_time_limit']
 RATE_LIMIT = config['quiz_settings']['RATE_LIMIT']
 
-# Ensure required directories exist
+# ============================================================================
+# Directory Setup
+# ============================================================================
+
 os.makedirs('logs', exist_ok=True)
 os.makedirs('quiz_data', exist_ok=True)
 
-# Setting up logging specifically for QuizGame
+# ============================================================================
+# Logging Setup
+# ============================================================================
+
 quiz_logger = logging.getLogger('QuizGameLogger')
 quiz_logger.setLevel(logging.INFO)
+
 try:
     quiz_handler = logging.FileHandler('logs/quiz_game.log')
-    quiz_formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    quiz_formatter = logging.Formatter(
+        '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    )
     quiz_handler.setFormatter(quiz_formatter)
     quiz_logger.addHandler(quiz_handler)
 except (OSError, PermissionError) as e:
     # Fallback to console logging if file can't be written
     console_handler = logging.StreamHandler()
-    console_handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
+    console_handler.setFormatter(logging.Formatter(
+        '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    ))
     quiz_logger.addHandler(console_handler)
-    quiz_logger.warning(f"Could not create log file 'logs/quiz_game.log': {e}. Using console logging.")
+    quiz_logger.warning(
+        f"Could not create log file 'logs/quiz_game.log': {e}. "
+        f"Using console logging."
+    )
+
+
+# ============================================================================
+# QuizGame Class
+# ============================================================================
 
 class QuizGame:
     """

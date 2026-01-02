@@ -22,13 +22,16 @@ limitations under the License.
 
 Version: 0.90
 """
-import os
-import yaml
-import time
-import secrets
+# Standard library imports
 import logging
+import os
+import secrets
 import threading
-from typing import Dict, Optional, List, Tuple
+import time
+from typing import Dict, List, Optional, Tuple
+
+# Third-party imports
+import yaml
 
 # Try to import bcrypt, fall back to hashlib if not available
 try:
@@ -38,22 +41,41 @@ except ImportError:
     import hashlib
     HAS_BCRYPT = False
 
-# Ensure required directories exist
+# ============================================================================
+# Directory Setup
+# ============================================================================
+
 os.makedirs('logs', exist_ok=True)
 
-# Set up logging
+# ============================================================================
+# Logging Setup
+# ============================================================================
+
 verifier_logger = logging.getLogger('AdminVerifier')
 verifier_logger.setLevel(logging.INFO)
+
 try:
     file_handler = logging.FileHandler('logs/admin_verification.log')
-    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    formatter = logging.Formatter(
+        '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    )
     file_handler.setFormatter(formatter)
     verifier_logger.addHandler(file_handler)
 except (OSError, PermissionError) as e:
     console_handler = logging.StreamHandler()
-    console_handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
+    console_handler.setFormatter(logging.Formatter(
+        '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    ))
     verifier_logger.addHandler(console_handler)
-    verifier_logger.warning(f"Could not create log file 'logs/admin_verification.log': {e}. Using console logging.")
+    verifier_logger.warning(
+        f"Could not create log file 'logs/admin_verification.log': {e}. "
+        f"Using console logging."
+    )
+
+
+# ============================================================================
+# AdminVerifier Class
+# ============================================================================
 
 
 class AdminVerifier:
@@ -67,9 +89,13 @@ class AdminVerifier:
     - Combined methods
     """
     
-    def __init__(self, admin_nicks: List[str], verification_method: str = "nickserv",
-                 password_settings: Optional[Dict] = None,
-                 hostmask_settings: Optional[Dict] = None):
+    def __init__(
+        self,
+        admin_nicks: List[str],
+        verification_method: str = "nickserv",
+        password_settings: Optional[Dict] = None,
+        hostmask_settings: Optional[Dict] = None
+    ):
         """
         Initialize AdminVerifier.
         
