@@ -5,6 +5,17 @@ All notable changes to the Quizzer IRC Bot project will be documented in this fi
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.90.1] - 2026-01-02
+
+### Fixed
+- **Crontab @reboot fix** - Changed crontab entry to use `startbot.sh start` instead of running `run.py` directly
+  - Ensures all validation, error handling, and screen session management is used
+  - Bot now properly starts automatically on reboot
+- **Crontab error handling** - Added crontab installation check and proper error handling
+- **Venv validation** - Improved virtual environment validation before adding crontab entries
+  - Checks for venv directory, activate script, and Python executable
+  - Prevents adding crontab entries with invalid venv paths
+
 ## [0.90] - 2026-01-02
 
 ### Added
