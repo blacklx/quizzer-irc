@@ -317,12 +317,30 @@ function update_crontab {
 
     echo "Updating crontab for the bot..."
     
-    # Virtual environment is REQUIRED
-    if [ ! -f "$VENV_PATH/bin/activate" ]; then
-        echo "ERROR: Virtual environment not found at $VENV_PATH"
+    # Virtual environment is REQUIRED - verify it exists and is valid
+    if [ ! -d "$VENV_PATH" ]; then
+        echo "ERROR: Virtual environment directory not found at $VENV_PATH"
         echo "This bot requires a virtual environment."
         echo "Please run ./install.sh to set up the environment."
-        log_activity "Failed to update crontab: Virtual environment not found"
+        log_activity "Failed to update crontab: Virtual environment directory not found"
+        return 1
+    fi
+    
+    if [ ! -f "$VENV_PATH/bin/activate" ]; then
+        echo "ERROR: Virtual environment is invalid - activate script not found at $VENV_PATH/bin/activate"
+        echo "The virtual environment may have been created incorrectly or is corrupted."
+        echo "Please recreate it by running: ./install.sh"
+        echo "Or manually: rm -rf $VENV_PATH && python3 -m venv $VENV_PATH"
+        log_activity "Failed to update crontab: Virtual environment activate script not found"
+        return 1
+    fi
+    
+    # Verify the venv has Python
+    if [ ! -f "$VENV_PATH/bin/python3" ] && [ ! -f "$VENV_PATH/bin/python" ]; then
+        echo "ERROR: Virtual environment is invalid - Python executable not found"
+        echo "The virtual environment may be corrupted."
+        echo "Please recreate it by running: ./install.sh"
+        log_activity "Failed to update crontab: Virtual environment Python executable not found"
         return 1
     fi
 
