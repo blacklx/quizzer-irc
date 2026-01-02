@@ -72,11 +72,16 @@ cp .env.example .env
 - IPv4/IPv6 bind address support
 - Virtual environment enforcement
 
+### Improvements
+- **Code formatting** - Organized imports, added section separators, improved readability across all Python files
+- **Configuration files** - Enhanced `config.yaml.example` and `.env.example` with better organization, section separators, and comprehensive comments
+
 ### Bug Fixes
 - Fixed critical reconnection bug
 - Fixed import errors in fetch scripts
 - Fixed startbot.sh virtual environment handling
 - Improved error detection and reporting
+- Fixed IPv6 bind address tuple format handling
 
 ## Commands
 
