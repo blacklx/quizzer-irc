@@ -26,6 +26,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Improved screen session detection in startbot.sh
 - Enhanced error handling and logging throughout
 - Updated admin verification system to support multiple methods
+- **Code formatting improvements** - Organized imports, added section separators, improved readability across all Python files
+- **Configuration file improvements** - Enhanced `config.yaml.example` and `.env.example` with better organization, section separators, and comprehensive comments
 
 ### Fixed
 - Game disconnect handling - Gracefully handles disconnections during active games
