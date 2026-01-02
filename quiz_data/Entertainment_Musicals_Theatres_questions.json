@@ -1,0 +1,339 @@
+[
+    {
+        "category": "Entertainment: Musicals & Theatres",
+        "question": "Who serves as the speaker of the prologue in Shakespeare's Romeo and Juliet?",
+        "answers": {
+            "A": "Montague",
+            "B": "Capulet",
+            "C": "Chorus",
+            "D": "Refrain"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Musicals & Theatres",
+        "question": "Who is the musical director for the award winning musical \"Hamilton\"?",
+        "answers": {
+            "A": "Alex Lacamoire",
+            "B": "Lin-Manuel Miranda",
+            "C": "Leslie Odom Jr.",
+            "D": "Renee Elise-Goldberry"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Musicals & Theatres",
+        "question": "Who wrote the play 'Angels in America'?",
+        "answers": {
+            "A": "Matthew Lopez",
+            "B": "Tony Kusher",
+            "C": "Anthony Neilson",
+            "D": "Tom Stoppard"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Musicals & Theatres",
+        "question": "After England, more Shakespeare plays are set in this present day country than in any other.",
+        "answers": {
+            "A": "United States",
+            "B": "Greece",
+            "C": "France",
+            "D": "Italy"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Musicals & Theatres",
+        "question": "In which Shakespearean play will you find the suicide of Ophelia?",
+        "answers": {
+            "A": "Hamlet",
+            "B": "Macbeth",
+            "C": "Othello",
+            "D": "King Lear"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Musicals & Theatres",
+        "question": "In Shakespeare's play Julius Caesar, Caesar's last words were...",
+        "answers": {
+            "A": "Iacta alea est!",
+            "B": "Vidi, vini, vici.",
+            "C": "Et tu, Brute? ",
+            "D": "Aegri somnia vana."
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Musicals & Theatres",
+        "question": "What play is the quote \"Hell is other people\" from?",
+        "answers": {
+            "A": "The Devil and the Good Lord",
+            "B": "The Condemned of Altona",
+            "C": "No Exit",
+            "D": "The Flies"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Musicals & Theatres",
+        "question": "What was George Bizet's last opera?",
+        "answers": {
+            "A": "Les pêcheurs de perles",
+            "B": "Grisélidis",
+            "C": "Don Rodrigue",
+            "D": "Carmen"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Musicals & Theatres",
+        "question": "In Les Misérables, who is Prison Code 24601?",
+        "answers": {
+            "A": "Javert",
+            "B": "Marius Pontmercy",
+            "C": "Jean Claude Van Damme",
+            "D": "Jean Valjean"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Musicals & Theatres",
+        "question": "In the play Oedipus Rex, Oedipus kills his father due to jealousy in loving his mother.",
+        "answers": {
+            "A": "True",
+            "B": "False"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Musicals & Theatres",
+        "question": "The musical \"Dirty Rotten Scoundrels\" is set in what country?",
+        "answers": {
+            "A": "Germany",
+            "B": "Sweden",
+            "C": "USA",
+            "D": "France"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Musicals & Theatres",
+        "question": "The Andrew Lloyd Webber musical \"Cats\" is based off a book of poems written by which author?",
+        "answers": {
+            "A": "Robert Frost",
+            "B": "T.S. Elliot",
+            "C": "Emily Dickenson",
+            "D": "Andrew Lloyd Webber"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Musicals & Theatres",
+        "question": "Which Shakespeare play features the stage direction \"Enter a messenger, with two heads and a hand\"?",
+        "answers": {
+            "A": "Macbeth",
+            "B": "Othello",
+            "C": "Titus Andronicus",
+            "D": "King Lear"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Musicals & Theatres",
+        "question": "In Macbeth, the eyes of what animals were used in the Witches' cauldron?",
+        "answers": {
+            "A": "Squids",
+            "B": "Sharks",
+            "C": "Newts",
+            "D": "Humans"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Musicals & Theatres",
+        "question": "The World Chess Championship in Chess, Act 1 is set in which Italian city?",
+        "answers": {
+            "A": "Merano",
+            "B": "Milan",
+            "C": "Venice",
+            "D": "Rome"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Musicals & Theatres",
+        "question": "How many plays is Shakespeare generally considered to have written?",
+        "answers": {
+            "A": "18",
+            "B": "37",
+            "C": "54",
+            "D": "25"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Musicals & Theatres",
+        "question": "Who wrote the award winning musical \"In The Heights\"?",
+        "answers": {
+            "A": "Lin-Manuel Miranda",
+            "B": "Francis Scott Key",
+            "C": "John Phillips Sousa",
+            "D": "Steven Sondheim"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Musicals & Theatres",
+        "question": "Who wrote the lyrics for Leonard Bernstein's 1957 Brodway musical West Side Story?",
+        "answers": {
+            "A": "Richard Rodgers",
+            "B": "Himself",
+            "C": "Oscar Hammerstein",
+            "D": "Stephen Sondheim"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Musicals & Theatres",
+        "question": "Which Shakespeare play inspired the musical 'West Side Story'?",
+        "answers": {
+            "A": "Hamlet",
+            "B": "Othello",
+            "C": "Macbeth",
+            "D": "Romeo & Juliet"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Musicals & Theatres",
+        "question": "When was the play \"Macbeth\" written?",
+        "answers": {
+            "A": "1605",
+            "B": "1606",
+            "C": "1628",
+            "D": "1723"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Musicals & Theatres",
+        "question": "The protagonist's names in 'Who's Afraid of Virginia Woolf', George and Martha, were derived from George Washington and his wife.",
+        "answers": {
+            "A": "False",
+            "B": "True"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Musicals & Theatres",
+        "question": "In Jeff Wayne's Musical Version of War of the Worlds, the chances of anything coming from Mars are...",
+        "answers": {
+            "A": "A billion to one",
+            "B": "A trillion to one",
+            "C": "A million to one",
+            "D": "A hundred to one"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Musicals & Theatres",
+        "question": "Which of the following is not a piece from the 1950's musical West Side Story?",
+        "answers": {
+            "A": "Tonight",
+            "B": "Mambo",
+            "C": "Maria",
+            "D": "The Back Alley"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Musicals & Theatres",
+        "question": "\"Doctor Who\" star David Tennant performed in a rendition of which Shakespearean play?",
+        "answers": {
+            "A": "Hamlet",
+            "B": "The Tempest",
+            "C": "Othello",
+            "D": "The Taming of the Shrew"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Musicals & Theatres",
+        "question": "What is the name of Broadway's first \"long-run\" musical?",
+        "answers": {
+            "A": "The Elves",
+            "B": "Hamilton",
+            "C": "Wicked",
+            "D": "The Book of Mormon"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Musicals & Theatres",
+        "question": "Who played Marquis de Lafayette and Thomas Jefferson in the original Broadway run of Hamilton?",
+        "answers": {
+            "A": "Wayne Brady",
+            "B": "Lin-Manuel Miranda",
+            "C": "Daveed Diggs",
+            "D": "Javier Muñoz"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Musicals & Theatres",
+        "question": "What is Jean ValJean's first prisoner number?",
+        "answers": {
+            "A": "24601",
+            "B": "32769",
+            "C": "1729",
+            "D": "9430"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Musicals & Theatres",
+        "question": "Which of these musicals won the Tony Award for Best Musical?",
+        "answers": {
+            "A": "Newsies",
+            "B": "Rent",
+            "C": "American Idiot",
+            "D": "The Color Purple"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Musicals & Theatres",
+        "question": "Which of these plays was famously first performed posthumously after the playwright committed suicide?",
+        "answers": {
+            "A": "Much Ado About Nothing",
+            "B": "The Birthday Party",
+            "C": "4.48 Psychosis",
+            "D": "Hamilton"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Musicals & Theatres",
+        "question": "In which Shakespeare play does the character Marcellus say, \"Something is rotten in the state of Denmark\"?",
+        "answers": {
+            "A": "Hamlet",
+            "B": "King Lear",
+            "C": "Twelfth Night",
+            "D": "Macbeth"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Musicals & Theatres",
+        "question": "Who played \"Charlie Price\" in the musical \"Kinky Boots\" on Broadway in New York from May 26th - Aug 6th 2017?",
+        "answers": {
+            "A": "Dallon Weekes",
+            "B": "Tom Cruise",
+            "C": "Brendon Urie",
+            "D": "Ed Sheeren"
+        },
+        "correct": "C"
+    }
+]

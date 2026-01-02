@@ -1,0 +1,14 @@
+# Quizzer IRC Bot Dependencies
+
+# IRC library for bot functionality
+irc>=20.0
+
+# YAML parser for configuration
+pyyaml>=6.0
+
+# HTTP library for fetching questions from Open Trivia Database
+requests>=2.28.0
+
+# Password hashing for admin verification
+bcrypt>=4.0.0
+

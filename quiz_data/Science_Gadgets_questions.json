@@ -1,0 +1,315 @@
+[
+    {
+        "category": "Science: Gadgets",
+        "question": "When was the Tamagotchi digital pet released?",
+        "answers": {
+            "A": "1992",
+            "B": "1990",
+            "C": "1989",
+            "D": "1996"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Science: Gadgets",
+        "question": "The communication protocol NFC stands for Near-Field Control.",
+        "answers": {
+            "A": "True",
+            "B": "False"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Science: Gadgets",
+        "question": "Out of all of the NASA Space Shuttles, which 2 have been destroyed in disasters?",
+        "answers": {
+            "A": "Challenger and Columbia",
+            "B": "Discovery and Endeavour",
+            "C": "Enterprise and Atlantis",
+            "D": "None of the Above"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Science: Gadgets",
+        "question": "Which buzzword did Apple Inc. use to describe their removal of the headphone jack?",
+        "answers": {
+            "A": "Innovation",
+            "B": "Revolution",
+            "C": "Bravery",
+            "D": "Courage"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Science: Gadgets",
+        "question": "What round is a classic AK-47 chambered in?",
+        "answers": {
+            "A": "5.56x45mm",
+            "B": "7.62x39mm",
+            "C": "7.62x51mm",
+            "D": "5.45x39mm"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Science: Gadgets",
+        "question": "Microphones can be used not only to pick up sound, but also to project sound similar to a speaker.",
+        "answers": {
+            "A": "False",
+            "B": "True"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Science: Gadgets",
+        "question": "What are the base station trackers used for the HTC Vive called?",
+        "answers": {
+            "A": "Lighthouse",
+            "B": "Constellation ",
+            "C": "Motion",
+            "D": "Trackers"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Science: Gadgets",
+        "question": "Which of the following is the standard THX subwoofer crossover frequency?",
+        "answers": {
+            "A": "100 Hz",
+            "B": "70 Hz",
+            "C": "80 Hz",
+            "D": "90 Hz"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Science: Gadgets",
+        "question": "Which of the following is not a type of computer mouse?",
+        "answers": {
+            "A": "Drum mouse",
+            "B": "Trackball mouse",
+            "C": "Smoothie mouse",
+            "D": "Optical mouse"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Science: Gadgets",
+        "question": "Which company developed the Hololens?",
+        "answers": {
+            "A": "HTC",
+            "B": "Tobii",
+            "C": "Oculus",
+            "D": "Microsoft"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Science: Gadgets",
+        "question": "Which of the following is used to measure blood pressure?",
+        "answers": {
+            "A": "Ruler",
+            "B": "Sphygmomanometer",
+            "C": "Haemoerythrometer",
+            "D": "Barometer"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Science: Gadgets",
+        "question": "In what year was the Oculus Rift revealed to the public through a Kickstarter campaign?",
+        "answers": {
+            "A": "2011",
+            "B": "2012",
+            "C": "2013",
+            "D": "2010"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Science: Gadgets",
+        "question": "Which round does a WW2 M1 Garand fire?",
+        "answers": {
+            "A": ".308",
+            "B": "7.62",
+            "C": "7.62x51mm",
+            "D": ".30-06"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Science: Gadgets",
+        "question": "Mobile hardware and software company \"Blackberry Limited\" was founded in which country?",
+        "answers": {
+            "A": "Norway",
+            "B": "Canada",
+            "C": "United States of America",
+            "D": "United Kingdom"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Science: Gadgets",
+        "question": "When was the DVD invented?",
+        "answers": {
+            "A": "2000",
+            "B": "1995",
+            "C": "1980",
+            "D": "1990"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Science: Gadgets",
+        "question": "What is the most significant side venture the popular firearms company, Remington, has pursued?",
+        "answers": {
+            "A": "Ceiling Fans",
+            "B": "Door Knobs",
+            "C": "Blenders",
+            "D": "Typewriters"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Science: Gadgets",
+        "question": "Which of the following cellular device companies is NOT headquartered in Asia?",
+        "answers": {
+            "A": "Samsung",
+            "B": "HTC",
+            "C": "Nokia",
+            "D": "LG Electronics"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Science: Gadgets",
+        "question": "Which virtual assistant is developed by Amazon?",
+        "answers": {
+            "A": "Cortana",
+            "B": "Google Assistant",
+            "C": "Alexa",
+            "D": "Siri"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Science: Gadgets",
+        "question": "Who patented a steam engine that produced continuous rotary motion?",
+        "answers": {
+            "A": "Albert Einstein",
+            "B": "James Watt",
+            "C": "Alessandro Volta",
+            "D": "Nikola Tesla"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Science: Gadgets",
+        "question": "Which company designed the \"Betamax\" video cassette format?",
+        "answers": {
+            "A": "Sony",
+            "B": "LG",
+            "C": "Fujitsu",
+            "D": "Panasonic"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Science: Gadgets",
+        "question": "What does SSD stand for in the context of computer storage?",
+        "answers": {
+            "A": " Solid State Drive",
+            "B": "Super Speed Data",
+            "C": "Software Storage Device",
+            "D": "Secure System Disk"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Science: Gadgets",
+        "question": "What does GPS stand for?",
+        "answers": {
+            "A": "Global Positioning System",
+            "B": "General Personal Satellite",
+            "C": "Global Personal System",
+            "D": "General Positioning System"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Science: Gadgets",
+        "question": "Who built the first laser?",
+        "answers": {
+            "A": "Edith Clarke",
+            "B": "Jack Kilby",
+            "C": "Nikola Tesla",
+            "D": "Theodore Harold Maiman"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Science: Gadgets",
+        "question": "When did the CD begin to appear on the consumer market?",
+        "answers": {
+            "A": "1992",
+            "B": "1962",
+            "C": "1982",
+            "D": "1972"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Science: Gadgets",
+        "question": "The Western Electric Model 500 telephone uses tone dialing to dial phone numbers.",
+        "answers": {
+            "A": "False",
+            "B": "True"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Science: Gadgets",
+        "question": "The term \"battery\" to describe an electrical storage device was coined by?",
+        "answers": {
+            "A": "Nikola Tesla",
+            "B": " Alessandro Volta",
+            "C": "Luigi Galvani",
+            "D": "Benjamin Franklin"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Science: Gadgets",
+        "question": "What is the \"Mitsubishi Wakamaru\"?",
+        "answers": {
+            "A": "An motorcycle",
+            "B": "A motorboat",
+            "C": "A pickup truck",
+            "D": "A robot"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Science: Gadgets",
+        "question": "When was the iPhone released?",
+        "answers": {
+            "A": "2005",
+            "B": "2007",
+            "C": "2004",
+            "D": "2006"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Science: Gadgets",
+        "question": "Which gaming console is developed by Sony?",
+        "answers": {
+            "A": "PlayStation",
+            "B": "Xbox",
+            "C": "Atari",
+            "D": "Nintendo Switch"
+        },
+        "correct": "A"
+    }
+]

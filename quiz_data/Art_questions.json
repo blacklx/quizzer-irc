@@ -1,0 +1,342 @@
+[
+    {
+        "category": "Art",
+        "question": "How many paint and pastel versions of \"The Scream\" is Norwegian painter Edvard Munch believed to have produced?",
+        "answers": {
+            "A": "1",
+            "B": "4",
+            "C": "2",
+            "D": "3"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Art",
+        "question": "What year did Albrecht Dürer create the painting \"The Young Hare\"?",
+        "answers": {
+            "A": "1602",
+            "B": "1502",
+            "C": "1402",
+            "D": "1702"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Art",
+        "question": "Which painting was not made by Vincent Van Gogh?",
+        "answers": {
+            "A": "Starry Night",
+            "B": "Bedroom In Arles",
+            "C": "Café Terrace at Night",
+            "D": "The Ninth Wave"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Art",
+        "question": "Who painted \"Swans Reflecting Elephants\", \"Sleep\", and \"The Persistence of Memory\"?",
+        "answers": {
+            "A": "Salvador Dali",
+            "B": "Vincent van Gogh",
+            "C": "Edgar Degas",
+            "D": "Jackson Pollock"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Art",
+        "question": "Who painted the biblical fresco The Creation of Adam?",
+        "answers": {
+            "A": "Michelangelo",
+            "B": "Rembrandt",
+            "C": "Caravaggio",
+            "D": "Leonardo da Vinci"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Art",
+        "question": "Leonardo da Vinci was not the creator of the Mona Lisa.",
+        "answers": {
+            "A": "False",
+            "B": "True"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Art",
+        "question": "Which Van Gogh painting depicts the view from his asylum in Saint-Rémy-de-Provence in southern France?",
+        "answers": {
+            "A": "The Church at Auvers",
+            "B": "Wheatfields with Crows",
+            "C": "The Starry Night",
+            "D": "The Sower with Setting Sun"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Art",
+        "question": "Who painted The Starry Night?",
+        "answers": {
+            "A": "Vincent van Gogh",
+            "B": "Leonardo da Vinci",
+            "C": "Michelangelo",
+            "D": "Pablo Picasso"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Art",
+        "question": "Which artist’s studio was known as 'The Factory'?",
+        "answers": {
+            "A": "David Hockney",
+            "B": "Roy Lichtenstein",
+            "C": "Peter Blake",
+            "D": "Andy Warhol"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Art",
+        "question": "Who designed the Chupa Chups logo?",
+        "answers": {
+            "A": "Salvador Dali",
+            "B": "Pablo Picasso",
+            "C": "Vincent van Gogh",
+            "D": "Andy Warhol"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Art",
+        "question": "What nationality was the surrealist painter Salvador Dali?",
+        "answers": {
+            "A": "Italian",
+            "B": "Spanish",
+            "C": "Portuguese",
+            "D": "French"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Art",
+        "question": "What year was the Mona Lisa finished?",
+        "answers": {
+            "A": "1487",
+            "B": "1523",
+            "C": "1511",
+            "D": "1504"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Art",
+        "question": "Who sculpted the statue of David?",
+        "answers": {
+            "A": "Gian Lorenzo Bernini",
+            "B": "Auguste Rodin",
+            "C": "Donatello",
+            "D": "Michelangelo"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Art",
+        "question": "What French sculptor designed the Statue of Liberty? ",
+        "answers": {
+            "A": "Frédéric Auguste Bartholdi",
+            "B": "Jean-Léon Gérôme",
+            "C": "Auguste Rodin",
+            "D": "Henri Matisse"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Art",
+        "question": "Which artist's style was to use small different colored dots to create a picture?",
+        "answers": {
+            "A": "Henri Rousseau",
+            "B": "Georges Seurat",
+            "C": "Vincent Van Gogh",
+            "D": "Paul Cézanne"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Art",
+        "question": "What is the name of the Japanese art of folding paper into decorative shapes and figures?",
+        "answers": {
+            "A": "Sumi-e",
+            "B": "Ukiyo-e",
+            "C": "Origami",
+            "D": "Haiku"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Art",
+        "question": "Venus of Willendorf is one of the earliest works of art, depicting the planets Mars and Venus embrace in the heavens at night.",
+        "answers": {
+            "A": "False",
+            "B": "True"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Art",
+        "question": "Vincent van Gogh cut off one of his ears.",
+        "answers": {
+            "A": "False",
+            "B": "True"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Art",
+        "question": "Painter Piet Mondrian (1872 - 1944) was a part of what movement?",
+        "answers": {
+            "A": "Cubism",
+            "B": "Impressionism",
+            "C": "Precisionism",
+            "D": "Neoplasticism"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Art",
+        "question": "Who painted the epic mural Guernica?",
+        "answers": {
+            "A": "Pablo Picasso",
+            "B": "Leonardo da Vinci",
+            "C": "Francisco Goya",
+            "D": "Henri Matisse"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Art",
+        "question": "Who painted the Mona Lisa?",
+        "answers": {
+            "A": "Leonardo da Vinci ",
+            "B": "Pablo Picasso",
+            "C": "Michelangelo",
+            "D": " Vincent van Gogh"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Art",
+        "question": "Albrecht Dürer's birthplace and place of death were in...",
+        "answers": {
+            "A": "Bamberg",
+            "B": "Berlin",
+            "C": "Augsburg",
+            "D": "Nürnberg"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Art",
+        "question": "Who painted the Sistine Chapel?",
+        "answers": {
+            "A": "Michelangelo",
+            "B": "Leonardo da Vinci",
+            "C": "Pablo Picasso",
+            "D": "Raphael"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Art",
+        "question": "Leonardo da Vinci's Mona Lisa does not have eyebrows.",
+        "answers": {
+            "A": "True",
+            "B": "False"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Art",
+        "question": "Which of these are the name of a famous marker brand?",
+        "answers": {
+            "A": "Cofix",
+            "B": "Dopix",
+            "C": "Copic",
+            "D": "Marx"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Art",
+        "question": "The painting \"The Starry Night\" by Vincent van Gogh was part of which art movement?",
+        "answers": {
+            "A": "Impressionism",
+            "B": "Post-Impressionism",
+            "C": "Romanticism",
+            "D": "Neoclassical"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Art",
+        "question": "Which of these is not an additional variation of the color purple?",
+        "answers": {
+            "A": "Kobicha",
+            "B": "Palatinate",
+            "C": "Byzantium",
+            "D": "Pomp and Power"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Art",
+        "question": "Pablo Picasso is one of the founding fathers of \"Cubism.\"",
+        "answers": {
+            "A": "True",
+            "B": "False"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Art",
+        "question": "The Statue of Liberty's official name is “Liberty Enlightening the World”.",
+        "answers": {
+            "A": "True",
+            "B": "False"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Art",
+        "question": "Who painted \"The Starry Night\"?",
+        "answers": {
+            "A": "Pablo Picasso",
+            "B": "Vincent van Gogh",
+            "C": "Edvard Munch",
+            "D": "Claude Monet"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Art",
+        "question": "Which one of these paintings is not by Caspar David Friedrich?",
+        "answers": {
+            "A": "Wanderer above the Sea of Fog",
+            "B": "The Black Sea",
+            "C": "The Sea of Ice",
+            "D": "The Monk by the Sea"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Art",
+        "question": "Which time signature is commonly known as “Cut Time?”",
+        "answers": {
+            "A": "2/2",
+            "B": "4/4",
+            "C": "6/8",
+            "D": "3/4"
+        },
+        "correct": "A"
+    }
+]

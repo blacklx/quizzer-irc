@@ -1,0 +1,3073 @@
+[
+    {
+        "category": "Entertainment: Film",
+        "question": "The 2002 film \"28 Days Later\" is mainly set in which European country?",
+        "answers": {
+            "A": "United Kingdom",
+            "B": "Germany",
+            "C": "Italy",
+            "D": "France"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In \"ALF\", what was ALF's real name?",
+        "answers": {
+            "A": "Gordon Foster",
+            "B": "Gordon Milipp",
+            "C": "Gordon Shumway",
+            "D": "Gordon von Gam"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which animated movie was first to feature a celebrity as a voice actor?",
+        "answers": {
+            "A": "Toy Story",
+            "B": "Aladdin",
+            "C": "James and the Giant Peach",
+            "D": "The Hunchback of Notre Dame"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which animated film did Steven Lisberger direct in 1980 before going on to direct Tron?",
+        "answers": {
+            "A": "The Great Mouse Detecive",
+            "B": "The Fox and the Hound",
+            "C": "The Black Cauldron",
+            "D": "Animalympics"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which of these Movies was NOT released in 1996?",
+        "answers": {
+            "A": "Mission: Impossible",
+            "B": "The Rock",
+            "C": "Gladiator",
+            "D": "Independence Day"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Who played Deputy Marshal Samuel Gerard in the 1993 film \"The Fugitive\"?",
+        "answers": {
+            "A": "Martin Landau",
+            "B": "Harrison Ford",
+            "C": "Harvey Keitel",
+            "D": "Tommy Lee Jones"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "The 1939 movie \"The Wizard of Oz\" contained a horse that changed color, what material did they use to achieve this effect?",
+        "answers": {
+            "A": "Gelatin",
+            "B": "Paint",
+            "C": "CGI Effect",
+            "D": "Dye"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Who directed the movie \"Alien\"?",
+        "answers": {
+            "A": "James Cameron",
+            "B": "Christopher Nolan",
+            "C": "Ridley Scott",
+            "D": "Michael Bay"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Who directed the movies \"Pulp Fiction\", \"Reservoir Dogs\" and \"Django Unchained\"?",
+        "answers": {
+            "A": "Quentin Tarantino",
+            "B": "Steven Spielberg",
+            "C": "Martin Scorcese",
+            "D": "James Cameron"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Who directed the 1973 film \"American Graffiti\"?",
+        "answers": {
+            "A": "Ron Howard",
+            "B": "George Lucas",
+            "C": "Steven Spielberg",
+            "D": "Francis Ford Coppola"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which actor plays the role of the main antagonist in the 2011 movie \"Tower Heist?\"",
+        "answers": {
+            "A": "Eddie Murphy",
+            "B": "Alan Alda",
+            "C": "Alec Baldwin",
+            "D": "Kevin Nealon"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "This movie contains the quote, \"Houston, we have a problem.\"",
+        "answers": {
+            "A": "The Right Stuff",
+            "B": "Apollo 13",
+            "C": "Marooned",
+            "D": "Capricorn One"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What was the first movie to ever use a Wilhelm Scream?",
+        "answers": {
+            "A": "Treasure of the Sierra Madre",
+            "B": "The Charge at Feather River",
+            "C": "Indiana Jones",
+            "D": "Distant Drums"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Who directed the Kill Bill movies?",
+        "answers": {
+            "A": "David Lean",
+            "B": "Quentin Tarantino",
+            "C": "Arnold Schwarzenegger",
+            "D": "Stanley Kubrick"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In Star Wars, what's the name of the new Government created after the defeat of the Galactic Empire?",
+        "answers": {
+            "A": "The New Republic",
+            "B": "The First Order",
+            "C": "The Crimson Dawn",
+            "D": "The Rebel Alliance"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which documentary film maker wrote and starred in the film \"My Scientology Movie\" which first debuted in 2015?",
+        "answers": {
+            "A": "Errol Morris",
+            "B": "Joe Berlinger",
+            "C": "Adam Curtis",
+            "D": "Louis Theroux"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Who plays the character of Po in the Kung Fu Panda movies?",
+        "answers": {
+            "A": "McConahey Ramses",
+            "B": "Mirana Jonnes",
+            "C": "Jim Petersson",
+            "D": "Jack Black"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In the 1971 film \"Willy Wonka & the Chocolate Factory\", who played Willy Wonka?",
+        "answers": {
+            "A": "Peter Ostrum",
+            "B": "Johnny Depp",
+            "C": "Shia LeBouf",
+            "D": "Gene Wilder"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which movie contains the quote, \"Say hello to my little friend!\"?",
+        "answers": {
+            "A": "Heat",
+            "B": "Scarface",
+            "C": "Reservoir Dogs",
+            "D": "Goodfellas"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In which movie does Robin Williams' character have to disguise themselves into a woman?",
+        "answers": {
+            "A": "Awakenings",
+            "B": "Old Dogs",
+            "C": "Jumanji",
+            "D": "Mrs. Doubtfire"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What is the name of James Dean's character in the 1955 movie \"Rebel Without a Cause\"?",
+        "answers": {
+            "A": "Ned Stark",
+            "B": "Jim Kane",
+            "C": "Jim Stark",
+            "D": "Frank Stark"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "For the film \"Raiders of The Lost Ark\", what was Harrison Ford sick with during the filming of the Cairo chase?",
+        "answers": {
+            "A": "Acid Reflux ",
+            "B": "Anemia",
+            "C": "Constipation",
+            "D": "Dysentery"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In Alfred Hitchcock's film 'Psycho' it is said he used chocolate syrup to simulate the blood in the famous shower scene from ",
+        "answers": {
+            "A": "True",
+            "B": "False"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What is the name of the island that \"Jurassic Park\" is built on?",
+        "answers": {
+            "A": "Isla Muerta",
+            "B": "Isla Pena",
+            "C": "Isla Nublar",
+            "D": "Isla Sorna"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In what Disney movie can you spot the character \"Pac-Man\" in if you look closely enough in some scenes?",
+        "answers": {
+            "A": "Tron",
+            "B": "Big Hero 6",
+            "C": "Fantasia",
+            "D": "Monsters, Inc."
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which of the following films was NOT directed by Quentin Tarantino?",
+        "answers": {
+            "A": "Reservoir Dogs",
+            "B": "Pulp Fiction",
+            "C": "From Dusk till Dawn",
+            "D": "Jackie Brown"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In which 1973 film does Yul Brynner play a robotic cowboy who malfunctions and goes on a killing\tspree?",
+        "answers": {
+            "A": "Westworld",
+            "B": "Runaway",
+            "C": "Android",
+            "D": "The Terminators"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In the 1976 film 'Taxi Driver', how many guns did Travis buy from the salesman?",
+        "answers": {
+            "A": "1",
+            "B": "4",
+            "C": "2",
+            "D": "6"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Who directed the 2015 movie \"The Revenant\"?",
+        "answers": {
+            "A": "Wes Anderson",
+            "B": "Alejandro G. Iñárritu",
+            "C": "David Fincher",
+            "D": "Christopher Nolan"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In the 2014 film \"Birdman\", what is the primary instrument in the score?",
+        "answers": {
+            "A": "Violin",
+            "B": "Drums",
+            "C": "Actual Live Birds Singing",
+            "D": "Saxophone"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Darth Vader's famous reveal to Luke is iconic. But which of these is the right one?",
+        "answers": {
+            "A": "\"No. I am your father.\"",
+            "B": "\"You're wrong. I am your father.\"",
+            "C": "\"The truth is that I am your father.\"",
+            "D": "\"Luke, I am your father.\""
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In the movie \"V for Vendetta,\" what is the date that masked vigilante \"V\" urges people to remember?",
+        "answers": {
+            "A": "September 5th",
+            "B": "November 4th",
+            "C": "November 6th",
+            "D": "November 5th"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What were the Chilled Monkey Brains made from during Indiana Jones and the Temple of Doom?",
+        "answers": {
+            "A": "Strawberry Ice Cream",
+            "B": "Cherry Yogurt",
+            "C": "Custard and Raspberry Sauce",
+            "D": "Raspberry Sorbet"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which iconic character is featured in movies such as \"The Enforcer\", \"Sudden Impact\", and \"The Dead Pool\"?",
+        "answers": {
+            "A": "Harry Potter",
+            "B": "Indiana Jones",
+            "C": "Dirty Harry",
+            "D": "James Bond"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In order to cut costs, what were most of the extras of Mad Max (1979) paid with?",
+        "answers": {
+            "A": "Beer",
+            "B": "They weren't paid",
+            "C": "Food stamps",
+            "D": "Fast food"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "The word \"Inception\" came from the 2010 blockbuster hit \"Inception\".",
+        "answers": {
+            "A": "True",
+            "B": "False"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What was Marilyn Monroe`s character's first name in the film \"Some Like It Hot\"?",
+        "answers": {
+            "A": "Sugar",
+            "B": "Honey",
+            "C": "Caramel",
+            "D": "Candy"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Who directed \"E.T. the Extra-Terrestrial\" (1982)?",
+        "answers": {
+            "A": "Stanley Kubrick",
+            "B": "Tim Burton",
+            "C": "Steven Spielberg",
+            "D": "James Cameron"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Brendan Fraser starred in the following movies, except which one?",
+        "answers": {
+            "A": "Monkeybone",
+            "B": "Encino Man",
+            "C": "Mrs. Winterbourne",
+            "D": "Titanic"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In the movie \"Spaceballs\", what are the Spaceballs attempting to steal from Planet Druidia?",
+        "answers": {
+            "A": "The Schwartz",
+            "B": "Princess Lonestar",
+            "C": "Meatballs",
+            "D": "Air"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In the \"Jurassic Park\" universe, what is the name of the island that contains InGen's Site B?",
+        "answers": {
+            "A": "Isla Sorna",
+            "B": "Isla Muerta",
+            "C": "Isla Nublar",
+            "D": "Isla Pena"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Joan Cusack starred in the 2009 disaster movie, \"2012\".",
+        "answers": {
+            "A": "True",
+            "B": "False"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which movie released in 2016 features Superman and Batman fighting?",
+        "answers": {
+            "A": "Batman v Superman: Black of Knight",
+            "B": "Batman v Superman: Knightfall",
+            "C": "Batman v Superman: Superapocalypse",
+            "D": "Batman v Superman: Dawn of Justice"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What is the name of the character Nicolas Cage plays in the movie \"National Treasure?\"",
+        "answers": {
+            "A": "Benjamin Franklin Gates",
+            "B": "John Quincy Beckett",
+            "C": "Thomas Jefferson Walker",
+            "D": "George Washington Swanson"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In what year does Jurassic World open in the \"Jurassic Park\" universe?",
+        "answers": {
+            "A": "2005",
+            "B": "2015",
+            "C": "2007",
+            "D": "2020"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "The 2010 film \"The Social Network\" is a biographical drama film about MySpace founder Tom Anderson.",
+        "answers": {
+            "A": "False",
+            "B": "True"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In the 1992 film \"Army of Darkness\", what name does Ash give to his double-barreled shotgun?",
+        "answers": {
+            "A": "2-Pump Chump",
+            "B": "Blastbranch",
+            "C": "Bloomstick",
+            "D": "Boomstick"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In the 2012 film, \"The Lorax\", who is the antagonist?",
+        "answers": {
+            "A": "Aloysius O'Hare",
+            "B": "Ted Wiggins",
+            "C": "Grammy Norma",
+            "D": "The Once-Ler"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "The 1996 film 'Fargo' is primarily set in which US state?",
+        "answers": {
+            "A": "South Dakota",
+            "B": "Minnesota",
+            "C": "Wisconsin",
+            "D": "North Dakota"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What is the birth name of Michael Keaton?",
+        "answers": {
+            "A": "Michael Kane",
+            "B": "Michael Richards",
+            "C": "Michael Fox",
+            "D": "Michael Douglas"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Who in Pulp Fiction says \"No, they got the metric system there, they wouldn't know what the fuck a Quarter Pounder is.\"",
+        "answers": {
+            "A": "Vincent Vega",
+            "B": "Butch Coolidge",
+            "C": "Jules Winnfield",
+            "D": "Jimmie Dimmick"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What is the name of the supercomputer located in the control room in \"Jurassic Park\" (1993)?",
+        "answers": {
+            "A": "Cray X-MP",
+            "B": "Thinking Machines CM-5",
+            "C": "IBM Blue Gene/Q",
+            "D": "Cray XK7"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In The Lord of the Rings: The Fellowship of the Ring, which one of the following characters from the book was left out of the film?",
+        "answers": {
+            "A": "Tom Bombadil",
+            "B": "Celeborn",
+            "C": "Barliman Butterbur",
+            "D": "Strider"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which sci-fi cult films plot concerns aliens attempting to prevent humans from creating a doomsday weapon?",
+        "answers": {
+            "A": "The Day The Earth Stood Still",
+            "B": "The Man from Planet X",
+            "C": "Plan 9 from Outer Space",
+            "D": "It Came from Outer Space"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "How old was Laurence Fishburne when Francis Ford Coppola cast him in Apocalypse Now (1979)? ",
+        "answers": {
+            "A": "14",
+            "B": "18",
+            "C": "20",
+            "D": "16"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What year did the James Cameron film \"Titanic\" come out in theaters?",
+        "answers": {
+            "A": "1996",
+            "B": "1999",
+            "C": "1998",
+            "D": "1997"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Who provided a majority of the songs and lyrics for \"Spirit: Stallion of the Cimarron\"?",
+        "answers": {
+            "A": "Smash Mouth",
+            "B": "Bryan Adams",
+            "C": "Oasis",
+            "D": "Air Supply"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "\"The first rule is: you don't talk about it\" is a reference to which movie?",
+        "answers": {
+            "A": "Unthinkable",
+            "B": "The Island",
+            "C": "American Pie",
+            "D": "Fight Club"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In Big Hero 6, what fictional city is the Big Hero 6 from?",
+        "answers": {
+            "A": "Sankyo",
+            "B": "Tokysisco",
+            "C": "San Tokyo",
+            "D": "San Fransokyo"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What is the correct phrase for the Latin saying \"Romanes Eunt Domus\" in Monty Python's Life of Brian?",
+        "answers": {
+            "A": "Romani Ite Domum",
+            "B": "Romans Go Home",
+            "C": "Roxani Ite Domum",
+            "D": "Tomate Ite Domum"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In the \"Jurassic Park\" universe, what was the first dinosaur cloned by InGen in 1986?",
+        "answers": {
+            "A": "Brachiosaurus",
+            "B": "Velociraptor",
+            "C": "Triceratops",
+            "D": "Troodon"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What was the name of the protagonist in the movie Commando (1985)?",
+        "answers": {
+            "A": "Ben Richards",
+            "B": "Douglas Quaid",
+            "C": "John Matrix",
+            "D": "Harry Tasker"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In the original script of \"The Matrix\", the machines used humans as additional computing power instead of batteries.",
+        "answers": {
+            "A": "False",
+            "B": "True"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In Back to the Future Part II, Marty and Dr. Emmett Brown go to which future date?",
+        "answers": {
+            "A": "January 25, 2015",
+            "B": "July 20, 2015",
+            "C": "October 21, 2015",
+            "D": "August 28, 2015"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Who voices the main character Blu in the 2011 animated film \"Rio\"?",
+        "answers": {
+            "A": "Michael Cera",
+            "B": "Zach Galifianakis",
+            "C": "Jesse Eisenberg",
+            "D": "Jonah Hill"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "\"Minions\" was released on the June 10th, 2015.",
+        "answers": {
+            "A": "True",
+            "B": "False"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In \"Star Trek Nemesis\", why was Praetor Shinzon created?",
+        "answers": {
+            "A": "To become Picard's friend ",
+            "B": "To steal the Enterprise",
+            "C": "To destroy the Enterprise",
+            "D": "To replace Picard as a Romulan Agent"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Who played the female lead in the 1933 film \"King Kong\"?",
+        "answers": {
+            "A": "Jean Harlow",
+            "B": "Vivien Leigh",
+            "C": "Fay Wray",
+            "D": "Mae West"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In 2012, which movie won every category in the 32nd \"Golden Raspberry Awards\"?",
+        "answers": {
+            "A": "Jack and Jill",
+            "B": "The King's Speech",
+            "C": "The Girl with the Dragon Tattoo",
+            "D": "Thor"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What was the first James Bond film?",
+        "answers": {
+            "A": "Thunderball",
+            "B": "Goldfinger",
+            "C": "Dr. No",
+            "D": "From Russia With Love"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "At the end of the 2001 film \"Rat Race\", whose concert do the contestants crash?",
+        "answers": {
+            "A": "Linkin Park",
+            "B": "Smash Mouth",
+            "C": "Bowling for Soup",
+            "D": "Sum 41"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which one of these films are shot entirely in one-take?",
+        "answers": {
+            "A": "Good Will Hunting",
+            "B": "Schindler's List",
+            "C": "Russian Ark",
+            "D": "Birdman"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Who voiced Metalbeard in \"The Lego Movie\"?",
+        "answers": {
+            "A": "Nick Offerman",
+            "B": "Liam Neeson",
+            "C": "Will Arnet",
+            "D": "Morgan Freeman"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What was the name of the planet in \"Aliens\"?",
+        "answers": {
+            "A": "DI-621",
+            "B": "FR-838",
+            "C": "Weyland Yutani Corporation Base",
+            "D": "LV-426"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What is the name of the assassin in the first \"Hellboy\" movie?",
+        "answers": {
+            "A": "Ilsa Haupstein",
+            "B": "Grigori Efimovich Rasputin",
+            "C": "Karl Ruprecht Kroenen",
+            "D": "Klaus Werner von Krupt"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Before \"Jurassic Park III\" was finalized and the Spinosaurus was chosen, which dinosaur was going to be the star?",
+        "answers": {
+            "A": "Velociraptor",
+            "B": "Baryonyx",
+            "C": "Tyrannosaurus Rex",
+            "D": "Suchomimus"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Actor Tommy Chong served prison time.",
+        "answers": {
+            "A": "False",
+            "B": "True"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What is Lilo's last name from Lilo and Stitch?",
+        "answers": {
+            "A": "Kuʻulei",
+            "B": "Kealoha",
+            "C": "Pelekai",
+            "D": "Anoaʻi"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "The Queen song `A Kind Of Magic` is featured in which 1986 film?",
+        "answers": {
+            "A": "Labyrinth",
+            "B": "Howard the Duck",
+            "C": "Flash Gordon",
+            "D": "Highlander"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "The movie \"Tron\" received an Oscar nomination for Best Visual Effects.",
+        "answers": {
+            "A": "True",
+            "B": "False"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "The 2016 Disney animated film 'Moana' is based on which culture?",
+        "answers": {
+            "A": "Nordic",
+            "B": "Native American",
+            "C": "Japanese",
+            "D": "Polynesian"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In Big Hero 6, what were Baymax's motions modeled after?",
+        "answers": {
+            "A": "Baby penguins",
+            "B": "Baby ostriches",
+            "C": "Baby bears",
+            "D": "Baby monkeys"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In \"Jurassic World\", which company purchases InGen and creates Jurassic World?",
+        "answers": {
+            "A": "International Genetic Technologies",
+            "B": "Biology Synthetics Technologies",
+            "C": "International Genetics Incorporated",
+            "D": "Masrani Global Corporation "
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "How much money did the 2019 Marvel movie \"Avengers: Endgame\" grossed for it's record-breaking worldwide opening weekend?",
+        "answers": {
+            "A": "392 million USD",
+            "B": "456 million USD",
+            "C": "1.2 billion USD",
+            "D": "640 million USD"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Samuel L. Jackson had the words, 'Bad Motherf*cker' in-scripted on his lightsaber during the filming of Star Wars.",
+        "answers": {
+            "A": "True",
+            "B": "False"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What was the name of the actor who played Leatherface in the 1974 horror film, The Texas Chainsaw Massacre?",
+        "answers": {
+            "A": "Joe Bill Hogan",
+            "B": "John Dugan",
+            "C": "Edwin Neal",
+            "D": "Gunnar Hansen"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which actor and martial artist starred as Colonel Guile in the 1994 action film adaptation of Street Fighter?",
+        "answers": {
+            "A": "Steven Seagal",
+            "B": "Chuck Norris",
+            "C": "Jean-Claude Van Damme",
+            "D": "Scott Adkins"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What is the name of the queen's pet in A Bug's Life?",
+        "answers": {
+            "A": "Hopper",
+            "B": "Aphie",
+            "C": "Flik",
+            "D": "Dot"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In the original Star Wars trilogy, Alec Guinness provided the voice for Darth Vader.",
+        "answers": {
+            "A": "False",
+            "B": "True"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What is the make and model of the tour vehicles in \"Jurassic Park\" (1993)?",
+        "answers": {
+            "A": "1992 Ford Explorer XLT",
+            "B": "1992 Toyota Land Cruiser",
+            "C": "1992 Jeep Wrangler YJ Sahar",
+            "D": "Mercedes M-Class"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What is the name of the fictional retro-mod band starring Austin Powers as the lead vocalist?",
+        "answers": {
+            "A": "Cough Fi",
+            "B": "Ming Tea",
+            "C": "Mister E",
+            "D": "Spear Mint"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What character in the Winnie the Pooh films was added by Disney and does not appear in the original books?",
+        "answers": {
+            "A": "Tigger",
+            "B": "Heffalumps",
+            "C": "Gopher",
+            "D": "Rabbit"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In the movie \"Cast Away\" the main protagonist's best friend while on the island is named",
+        "answers": {
+            "A": "Wilson",
+            "B": "Willy",
+            "C": "Jackson",
+            "D": "Carson"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In the \"Jurassic Park\" universe, when did \"Jurassic Park: San Diego\" begin construction?",
+        "answers": {
+            "A": "1986",
+            "B": "1988",
+            "C": "1985",
+            "D": "1993"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which movie sequel had improved box office results compared to its original film?",
+        "answers": {
+            "A": "Son of the Mask",
+            "B": "Sin City: A Dame to Kill For",
+            "C": "Toy Story 2",
+            "D": "Speed 2: Cruise Control"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which director directed the movie \"Pan's Labyrinth\"?",
+        "answers": {
+            "A": "Alejandro González Iñárritu",
+            "B": " Alejandro Jodorowsky",
+            "C": "Guillermo Del Toro",
+            "D": "Alfonso Cuarón"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In the 1999 movie Fight Club, which of these is not a rule of the \"fight club\"?",
+        "answers": {
+            "A": "Only two guys to a fight",
+            "B": "You do not talk about FIGHT CLUB",
+            "C": "Always wear a shirt",
+            "D": "Fights will go on as long as they have to"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In the original Star Wars trilogy, David Prowse was the actor who physically portrayed Darth Vader.",
+        "answers": {
+            "A": "False",
+            "B": "True"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In the movie “The Iron Giant,” this character is the protagonist.",
+        "answers": {
+            "A": "Annie Hughes",
+            "B": "Hogarth Hughes",
+            "C": "Dean McCoppin",
+            "D": "Kent Mansley"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Ed Koch, the Mayor of New York in 1984, played himself in which Muppets movie?",
+        "answers": {
+            "A": "The Muppet Movie",
+            "B": "The Muppet Christmas Carol",
+            "C": "The Great Muppet Caper",
+            "D": "The Muppets Take Manhattan"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which actors made up the trio in \"The Good, the Bad, and the Ugly\"? ",
+        "answers": {
+            "A": "Sergio Leone, Ennio Morricone, and Tonino Delli Colli",
+            "B": "Clint Eastwood, Eli Wallach, and Lee Van Cleef",
+            "C": "Yul Brynner, Steve McQueen, and Charles Bronson",
+            "D": "Aldo Giuffrè, Mario Brega, and Luigi Pistilli"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which of the following movies was not based on a novel by Stephen King? ",
+        "answers": {
+            "A": "The Thing",
+            "B": "Misery",
+            "C": "Carrie",
+            "D": "The Green Mile"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Where does the original Friday The 13th movie take place?",
+        "answers": {
+            "A": "Camp Crystal Lake",
+            "B": "Camp Forest Green",
+            "C": "Higgins Haven",
+            "D": "Packanack"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Who plays Jack Burton in the movie \"Big Trouble in Little China?\"",
+        "answers": {
+            "A": "Harrison Ford",
+            "B": "Kurt Russell",
+            "C": "John Cusack",
+            "D": "Patrick Swayze"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which boxer was famous for striking the gong in the introduction to J. Arthur Rank films?",
+        "answers": {
+            "A": "Don Cockell",
+            "B": "Bombardier Billy Wells",
+            "C": "Freddie Mills",
+            "D": "Terry Spinks"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which of the following films was directed by Ivan Reitman, written by Gary Ross, featured Kevin Kline, and was released in 1993?",
+        "answers": {
+            "A": "Dave",
+            "B": "Will",
+            "C": "Carl",
+            "D": "John"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which stand-up comedian voiced the talking parrot \"Iago\" in Disney's 1992 adaptation of Aladdin?",
+        "answers": {
+            "A": "Robin Williams",
+            "B": "Jonathan Freeman",
+            "C": "Gilbert Gottfried",
+            "D": "Pauly Shore"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What is the name of the robot in the 1951 science fiction film classic 'The Day the Earth Stood Still'?",
+        "answers": {
+            "A": "Robby",
+            "B": "Colossus",
+            "C": "Box",
+            "D": "Gort"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Who is the director of the 1991 film \"Silence of the Lambs\"?",
+        "answers": {
+            "A": "Michael Bay",
+            "B": "Jonathan Demme",
+            "C": "Frank Darabont",
+            "D": "Stanley Kubrick"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which of the following actors has only been in a Quentin Tarantino directed film once?",
+        "answers": {
+            "A": "Christoph Waltz",
+            "B": "Harvey Keitel",
+            "C": "John Travolta",
+            "D": "Samuel L. Jackson"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In what year was the movie \"Police Academy\" released?",
+        "answers": {
+            "A": "1984",
+            "B": "1983",
+            "C": "1985",
+            "D": "1986"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which retired American football quarterback played himself in 'Ace Ventura: Pet Detective' and 'Little Nicky'?",
+        "answers": {
+            "A": "Tom Brady",
+            "B": "Joe Montana",
+            "C": "Dan Marino",
+            "D": "John Elway"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Who voiced the character Draco in the 1996 movie 'DragonHeart'?",
+        "answers": {
+            "A": "Brian Thompson",
+            "B": "Pete Postlethwaite",
+            "C": "Dennis Quaid",
+            "D": "Sean Connery"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What is the orange and white bot's name in \"Star Wars: The Force Awakens\"?",
+        "answers": {
+            "A": "BB-3",
+            "B": "AA-A",
+            "C": "R2-D2",
+            "D": "BB-8"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which town is the setting for the Disney movie The Love Bug (1968)?",
+        "answers": {
+            "A": "Sacramento",
+            "B": "San Jose",
+            "C": "Los Angeles",
+            "D": "San Francisco"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What was Dorothy's surname in 'The Wizard Of Oz'?",
+        "answers": {
+            "A": "Perkins",
+            "B": "Parker",
+            "C": "Gale",
+            "D": "Day"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In Finding Nemo, what was the name of Nemo's mom?",
+        "answers": {
+            "A": "Sandy",
+            "B": "Shelly",
+            "C": "Pearl",
+            "D": "Coral"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What did the first moving picture depict?",
+        "answers": {
+            "A": "A woman in a dress",
+            "B": "A galloping horse",
+            "C": "A crackling fire",
+            "D": "A man walking"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What was another suggested name for, the 1985 film, Back to the Future?",
+        "answers": {
+            "A": "The Lucky Man",
+            "B": "Spaceman From Pluto",
+            "C": "Hill Valley Time Travelers",
+            "D": "The Time Travelers"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "The original ending of \"Little Shop Of Horrors\" has the plants taking over the world.",
+        "answers": {
+            "A": "True",
+            "B": "False"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Who plays \"Bruce Wayne\" in the 2008 movie \"The Dark Knight\"?",
+        "answers": {
+            "A": "Christian Bale",
+            "B": "Ron Dean",
+            "C": "Heath Ledger",
+            "D": "Michael Caine"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In the 2010 Nightmare on Elm Street reboot, who played Freddy Kruger?",
+        "answers": {
+            "A": "Gunnar Hansen",
+            "B": "Derek Mears",
+            "C": "Jackie Earle Haley",
+            "D": "Tyler Mane"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Who played Baron Victor Frankestein in the 1957 Hammer horror film \"The Curse of Frankenstein\"?",
+        "answers": {
+            "A": "Boris Karloff",
+            "B": "Peter Cushing",
+            "C": "Vincent Price",
+            "D": "Lon Chaney Jr."
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "\"Foodfight!\" earned less than $80,000 at box office.",
+        "answers": {
+            "A": "True",
+            "B": "False"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What historical time period was the center of the Assassin’s Creed movie (2016)?",
+        "answers": {
+            "A": "French Revolution",
+            "B": "Spanish Inquisition",
+            "C": "Victorian England",
+            "D": "Colonial America"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which actress portrayed Dr. Grace Augustine in the James Cameron movie \"Avatar\"?",
+        "answers": {
+            "A": "Jessica Chastain",
+            "B": "Sigourney Weaver",
+            "C": "Melissa Beckett",
+            "D": "Alyssa Monroe "
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In the movie \"Scream\" who is Ghost Face?",
+        "answers": {
+            "A": "Billy Loomis and Stu Macher",
+            "B": "Sidney Prescott",
+            "C": "Dewey Riley",
+            "D": "Archie Prescott and Philip Marv"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In the film \"Interstellar\", how long did they spend on Miller's planet?",
+        "answers": {
+            "A": "10 months and 6 days",
+            "B": "15 years, 2 months, and 15 days",
+            "C": "26 years, 4 months, and 10 days",
+            "D": "23 years, 4 months, and 8 days"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In the movie The Revenant, DiCaprio's character hunts down the killer of his son.",
+        "answers": {
+            "A": "False",
+            "B": "True"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "When does \"Rogue One: A Star Wars Story\" take place chronologically in the series?",
+        "answers": {
+            "A": "Before Episode 1",
+            "B": "Between Episode 4 and 5",
+            "C": "Between Episode 3 and 4",
+            "D": "After Episode 6"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In which African country was the 2006 film 'Blood Diamond' mostly set in?",
+        "answers": {
+            "A": "Central African Republic",
+            "B": "Liberia",
+            "C": "Burkina Faso",
+            "D": "Sierra Leone"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which Marvel superhero did Chris Evans play prior to his role as Captain America?",
+        "answers": {
+            "A": "Cyclops",
+            "B": "Human Torch",
+            "C": "Daredevil",
+            "D": "Iceman"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which star actor was in \"Top Gun\", \"Jerry Maguire\" and \"Born on the Fourth of July\"?",
+        "answers": {
+            "A": "Tom Cruise",
+            "B": "John Travolta",
+            "C": "George Clooney",
+            "D": "Kelly McGillis"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which of the following actors does not play a role in the movie \"The Usual Suspects?\"",
+        "answers": {
+            "A": "Benicio Del Toro",
+            "B": "Steve Buscemi",
+            "C": "Kevin Spacey",
+            "D": "Gabriel Byrne"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "About how much money did it cost for Tommy Wiseau to make his masterpiece \"The Room\" (2003)?",
+        "answers": {
+            "A": "$20,000",
+            "B": "$1 Million",
+            "C": "$6 Million",
+            "D": "$10 Million"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Matt Damon played an astronaut stranded on an extraterrestrial planet in both of the movies Interstellar and The Martian.",
+        "answers": {
+            "A": "True",
+            "B": "False"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which singer is portrayed by Bruce Campbell in the 2002 film 'Bubba Ho-Tep'?",
+        "answers": {
+            "A": "Johnny Cash",
+            "B": "Hank Williams, Sr.",
+            "C": "Elvis Presley",
+            "D": "Buddy Holly"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Who starred in the film 1973 movie \"Enter The Dragon\"?",
+        "answers": {
+            "A": "Jackie Chan",
+            "B": "Bruce Lee",
+            "C": " Yun-Fat Chow",
+            "D": "Jet Li"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which actor plays the character \"Tommy Jarvis\" in \"Friday the 13th: The Final Chapter\" (1984)?",
+        "answers": {
+            "A": "Macaulay Culkin",
+            "B": "Mark Hamill",
+            "C": "Mel Gibson",
+            "D": "Corey Feldman"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In \"Jurassic World\", what is the name of the dinosaur that is a genetic hybrid?",
+        "answers": {
+            "A": "Tyrannosaurus Rex ",
+            "B": "Indominus Rex",
+            "C": "Pteranodon",
+            "D": "Mosasaurus"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What is the name of the villian in the 2015 Russian-American Sci-Fi Movie \"Hardcore Henry\"?",
+        "answers": {
+            "A": "Estelle",
+            "B": "Henry",
+            "C": "Jimmy",
+            "D": "Akan"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Leonardo Di Caprio won his first Best Actor Oscar for his performance in which film?",
+        "answers": {
+            "A": "Inception",
+            "B": "Shutter Island",
+            "C": "The Revenant",
+            "D": "The Wolf Of Wall Street"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "This movie contains the quote, \"Nobody puts Baby in a corner.\"",
+        "answers": {
+            "A": "Dirty Dancing",
+            "B": "Pretty in Pink",
+            "C": "Three Men and a Baby",
+            "D": "Ferris Bueller's Day Off"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which actor plays Obi-Wan Kenobi in Star Wars Episodes I-lll?",
+        "answers": {
+            "A": "Alec Guinness",
+            "B": "Hayden Christensen",
+            "C": "Liam Neeson",
+            "D": "Ewan McGregor"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "According to \"Star Wars\" lore, which planet does Obi-Wan Kenobi come from?",
+        "answers": {
+            "A": "Tatooine",
+            "B": "Alderaan",
+            "C": "Naboo",
+            "D": "Stewjon"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Who played Batman in the 1997 film \"Batman and Robin\"?",
+        "answers": {
+            "A": "Michael Keaton",
+            "B": "Val Kilmer",
+            "C": "Christian Bale",
+            "D": "George Clooney"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What is the name of the Artificial Intelligence system in the 1983 film, \"WarGames\"?",
+        "answers": {
+            "A": "Master Control Program",
+            "B": "West Campus Analog Computer",
+            "C": "Self Evolving Thought Helix",
+            "D": "War Operation Plan Response"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What is the species of the \"Predator\" in the 1987 movie \"Predator\"?",
+        "answers": {
+            "A": "Xenomorph",
+            "B": "Yautja",
+            "C": "Phocrex",
+            "D": "Praetorian"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "\"Cube\", \"Cube 2: Hypercube\" and \"Cube Zero\" were directed by the same person.",
+        "answers": {
+            "A": "False",
+            "B": "True"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What is the name of the dog that played Toto in the 1939 film \"The Wizard of Oz\"?",
+        "answers": {
+            "A": "Teddy",
+            "B": "Tommy",
+            "C": "Terry",
+            "D": "Toto"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What type of cheese, loved by Wallace and Gromit, had it's sale prices rise after their successful short films?",
+        "answers": {
+            "A": "Moon Cheese",
+            "B": "Cheddar",
+            "C": "Edam",
+            "D": "Wensleydale"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which one of these actors is said to be cut from the film 'E.T. the Extra-Terrestrial'?",
+        "answers": {
+            "A": "Harrison Ford",
+            "B": "Michael J. Fox",
+            "C": "Andy Kaufman",
+            "D": "Arnold Schwarzenegger"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "The Xenomorph from the science fiction film \"Alien\" has acidic blood.",
+        "answers": {
+            "A": "True",
+            "B": "False"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "After India, which country produces the second most movies per year?",
+        "answers": {
+            "A": "France",
+            "B": "United States",
+            "C": "China",
+            "D": "Nigeria"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which actress danced the twist with John Travolta in 'Pulp Fiction'?",
+        "answers": {
+            "A": "Bridget Fonda",
+            "B": "Pam Grier",
+            "C": "Uma Thurman",
+            "D": "Kathy Griffin"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Who was the director of \"Scott Pilgrim vs. the World (2010)\"?",
+        "answers": {
+            "A": "Seth Rogan",
+            "B": "Edgar Wright",
+            "C": "Chris Miller",
+            "D": "Phil Lord"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In the 1994 movie \"Speed\", what is the minimum speed the bus must go to prevent to bomb from exploding?",
+        "answers": {
+            "A": "40 mph",
+            "B": "60 mph",
+            "C": "70 mph",
+            "D": "50 mph"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What Queen song plays during the final fight scene of the film \"Hardcore Henry\"?",
+        "answers": {
+            "A": "We Will Rock You",
+            "B": "Don't Stop Me Now",
+            "C": "Brighton Rock",
+            "D": "Another Bites the Dust"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What city did the monster attack in the film, \"Cloverfield\"?",
+        "answers": {
+            "A": "Chicago, Illinois",
+            "B": "Las Vegas, Nevada",
+            "C": "New York, New York",
+            "D": "Orlando, Florida"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What was Humphrey Bogart's middle name?",
+        "answers": {
+            "A": "Steven",
+            "B": "DeForest",
+            "C": "Bryce",
+            "D": "DeWinter"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In Mulan (1998), who is the leader of the Huns?",
+        "answers": {
+            "A": "Chien-Po",
+            "B": "Fa Zhou",
+            "C": "Li Shang",
+            "D": "Shan Yu"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "The film Mad Max: Fury Road features the Dies Irae  from which composer's requiem?",
+        "answers": {
+            "A": "Mozart",
+            "B": "Verdi",
+            "C": "Berlioz",
+            "D": "Brahms"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which of the following is NOT a quote from the 1942 film Casablanca? ",
+        "answers": {
+            "A": "\"Frankly, my dear, I don't give a damn.\"",
+            "B": "\"Round up the usual suspects.\"",
+            "C": "“Of all the gin joints, in all the towns, in all the world, she walks into mine…”",
+            "D": "\"Here's lookin' at you, kid.\""
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In the Friday The 13th series, what is Jason's mother's first name?",
+        "answers": {
+            "A": "Angeline",
+            "B": "Mary",
+            "C": "Pamela",
+            "D": "Christine"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "The movie \"The Nightmare before Christmas\" was all done with physical objects.",
+        "answers": {
+            "A": "False",
+            "B": "True"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which movie of film director Stanley Kubrick is known to be an adaptation of a Stephen King novel?",
+        "answers": {
+            "A": "2001: A Space Odyssey",
+            "B": " Dr. Strangelove ",
+            "C": "Eyes Wide Shut",
+            "D": "The Shining"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Who plays Alice in the Resident Evil movies?",
+        "answers": {
+            "A": "Kim Demp",
+            "B": "Milla Jovovich",
+            "C": "Milla Johnson",
+            "D": "Madison Derpe"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Who starred as Bruce Wayne and Batman in Tim Burton's 1989 movie \"Batman\"?",
+        "answers": {
+            "A": "Val Kilmer",
+            "B": "Adam West",
+            "C": "George Clooney",
+            "D": "Michael Keaton"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which was the first of Alfred Hitchcock's movies to be filmed in colour?",
+        "answers": {
+            "A": "Rebecca",
+            "B": "Psycho",
+            "C": "Rope",
+            "D": "Vertigo"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which actor played the main character in the 1990 film \"Edward Scissorhands\"?",
+        "answers": {
+            "A": "Leonardo DiCaprio",
+            "B": " Clint Eastwood",
+            "C": "Ben Stiller",
+            "D": "Johnny Depp"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which musical artist had a prominent role in the 2017 film \"Kingsman: The Golden Circle\"?",
+        "answers": {
+            "A": "Justin Bieber",
+            "B": "Rihanna",
+            "C": "Elton John",
+            "D": "Lady Gaga"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Johnny Depp made his big-screen acting debut in which film?",
+        "answers": {
+            "A": "Halloween",
+            "B": "My Bloody Valentine",
+            "C": "Friday the 13th",
+            "D": "A Nightmare on Elm Street"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Who performed the opening theme song for the James Bond 007 movie \"Goldfinger\"?",
+        "answers": {
+            "A": "Shirley Basey",
+            "B": "Tom Jones",
+            "C": "John Barry",
+            "D": "Sheena Easton"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What is the name of the foley artist who designed the famous sounds of Star Wars, including Chewbacca's roar and R2-D2's beeps and whistles?",
+        "answers": {
+            "A": "Ben Burtt",
+            "B": "Ken Burns",
+            "C": "Miranda Keyes",
+            "D": "Ralph McQuarrie"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What three movies, in order from release date, make up the \"Dollars Trilogy\"?",
+        "answers": {
+            "A": "\"A Fistful of Dollars\", \"For a Few Dollars More\", \"The Good, the Bad, and the Ugly\"",
+            "B": "\"The Good, the Bad, and the Ugly\", \"For A Few Dollars More\", \"A Fistful of Dollars\"",
+            "C": "\"For a Few Dollars More\", \"A Fistful of Dollars\", \"The Good, the Bad, and the Ugly\"",
+            "D": "\"For a Few Dollars More\", \"The Good, the Bad, and the Ugly\", \"A Fistful of Dollars\""
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which of these films is NOT set in Los Angeles?",
+        "answers": {
+            "A": "Blade Runner",
+            "B": "RoboCop",
+            "C": "Predator 2",
+            "D": "The Terminator"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which movie includes a giant bunny-like spirit who has magic powers including growing trees?",
+        "answers": {
+            "A": "Hop",
+            "B": "Alice in Wonderland",
+            "C": "My Neighbor Totoro",
+            "D": "Rise of the Guardians"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What is the oldest Disney film?",
+        "answers": {
+            "A": "Dumbo",
+            "B": "Fantasia",
+            "C": "Snow White and the Seven Dwarfs",
+            "D": "Pinocchio"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Mark Wahlberg played the titular character of which 2008 video-game adaptation?",
+        "answers": {
+            "A": "Hitman",
+            "B": "Max Payne",
+            "C": "God Of War",
+            "D": "Alan Wake"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In the movie Gremlins, after what time of day should you not feed Mogwai?",
+        "answers": {
+            "A": "Afternoon",
+            "B": "Evening",
+            "C": "Morning",
+            "D": "Midnight"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In the film \"Requiem for a Dream\", what drug does Jared Leto's character get addicted to?",
+        "answers": {
+            "A": "Cocaine",
+            "B": "Heroin",
+            "C": "Oxycodone",
+            "D": "Marijuana"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which of the following James Bond villains is not affiliated with the SPECTRE organization?",
+        "answers": {
+            "A": "Dr. Julius No",
+            "B": "Auric Goldfinger",
+            "C": "Emilio Largo",
+            "D": "Rosa Klebb"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In which film does Humphrey Bogart say the famous line, \"Here's looking at you, kid\"?",
+        "answers": {
+            "A": "Casablanca",
+            "B": "The Treasure of the Sierra Madre",
+            "C": "The Maltese Falcon",
+            "D": "Citizen Kane"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Leonardo DiCaprio won an Oscar for Best Actor in 2004's \"The Aviator\".",
+        "answers": {
+            "A": "True",
+            "B": "False"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What does TIE stand for in reference to the TIE Fighter in \"Star Wars\"?",
+        "answers": {
+            "A": "Twin Iron Engine",
+            "B": "Twin Inception Engine",
+            "C": "Twin Intercepter Engine",
+            "D": "Twin Ion Engine"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Velma Kelly and Roxie Hart are the protagonists of which Oscar winning movie?",
+        "answers": {
+            "A": "All That Jazz",
+            "B": "Cabaret",
+            "C": "Chicago",
+            "D": "Dreamgirls"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Who is the main protagonist in, the 1985 film, Back to the Future?",
+        "answers": {
+            "A": "George McFly",
+            "B": "Biff Tannen",
+            "C": "Emmett \"Doc\" Brown",
+            "D": "Marty McFly"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "When was the movie 'Con Air' released?",
+        "answers": {
+            "A": "1997",
+            "B": "1990",
+            "C": "1985",
+            "D": "1999"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What is the correct spelling of the protagonist of the book in The NeverEnding Story (1984)?",
+        "answers": {
+            "A": "Atrayu",
+            "B": "Atreyu",
+            "C": "Atraeyu",
+            "D": "Atraiyu"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In the Mad Max franchise, what type of car is the Pursuit Special driven by Max?",
+        "answers": {
+            "A": "Holden Monaro",
+            "B": "Chrysler Valiant Charger",
+            "C": "Pontiac Firebird",
+            "D": "Ford Falcon"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "George Lucas directed the entire original Star Wars trilogy.",
+        "answers": {
+            "A": "False",
+            "B": "True"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What film did James Cameron's Avatar dethrone as the highest-grossing film ever?",
+        "answers": {
+            "A": "Gone with the Wind",
+            "B": "Star Wars",
+            "C": "Titanic",
+            "D": "Jaws"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In the 1979 British film \"Quadrophenia\" what is the name of the main protagonist?",
+        "answers": {
+            "A": "Archie Bunker",
+            "B": "Franc Roddam",
+            "C": "Pete Townshend",
+            "D": "Jimmy Cooper"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "The color of the pills in the Matrix were Blue and Yellow.",
+        "answers": {
+            "A": "True",
+            "B": "False"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What breed of dog was Marley in the film \"Marley & Me\" (2008)?",
+        "answers": {
+            "A": "Shiba Inu",
+            "B": "Golden Retriever",
+            "C": "Dalmatian",
+            "D": "Labrador Retriever"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What was Bruce Campbell's iconic one-liner after getting a chainsaw hand in Evil Dead 2?",
+        "answers": {
+            "A": "Gnarly.",
+            "B": "Groovy.",
+            "C": "Nice.",
+            "D": "Perfect."
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which of the following is not the name of a \"Bond Girl\"? ",
+        "answers": {
+            "A": "Vanessa Kensington",
+            "B": "Mary Goodnight",
+            "C": "Pam Bouvier",
+            "D": "Wai Lin"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What is the birth name of Michael Caine?",
+        "answers": {
+            "A": "Maurice Micklewhite",
+            "B": "Carl Myers",
+            "C": "Martin Michaels",
+            "D": "Morris Coleman"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Who plays the Nemesis in the Resident Evil movies?",
+        "answers": {
+            "A": "Jason Dip",
+            "B": "Eric Mabius",
+            "C": "Matthew Taylor",
+            "D": "Jimmy Matts"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What did Alfred Hitchcock use as blood in the film \"Psycho\"? ",
+        "answers": {
+            "A": "Maple syrup",
+            "B": "Ketchup",
+            "C": "Chocolate syrup",
+            "D": "Red food coloring"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "There aren't any live-action clones in \"Star Wars: Episode III - Revenge of the Sith\".",
+        "answers": {
+            "A": "False",
+            "B": "True"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "This trope refers to minor characters that are killed off to show how a monster works.",
+        "answers": {
+            "A": "Red Shirt",
+            "B": "Expendables",
+            "C": "Cannon Fodder",
+            "D": "Minions"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What was the title of the first Bond movie, released in 1962?",
+        "answers": {
+            "A": "From Russia with Love",
+            "B": "Dr. No",
+            "C": "Thunderball",
+            "D": "Goldfinger"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Ewan McGregor did not know the name of the second prequel film of Star Wars during and after filming.",
+        "answers": {
+            "A": "False",
+            "B": "True"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Han Solo's co-pilot and best friend, \"Chewbacca\", is an Ewok.",
+        "answers": {
+            "A": "True",
+            "B": "False"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In what year did Clint Eastwood star as Inspector Harry Callahan in the film \"Dirty Harry\"?",
+        "answers": {
+            "A": "1971",
+            "B": "1983",
+            "C": "1975",
+            "D": "1969"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which of these actors/actresses is NOT a part of the cast for the 2016 movie \"Suicide Squad\"?",
+        "answers": {
+            "A": "Jared Leto",
+            "B": "Will Smith",
+            "C": "Margot Robbie",
+            "D": "Scarlett Johansson"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "YouTube personality Jenna Marbles served as an executive producer of the film Maximum Ride (2016).",
+        "answers": {
+            "A": "False",
+            "B": "True"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In the 1979 British film \"Quadrophenia\" what is the name of the seaside city the mods are visiting?",
+        "answers": {
+            "A": "Mousehole",
+            "B": "Eastbourne",
+            "C": "Brighton",
+            "D": "Bridlington"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In the movie \"Blade Runner\", what is the term used for human-like androids ?",
+        "answers": {
+            "A": "Synthetics",
+            "B": "Skinjobs",
+            "C": "Replicants",
+            "D": "Cylons"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In the Friday The 13th series, what year did Jason drown in?",
+        "answers": {
+            "A": "1953",
+            "B": "1959",
+            "C": "1957",
+            "D": "1955"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What was the first monster to appear alongside Godzilla?",
+        "answers": {
+            "A": "Mothra",
+            "B": "King Ghidora",
+            "C": "Anguirus",
+            "D": "King Kong"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Who played Sgt. Gordon Elias in 'Platoon' (1986)?",
+        "answers": {
+            "A": "Charlie Sheen",
+            "B": "Willem Dafoe",
+            "C": "Johnny Depp",
+            "D": "Matt Damon"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What was the last Marx Brothers film to feature Zeppo?",
+        "answers": {
+            "A": "Monkey Business",
+            "B": "A Night at the Opera",
+            "C": "Duck Soup",
+            "D": "A Day at the Races"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "The weapon Clint Eastwood uses in \"Dirty Harry\" was a .44 Automag.",
+        "answers": {
+            "A": "False",
+            "B": "True"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In the 1984 movie \"The Terminator\", what model number is the Terminator portrayed by Arnold Schwarzenegger?",
+        "answers": {
+            "A": "T-1000",
+            "B": "T-800",
+            "C": "I-950",
+            "D": "T-888"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Daniel Radcliffe became a global star in the film industry due to his performance in which film franchise?",
+        "answers": {
+            "A": "Harry Potter",
+            "B": "Ted",
+            "C": "Pirates of the Caribbean ",
+            "D": "Spy Kids"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Who wrote and directed the 1986 film 'Platoon'?",
+        "answers": {
+            "A": "Francis Ford Coppola",
+            "B": "Michael Cimino",
+            "C": "Oliver Stone",
+            "D": "Stanley Kubrick"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "This movie contains the quote, \"What we've got here is a failure to communicate.\"",
+        "answers": {
+            "A": "Bonnie and Clyde",
+            "B": "In the Heat of the Night",
+            "C": "Cool Hand Luke",
+            "D": "The Graduate"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which 90's comedy cult classic features cameos appearances from Meat Loaf, Alice Cooper and Chris Farley?",
+        "answers": {
+            "A": "Wayne's World",
+            "B": "Bill & Ted's Excellent Adventure",
+            "C": "Dumb and Dumber",
+            "D": "Austin Powers: International Man of Mystery"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What is the name of the first \"Star Wars\" film by release order?",
+        "answers": {
+            "A": "Revenge of the Sith",
+            "B": "A New Hope",
+            "C": "The Force Awakens",
+            "D": "The Phantom Menace"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which former Star Trek actor directed Three Men and a Baby (1987)?",
+        "answers": {
+            "A": "George Takei",
+            "B": "James Doohan",
+            "C": "Leonard Nimoy",
+            "D": "William Shatner"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In the 1995 film \"Balto\", who are Steele's accomplices?",
+        "answers": {
+            "A": "Nuk, Yak, and Sumac",
+            "B": "Dusty, Kirby, and Ralph",
+            "C": "Jenna, Sylvie, and Dixie",
+            "D": "Kaltag, Nikki, and Star"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which famous singer was portrayed by actor Kevin Spacey in the 2004 biographical film \"Beyond the Sea\"?",
+        "answers": {
+            "A": "Frank Sinatra",
+            "B": "Dean Martin",
+            "C": "Louis Armstrong",
+            "D": "Bobby Darin"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In the movie \"Back to the Future,\" what speed does Doc Brown's DeLorean need to reach in order to travel through time?",
+        "answers": {
+            "A": "88 mph",
+            "B": "70 mph",
+            "C": "77 mph",
+            "D": "100 mph"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which of these Disney classics was released in 1970?",
+        "answers": {
+            "A": "The Little Mermaid",
+            "B": "The Fox and the Hound",
+            "C": "The Aristocats",
+            "D": "One Hundred and One Dalmatians"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which one of these action movies are shot entirely in one take?",
+        "answers": {
+            "A": "Victoria",
+            "B": "Léon: The Professional",
+            "C": "Ip Man 2",
+            "D": "The Bourne Legacy"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Brandon Routh plays the titular character in the movie \"John Wick\".",
+        "answers": {
+            "A": "False",
+            "B": "True"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In the film \"Harry Potter and the Order of The Phoenix\", why was Harry Potter's scream, after Sirius Black died, muted?",
+        "answers": {
+            "A": "Too Loud",
+            "B": "Too Harsh",
+            "C": "Too Agonizing",
+            "D": "Too Violent"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "This movie contains the quote, \"I love the smell of napalm in the morning!\"",
+        "answers": {
+            "A": "Apocalypse Now",
+            "B": "The Deer Hunter",
+            "C": "Full Metal Jacket",
+            "D": "Platoon"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Shaquille O'Neal appeared in the 1997 film \"Space Jam\".",
+        "answers": {
+            "A": "True",
+            "B": "False"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What was the first feature-length computer-animated movie?",
+        "answers": {
+            "A": "Tron",
+            "B": "Lion king",
+            "C": "101 Dalmatians",
+            "D": "Toy Story"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In which 1955 film does Frank Sinatra play Nathan Detroit?",
+        "answers": {
+            "A": "Anchors Aweigh",
+            "B": "From Here to Eternity",
+            "C": "High Society",
+            "D": "Guys and Dolls"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Who did the score to the original Blade Runner?",
+        "answers": {
+            "A": "Vangelis",
+            "B": "Kitaro",
+            "C": "Enya",
+            "D": "Yanni"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "This movie contains the quote, \"I feel the need ... the need for speed!\"",
+        "answers": {
+            "A": "Cocktail",
+            "B": "The Color of Money",
+            "C": "Top Gun",
+            "D": "Days of Thunder"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which of the following was not one of \"The Magnificent Seven\"?",
+        "answers": {
+            "A": "Clint Eastwood",
+            "B": "Charles Bronson",
+            "C": "Robert Vaughn",
+            "D": "Steve McQueen"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which 1958 movie starred Kirk Douglas and Tony Curtis as half-brothers Einar and Eric?",
+        "answers": {
+            "A": "Spartacus",
+            "B": "The Vikings ",
+            "C": "The Long Ships",
+            "D": "Prince Valiant"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In the 1974 Christmas flick \"The Year Without a Santa Claus,\" what are the names of the two elves who help Mrs. Claus save Christmas?",
+        "answers": {
+            "A": "Buddy & Bobby",
+            "B": "Snowflake & Icicle",
+            "C": "Holly & Jolly",
+            "D": "Jingle & Jangle"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Sean Connery wasn't in \"Indiana Jones and the Kingdom of the Crystal Skull\" because he found retirement too enjoyable.",
+        "answers": {
+            "A": "True",
+            "B": "False"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What was the wifi password given to Stephen Strange in Doctor Strange?",
+        "answers": {
+            "A": "Chakra",
+            "B": "Ancient",
+            "C": "Peace",
+            "D": "Shambala"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In the 1964 film \"Zulu\", what song does the British Army company sing before the final battle?",
+        "answers": {
+            "A": "Colonel Bogey March",
+            "B": "The British Grenadiers",
+            "C": "Scotland the Brave",
+            "D": "Men of Harlech"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which of these movies did Jeff Bridges not star in?",
+        "answers": {
+            "A": "The Giver",
+            "B": "Tron: Legacy",
+            "C": "The Hateful Eight",
+            "D": "True Grit"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Who played the Cenobite called \"Pinhead\" in the original Hellraiser films?",
+        "answers": {
+            "A": "Doug Jones",
+            "B": "Doug Bradley",
+            "C": "Doug Savant",
+            "D": "Doug Benson"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "The killer in the 1981 film 'My Bloody Valentine' wears what sort of outfit?",
+        "answers": {
+            "A": "Police uniform",
+            "B": "Clown costume",
+            "C": "Mining gear",
+            "D": "Santa suit"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "The film \"2001: A Space Odyssey\" was released on December 31st, 2000.",
+        "answers": {
+            "A": "False",
+            "B": "True"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "In what year was the first Transformers movie released?",
+        "answers": {
+            "A": "2009",
+            "B": "1986",
+            "C": "2007",
+            "D": "1984"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "Which 1994 film did Roger Ebert famously despise, saying \"I hated hated hated hated hated this movie\".",
+        "answers": {
+            "A": "North",
+            "B": "The Santa Clause",
+            "C": "3 Ninjas Kick Back",
+            "D": "Richie Rich"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment: Film",
+        "question": "What name did Tom Hanks give to his volleyball companion in the film `Cast Away`?",
+        "answers": {
+            "A": "Billy",
+            "B": "Friday",
+            "C": "Wilson",
+            "D": "Jones"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment Film",
+        "question": "Who plays protagonist Ethan Hunt in the \"Mission: Impossible\" film-series?",
+        "answers": {
+            "A": "Sean Connery",
+            "B": "Pierce Brosnan",
+            "C": "Tom Cruise",
+            "D": "Johnny Depp"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment Film",
+        "question": "Before getting the shotgun, what did the titular hobo in 'Hobo with a Shotgun' want to purchase?",
+        "answers": {
+            "A": "a lawnmower",
+            "B": "a revolver",
+            "C": "a guitar",
+            "D": "a suit"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment Film",
+        "question": "Bela Lugosi was a Hungarian-American actor best known for his starring role of what 1931 horror film?",
+        "answers": {
+            "A": "Dr Frankenstein",
+            "B": "Werewolf",
+            "C": "Count Dracula",
+            "D": "The Creature from the Black Lagoon"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment Film",
+        "question": "What year did the movie \"Napoleon Dynamite\" come out?",
+        "answers": {
+            "A": "2003",
+            "B": "2005",
+            "C": "2002",
+            "D": "2004"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment Film",
+        "question": "Which James Bond film had the theme song written and performed by English singer-songwriter Adele?",
+        "answers": {
+            "A": "Casino Royale",
+            "B": "Skyfall",
+            "C": "Quantum Solace",
+            "D": "Spectre"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment Film",
+        "question": "Which one of these films did David Lynch direct, but not write?",
+        "answers": {
+            "A": "Lost Highway",
+            "B": "Inland Empire",
+            "C": "The Straight Story",
+            "D": "Twin Peaks Fire Walk With Me"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment Film",
+        "question": "In the Lord of the Rings: The Two Towers, where are the party of orcs taking the hobbits?",
+        "answers": {
+            "A": "Rivendell",
+            "B": "Mordor",
+            "C": "Moria",
+            "D": "Isengard"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment Film",
+        "question": "Who Voices the Devil on Devil's Flight in Final Destination 3?",
+        "answers": {
+            "A": "Wendy Christensen",
+            "B": "Kevin Fischer",
+            "C": "Tony Todd",
+            "D": "Ian McKinley"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment Film",
+        "question": "According to the Star Wars lore, what is Han Solo's home planet?",
+        "answers": {
+            "A": "Coruscant",
+            "B": "Naboo",
+            "C": "Tatooine",
+            "D": "Corellia"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment Film",
+        "question": "Which movie did NOT feature the late actor John Candy?",
+        "answers": {
+            "A": "Little Shop Of Horrors",
+            "B": "Planes Trains and Automobiles",
+            "C": "Home Alone",
+            "D": "Ghostbusters"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment Film",
+        "question": "In the 1986 film \"The Wraith\", what concept car is used for the Turbo Interceptor?",
+        "answers": {
+            "A": "Dodge M4S",
+            "B": "Pontiac Banshee",
+            "C": "Dodge Copperhead",
+            "D": "General Motors Firebird"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment Film",
+        "question": "The movie \"The Rocky Horror Picture Show\" (1975) opens with giant floating lips singing the opening song",
+        "answers": {
+            "A": "False",
+            "B": "True"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment Film",
+        "question": "Who is frozen at the end of the movie \"Goldeneye\"?",
+        "answers": {
+            "A": "Natalya Simonova",
+            "B": "Boris Grishenko",
+            "C": "Alec Travelyan",
+            "D": "James Bond"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment Film",
+        "question": "Actress Susan Sarandon caught pneumonia during filming of which movie?",
+        "answers": {
+            "A": "The Rocky Horror Picture Show",
+            "B": "Enchanted",
+            "C": "Thelma and Louise",
+            "D": "Dead Man Walking"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment Film",
+        "question": "Which actor auditioned for the role of Luke Skywalker?",
+        "answers": {
+            "A": "Kurt Russell",
+            "B": "Laurence Fishburne",
+            "C": "Christopher Lambert",
+            "D": "James Remar"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment Film",
+        "question": "In \"Mean Girls\", who has breasts that tell when it's raining?",
+        "answers": {
+            "A": "Gretchen Weiners",
+            "B": "Karen Smith",
+            "C": "Janice Ian",
+            "D": "Cady Heron"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment Film",
+        "question": "Which of the following movies was not based on a book?",
+        "answers": {
+            "A": "The Godfather",
+            "B": "Forrest Gump",
+            "C": "Citizen Kane",
+            "D": "Jurassic Park"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment Film",
+        "question": "Which actor plays Obi-Wan Kenobi in Star Wars Episodes I-III?",
+        "answers": {
+            "A": "Hayden Christensen",
+            "B": "Liam Neeson",
+            "C": "Alec Guinness",
+            "D": "Ewan McGregor"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment Film",
+        "question": "How much money did the 2019 Marvel movie \"Avengers: Endgame\" gross for it's record-breaking worldwide opening weekend?",
+        "answers": {
+            "A": "456 million USD",
+            "B": "392 million USD",
+            "C": "640 million USD",
+            "D": "1.2 billion USD"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment Film",
+        "question": "Who played Thanos in Avengers: Infinity War and Avengers: End Game?",
+        "answers": {
+            "A": "Tom Hiddleston",
+            "B": "Sean Gunn",
+            "C": "Adam Sandler",
+            "D": "Josh Brolin"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment Film",
+        "question": "Which year was the first official Youtube Rewind released?",
+        "answers": {
+            "A": "2013",
+            "B": "2012",
+            "C": "2010",
+            "D": "2011"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment Film",
+        "question": "What mutated animals act as monsters in the movie 'Night of the Lepus'?",
+        "answers": {
+            "A": "Bats",
+            "B": "Rats",
+            "C": "Dogs",
+            "D": "Rabbits"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment Film",
+        "question": "Who directed the 2017 movie \"The Shape of Water\"?",
+        "answers": {
+            "A": "Steven Spielberg",
+            "B": "Guillermo del Toro",
+            "C": "James Cameron",
+            "D": "Martin Scorsese"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment Film",
+        "question": "Stanley Kubrick's \"Dr. Strangelove\" (1964) originally ended with a large pie fight in the war room.",
+        "answers": {
+            "A": "True",
+            "B": "False"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment Film",
+        "question": "In Youtuber Jerma985's 2014 film \"Rat Movie: Mystery of the Mayan Treasure,\" who is the man who tries to steal the Mayan Treasure?",
+        "answers": {
+            "A": "Dick Dastardly Richards",
+            "B": "Bootleg Duck Dynasty Byeah Batman",
+            "C": "Demon Lord Zeraxos",
+            "D": "Gabe \"The Glue Man\" Degrossi"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment Film",
+        "question": "In what year was the first Indian movie submitted for an Oscar?",
+        "answers": {
+            "A": "1954",
+            "B": "1957",
+            "C": "1962",
+            "D": "1938"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment Film",
+        "question": "Which DC superhero was NOT included in the 2017 movie \"Justice League\"?",
+        "answers": {
+            "A": "Green Arrow",
+            "B": "Wonder Woman",
+            "C": "Cyborg",
+            "D": "Batman"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment Film",
+        "question": "What superhero has been played in film by actors Michael Keaton, Val Kilmer, George Clooney and Christian Bale?",
+        "answers": {
+            "A": "Superman",
+            "B": "Iron Man",
+            "C": "Batman",
+            "D": "Spiderman"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment Film",
+        "question": "What was the first superhero film James Gunn was involved with?",
+        "answers": {
+            "A": "Brightburn",
+            "B": "Super",
+            "C": "Guardians of the Galaxy",
+            "D": "The Specials"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment Film",
+        "question": "In which 1973 film does Yul Brynner play a robotic cowboy who malfunctions and goes on a killing spree?",
+        "answers": {
+            "A": "Westworld",
+            "B": "Android",
+            "C": "The Terminators",
+            "D": "Runaway"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment Film",
+        "question": "In the Super Mario Bros. Movie (2023), who plays Toad?",
+        "answers": {
+            "A": "Seth Rogan",
+            "B": "Charlie Day",
+            "C": "Keegan-Michael Key",
+            "D": "Jack Black"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment Film",
+        "question": "Which of these actors does NOT appear in the 1998 movie \"Saving Private Ryan\"?",
+        "answers": {
+            "A": "Vin Diesel",
+            "B": "Ralph Fiennes",
+            "C": "Tom Hanks",
+            "D": "Matt Damon"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Entertainment Film",
+        "question": "Which of these actors have NOT played Spiderman in the movies?",
+        "answers": {
+            "A": "Andrew Garfield",
+            "B": "Tom Holland",
+            "C": "Tobey Maguire",
+            "D": "Michael Cera"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Entertainment Film",
+        "question": "Who in Pulp Fiction says \"No, they got the metric system there, they wouldn't know what the f*** a Quarter Pounder is.\"",
+        "answers": {
+            "A": "Vincent Vega",
+            "B": "Jules Winnfield",
+            "C": "Jimmie Dimmick",
+            "D": "Butch Coolidge"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment Film",
+        "question": "7-Eleven stores were temporarily converted into Kwik E-marts to promote the release of what movie?",
+        "answers": {
+            "A": "Shrek the Third",
+            "B": "Ratatouille",
+            "C": "The Simpsons Movie",
+            "D": "Spider-Man 3"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Entertainment Film",
+        "question": "Which film has been critically regarded as the best film of all time?",
+        "answers": {
+            "A": "Citizen Kane",
+            "B": "Avatar",
+            "C": "The Room",
+            "D": "The Godfather Part II"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Entertainment Film",
+        "question": "In the film \"John Wick\" why does John Wick get out of retirement?",
+        "answers": {
+            "A": "He was punched in the face",
+            "B": "He needed money",
+            "C": "He got mugged",
+            "D": "His puppy is killed and his car was stolen"
+        },
+        "correct": "D"
+    }
+]

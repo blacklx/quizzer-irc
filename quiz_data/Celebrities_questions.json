@@ -1,0 +1,586 @@
+[
+    {
+        "category": "Celebrities",
+        "question": "Named after a character he played in a 1969 film, what is the name of the ski resort in Utah that Robert Redford bought in 1968?",
+        "answers": {
+            "A": "Woodward",
+            "B": "Booker",
+            "C": "Turner",
+            "D": "Sundance"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Celebrities",
+        "question": "What was the religion of famous singer \"Freddie Mercury\"?",
+        "answers": {
+            "A": "Zoroastrianism",
+            "B": "Paganism",
+            "C": "Ashurism",
+            "D": "Judaism"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Celebrities",
+        "question": "In 2014, this new top 100 rapper who featured in \"Computers\" and \"Body Dance\" was arrested in a NYPD sting for murder.",
+        "answers": {
+            "A": "DJ Snake",
+            "B": "Bobby Shmurda",
+            "C": "Swae Lee",
+            "D": "Young Thug"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Celebrities",
+        "question": "Lady Gaga's real name is Stefani Joanne Angelina Germanotta.",
+        "answers": {
+            "A": "False",
+            "B": "True"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Celebrities",
+        "question": "How tall is Tom Cruise?",
+        "answers": {
+            "A": "5′ 7″",
+            "B": "5′ 4″",
+            "C": "5′ 5″",
+            "D": "5′ 9″"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Celebrities",
+        "question": "What is generally considered to be William Shakespeare's birth date?",
+        "answers": {
+            "A": "April 23rd, 1564",
+            "B": "December 1st, 1750",
+            "C": "September 29th, 1699",
+            "D": "July 4th, 1409"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Celebrities",
+        "question": "Aubrey Graham is better known as",
+        "answers": {
+            "A": "Lil Wayne",
+            "B": "2 Chainz",
+            "C": "Drake",
+            "D": "Travis Scott"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Celebrities",
+        "question": "Michael Jackson had a pet python named ‘Crusher’.",
+        "answers": {
+            "A": "False",
+            "B": "True"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Celebrities",
+        "question": "Which American celebrity died in 1977 playing golf in La Moraleja, Madrid?",
+        "answers": {
+            "A": "Charlie Chaplin",
+            "B": "Elvis Presley",
+            "C": "Bing Crosby",
+            "D": "Groucho Marx"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Celebrities",
+        "question": "If he was still alive, in what year would Elvis Presley celebrate his 100th birthday?",
+        "answers": {
+            "A": "2045",
+            "B": "2030",
+            "C": "2035",
+            "D": "2040"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Celebrities",
+        "question": "Gabe Newell was born in which year?",
+        "answers": {
+            "A": "1960",
+            "B": "1970",
+            "C": "1962 ",
+            "D": "1972"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Celebrities",
+        "question": "Nikki Diamond portrayed which Gladiator in the 1992 TV show \"Gladiators\"?",
+        "answers": {
+            "A": "Scorpio",
+            "B": "Nightshade",
+            "C": "Jet",
+            "D": "Falcon"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Celebrities",
+        "question": "Donald J. Trump's Middle Name is...",
+        "answers": {
+            "A": "Jason",
+            "B": "Jerald",
+            "C": "John",
+            "D": "Jeff"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Celebrities",
+        "question": "In which of these TV shows did the chef Gordon Ramsay not appear?",
+        "answers": {
+            "A": "Auction Hunters",
+            "B": "Hell's Kitchen",
+            "C": "Hotel Hell",
+            "D": "Ramsay's Kitchen Nightmares"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Celebrities",
+        "question": "Which TV chef wrote an autobiography titled \"Humble Pie\"?",
+        "answers": {
+            "A": "Antony Worrall Thompson",
+            "B": "Ainsley Harriott",
+            "C": "Gordon Ramsay",
+            "D": "Jamie Oliver"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Celebrities",
+        "question": "In what year did \"Bob Ross\" die?",
+        "answers": {
+            "A": "1986",
+            "B": "1995",
+            "C": "1997",
+            "D": "1989"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Celebrities",
+        "question": "How much weight did Chris Pratt lose for his role as Star-Lord in \"Guardians of the Galaxy\"?",
+        "answers": {
+            "A": "50 lbs",
+            "B": "60 lbs",
+            "C": "30 lbs",
+            "D": "70 lbs"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Celebrities",
+        "question": "Who out of these actresses is the youngest?",
+        "answers": {
+            "A": "Bonnie Wright",
+            "B": "Ariel Winter",
+            "C": "Kiernan Shipka",
+            "D": "Emma Watson"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Celebrities",
+        "question": "The eccentric natural philosopher Tycho Brahe kept what as a pet?",
+        "answers": {
+            "A": "Dog",
+            "B": "Goat",
+            "C": "Moose",
+            "D": "Bear"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Celebrities",
+        "question": "What was James Coburn's last film role before his death?",
+        "answers": {
+            "A": "Snow Dogs",
+            "B": "Monsters Inc",
+            "C": "American Gun",
+            "D": "Texas Rangers"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Celebrities",
+        "question": "Who is \"James Rolfe\" better known as?",
+        "answers": {
+            "A": "PewDiePie",
+            "B": "PeanutButterGamer",
+            "C": "TotalBiscuit",
+            "D": "The Angry Video Game Nerd"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Celebrities",
+        "question": "Marilyn Monroe was born on July 1, 1926.",
+        "answers": {
+            "A": "False",
+            "B": "True"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Celebrities",
+        "question": "What caused Jake Lloyd who played Anakin Skywalker in The Phantom Menace to quit acting?",
+        "answers": {
+            "A": "Nomination for Worst Actor",
+            "B": "Criminal Record",
+            "C": "Bullying",
+            "D": "Racism"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Celebrities",
+        "question": "Billy Herrington is from which US state?",
+        "answers": {
+            "A": "New York",
+            "B": "California",
+            "C": "Georgia",
+            "D": "Arizona"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Celebrities",
+        "question": "Who was Donald Trump's first wife?",
+        "answers": {
+            "A": "Marla Maples",
+            "B": "Melania Knauss",
+            "C": "Ivana Zelníčková",
+            "D": "Nancy Davis"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Celebrities",
+        "question": "How old was Muhammad Ali when he died?",
+        "answers": {
+            "A": "He's still alive",
+            "B": "74",
+            "C": "61",
+            "D": "56"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Celebrities",
+        "question": "Before voicing Pearl in Steven Universe, Deedee Magno Hall was part of which American band?",
+        "answers": {
+            "A": "The Weather Girls",
+            "B": "The Cheetah Girls",
+            "C": "The Pussycat Dolls",
+            "D": "The Party"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Celebrities",
+        "question": "What year was O.J. Simpson aquitted of his murder charges?",
+        "answers": {
+            "A": "1995",
+            "B": "1991",
+            "C": "1996",
+            "D": "1992"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Celebrities",
+        "question": "Which actress's real name was Frances Ethel Gumm?",
+        "answers": {
+            "A": "Judy Garland",
+            "B": "Julie Andrews",
+            "C": "Doris Day",
+            "D": "Marilyn Monroe"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Celebrities",
+        "question": "What was the cause of Marilyn Monroes suicide?",
+        "answers": {
+            "A": "Knife Attack",
+            "B": "Drug Overdose",
+            "C": "Gunshot",
+            "D": "House Fire"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Celebrities",
+        "question": "Which television show has Dan Gheesling been on?",
+        "answers": {
+            "A": "Survivor",
+            "B": "The Bachelor",
+            "C": "Big Brother",
+            "D": "Jeopardy"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Celebrities",
+        "question": "By what name is Carlos Estevez better known? ",
+        "answers": {
+            "A": "Bruno Mars",
+            "B": "Charlie Sheen",
+            "C": "Joaquin Phoenix",
+            "D": "Ricky Martin"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Celebrities",
+        "question": "Tupac Shakur died due to complications from being stabbed in 1996.",
+        "answers": {
+            "A": "False",
+            "B": "True"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Celebrities",
+        "question": "What is the real name of \"moot\", founder of the imageboard 4chan?",
+        "answers": {
+            "A": "Christopher Poole",
+            "B": "Mark Zuckerberg",
+            "C": "Catie Wayne",
+            "D": "Allison Harvard"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Celebrities",
+        "question": "Which school in Surrey, England did Steve Backshall attend?",
+        "answers": {
+            "A": "Lyndhurst School",
+            "B": "Kings International College",
+            "C": "Tomlinscote School",
+            "D": "Collingwood College"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Celebrities",
+        "question": "Gwyneth Paltrow has a daughter named...?",
+        "answers": {
+            "A": "Apple",
+            "B": "French",
+            "C": "Dakota",
+            "D": "Lily"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Celebrities",
+        "question": "What is Doug Walker's YouTube name?",
+        "answers": {
+            "A": "The Nostalgia Critic",
+            "B": "AngryJoeShow",
+            "C": "The Cinema Snob",
+            "D": "The Angry Video Game Nerd"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Celebrities",
+        "question": "Paul McCartney has always used his middle name. What is his real first name? ",
+        "answers": {
+            "A": "Justin",
+            "B": "James",
+            "C": "Jack",
+            "D": "John"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Celebrities",
+        "question": "Where was Kanye West born?",
+        "answers": {
+            "A": "Chicago, Illinois",
+            "B": "Los Angeles, California",
+            "C": "Atlanta, Georgia",
+            "D": "Detroit, Michigan"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Celebrities",
+        "question": "Which famous New York Yankees outfielder did Marilyn Monroe marry?",
+        "answers": {
+            "A": "Tino Martinez",
+            "B": "Joe DiMaggio",
+            "C": "Mason Williams",
+            "D": "Babe Ruth"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Celebrities",
+        "question": "Which of these celebrities was not a member of the Jackson 5?",
+        "answers": {
+            "A": "Tito Jackson",
+            "B": "Marlon Jackson",
+            "C": "Jermaine Jackson",
+            "D": "Bo Jackson"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Celebrities",
+        "question": "Which radio personality calls himself \"The King of All Media\"?",
+        "answers": {
+            "A": "Pete Tong",
+            "B": "Howard Stern",
+            "C": "Rush Limbaugh",
+            "D": "Ryan Seacrest"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Celebrities",
+        "question": "What does film maker Dan Bell typically focus his films on?",
+        "answers": {
+            "A": "Documentaries ",
+            "B": "Abandoned Buildings and Dead Malls",
+            "C": "Action Films",
+            "D": "Historic Landmarks"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Celebrities",
+        "question": "What year did radio icon Howard Stern start a job at radio station WNBC?",
+        "answers": {
+            "A": "1982",
+            "B": "1995",
+            "C": "1984",
+            "D": "1985"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Celebrities",
+        "question": "Which actress married Michael Douglas in 2000?",
+        "answers": {
+            "A": "Pam Ferris",
+            "B": "Sara Sugarman",
+            "C": "Catherine Zeta-Jones",
+            "D": "Ruth Jones"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Celebrities",
+        "question": "Which of these people is NOT a part of the Internet comedy group Mega64?",
+        "answers": {
+            "A": "Derrick Acosta",
+            "B": "Shawn Chatfield",
+            "C": "Jon Jafari",
+            "D": "Rocco Botte"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Celebrities",
+        "question": "By which name is Ramon Estevez better known as?",
+        "answers": {
+            "A": "Martin Sheen",
+            "B": "Ramon Sheen",
+            "C": "Charlie Sheen",
+            "D": "Emilio Estevez"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Celebrities",
+        "question": "When was Elvis Presley born?",
+        "answers": {
+            "A": "April 17, 1938",
+            "B": "January 8, 1935",
+            "C": "December 13, 1931",
+            "D": "July 18, 1940"
+        },
+        "correct": "B"
+    },
+    {
+        "category": "Celebrities",
+        "question": "Which celebrity announced his presidency in 2015?",
+        "answers": {
+            "A": "Leonardo DiCaprio",
+            "B": "Miley Cyrus",
+            "C": "Kanye West",
+            "D": "Donald Trump"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Celebrities",
+        "question": "Neil Hamburger is played by which comedian?",
+        "answers": {
+            "A": "Nathan Fielder",
+            "B": "Todd Glass",
+            "C": "Gregg Turkington",
+            "D": "Tim Heidecker"
+        },
+        "correct": "C"
+    },
+    {
+        "category": "Celebrities",
+        "question": "What was the cause of death for Freddie Mercury?",
+        "answers": {
+            "A": "Pneumonia",
+            "B": "HIV",
+            "C": "Brain Hemorrhage",
+            "D": "Stomach Cancer"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Celebrities",
+        "question": "What was the name of Marilyn Monroe's first husband?",
+        "answers": {
+            "A": "Kirk Douglas",
+            "B": "Arthur Miller",
+            "C": "Joe Dimaggio",
+            "D": "James Dougherty"
+        },
+        "correct": "D"
+    },
+    {
+        "category": "Celebrities",
+        "question": "In which situation was musician John Lennon assassinated?",
+        "answers": {
+            "A": "Attempting to enter the Dakota Apartments building",
+            "B": "Waiting outside a music venue in Manhattan following a gig",
+            "C": "Signing an autograph outside the Record Plant studio",
+            "D": "During an impromptu walk through Central Park"
+        },
+        "correct": "A"
+    },
+    {
+        "category": "Celebrities",
+        "question": "Terry Gilliam is the only American member of the comedy troupe \"Monty Python.\"",
+        "answers": {
+            "A": "False",
+            "B": "True"
+        },
+        "correct": "B"
+    }
+]

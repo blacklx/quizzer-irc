@@ -1,0 +1,112 @@
+# Environment variables and secrets
+.env
+.env.local
+.env.*.local
+*.key
+*_api_key
+*_password
+*_secret
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Python version management
+.python-version
+
+# Logs
+*.log
+logs/
+*.log.*
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+db/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+.project
+.classpath
+.settings/
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Backup files
+*.bak
+*.backup
+backup/
+*~
+
+# Temporary files
+*.tmp
+*.temp
+*.pid
+*.lock
+*.orig
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.cache
+
+# Old/test data directories
+otdb/data/
+
+# Bot management logs
+bot_management.log
+
+# Configuration with sensitive data
+config.yaml
+# Note: config.yaml.example is tracked (template without password)
+# Users should copy config.yaml.example to config.yaml and fill in their values
+
+# Admin password hashes (auto-generated)
+admin_passwords.yaml
+
+# Type checking
+.mypy_cache/
+.dmypy.json
+dmypy.json
