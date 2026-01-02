@@ -113,6 +113,12 @@ bot_settings:
   reconnect_interval: 15       # Seconds to wait before reconnecting
   rejoin_interval: 15          # Seconds to wait before rejoining channel
   nickname_retry_interval: 30  # Seconds to wait before retrying nickname
+  # bind_address: Optional - Bind to specific IP address or hostname (IPv4 or IPv6)
+  # Examples:
+  #   bind_address: "192.168.1.100"  # IPv4 address
+  #   bind_address: "2001:db8::1"     # IPv6 address
+  # Leave empty or omit to use default (all interfaces)
+  # bind_address: null
 
 nickserv_settings:
   use_nickserv: true           # Set to false if not using NickServ

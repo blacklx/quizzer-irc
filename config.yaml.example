@@ -13,6 +13,13 @@ bot_settings:
   reconnect_interval: 15 # in seconds, connection retry interval
   rejoin_interval: 15 # in seconds, how often to attempt rejoin channel if kicked
   nickname_retry_interval: 30 # in seconds, how often to try to regain botnick if taken
+  # bind_address: Optional - Bind to specific IP address or hostname (IPv4 or IPv6)
+  # Examples:
+  #   bind_address: "192.168.1.100"  # IPv4 address
+  #   bind_address: "2001:db8::1"     # IPv6 address
+  #   bind_address: "eth0"            # Network interface name (if supported)
+  # Leave empty or omit to use default (all interfaces)
+  # bind_address: null
 
 nickserv_settings:
   use_nickserv: True

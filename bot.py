@@ -143,7 +143,7 @@ class QuizzerBot(SingleServerIRCBot):
         channel: IRC channel the bot operates in
         admin_commands: AdminCommands instance for admin functionality
     """
-    def __init__(self, channel, nickname, realname, server, port, use_ssl, nickserv_settings, nickserv_account, nickserv_password, nickserv_command_format, use_nickserv, bot_version, question_count, answer_time_limit, admins, admin_verification_method='nickserv', admin_verifier=None):
+    def __init__(self, channel, nickname, realname, server, port, use_ssl, nickserv_settings, nickserv_account, nickserv_password, nickserv_command_format, use_nickserv, bot_version, question_count, answer_time_limit, admins, admin_verification_method='nickserv', admin_verifier=None, bind_address=None):
         """
         Initialize the Quizzer IRC bot.
         
@@ -163,8 +163,22 @@ class QuizzerBot(SingleServerIRCBot):
             question_count: Number of questions per quiz
             answer_time_limit: Time limit for answering questions (seconds)
             admins: List of admin nicknames
+            bind_address: Optional IP address or hostname to bind to (IPv4 or IPv6)
         """
-        factory = Factory(wrapper=lambda sock: ssl.create_default_context().wrap_socket(sock, server_hostname=server)) if use_ssl else Factory()
+        # Create Factory with bind_address if specified
+        if use_ssl:
+            factory = Factory(
+                bind_address=bind_address,
+                wrapper=lambda sock: ssl.create_default_context().wrap_socket(sock, server_hostname=server)
+            )
+        else:
+            factory = Factory(bind_address=bind_address)
+        
+        # Store bind_address for logging
+        self.bind_address = bind_address
+        if bind_address:
+            logger.info(f"Will bind to local address: {bind_address}")
+        
         SingleServerIRCBot.__init__(self, [(server, port)], nickname, realname, connect_factory=factory)
 
         # Retrieve quiz settings from the config
@@ -239,7 +253,8 @@ class QuizzerBot(SingleServerIRCBot):
         """Start the bot and connect to IRC server."""
         logger.info("=" * 60)
         logger.info(f"Starting Quizzer Bot v{self.bot_version}")
-        logger.info(f"Connecting to IRC server: {server}:{port} (SSL: {use_ssl})")
+        bind_info = f" (bind: {self.bind_address})" if self.bind_address else ""
+        logger.info(f"Connecting to IRC server: {server}:{port} (SSL: {use_ssl}){bind_info}")
         logger.info(f"Channel: {self.channel}")
         logger.info(f"Nickname: {self.original_nickname}")
         logger.info(f"NickServ: {'Enabled' if self.use_nickserv else 'Disabled'}")

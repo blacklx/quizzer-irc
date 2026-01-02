@@ -89,6 +89,12 @@ def main():
         reconnect_interval = config.get('bot_settings', 'reconnect_interval')
         rejoin_interval = config.get('bot_settings', 'rejoin_interval')
         nickname_retry_interval = config.get('bot_settings', 'nickname_retry_interval')
+        # bind_address is optional - get it if present, otherwise None
+        bind_address = config.config.get('bot_settings', {}).get('bind_address', None)
+        if bind_address:
+            bind_address = str(bind_address).strip()
+            if not bind_address or bind_address.lower() in ['null', 'none', '']:
+                bind_address = None
         
         use_nickserv = config.get('nickserv_settings', 'use_nickserv')
         nickserv_name = config.get('nickserv_settings', 'nickserv_name')
@@ -138,7 +144,7 @@ def main():
             nickserv_settings, nickserv_account, nickserv_password,
             nickserv_command_format, use_nickserv, bot_version,
             question_count, answer_time_limit, admin_nicks,
-            admin_verification_method, admin_verifier
+            admin_verification_method, admin_verifier, bind_address
         )
         bot.start()
         
