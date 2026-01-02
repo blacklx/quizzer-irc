@@ -14,10 +14,44 @@ LOG_FILE="$BOT_DIRECTORY/bot_management.log"
 SLEEP_DURATION=10  # Configurable sleep duration for restarts
 CRON_CHECK_INTERVAL="*/15 * * * *"  # Interval for cron check, e.g., every 15 minutes
 
+# Load .env file if it exists (for environment variables)
+load_env_file() {
+    local env_file="$BOT_DIRECTORY/.env"
+    if [ -f "$env_file" ]; then
+        # Read .env file and export variables
+        # Ignores comments and empty lines
+        while IFS= read -r line || [ -n "$line" ]; do
+            # Skip comments and empty lines
+            [[ "$line" =~ ^[[:space:]]*# ]] && continue
+            [[ -z "${line// }" ]] && continue
+            
+            # Parse KEY=VALUE
+            if [[ "$line" =~ ^[[:space:]]*([^=]+)=(.*)$ ]]; then
+                local key="${BASH_REMATCH[1]// /}"
+                local value="${BASH_REMATCH[2]}"
+                # Remove quotes if present
+                value="${value#\"}"
+                value="${value%\"}"
+                value="${value#\'}"
+                value="${value%\'}"
+                # Only export if not already set (env vars take precedence)
+                if [ -z "${!key}" ]; then
+                    # Safely export the variable
+                    export "${key}"="${value}"
+                fi
+            fi
+        done < "$env_file"
+    fi
+}
+
+# Load .env file before checking environment variables
+load_env_file
+
 # Check for required environment variable
 if [ -z "$NICKSERV_PASSWORD" ] && [ "$1" != "check" ]; then
     echo "Warning: NICKSERV_PASSWORD environment variable not set"
     echo "The bot may fail to authenticate with NickServ"
+    echo "Note: Check that NICKSERV_PASSWORD is set in .env file or as an environment variable"
 fi
 
 # Initialize log file
