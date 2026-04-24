@@ -17,19 +17,27 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-Version: 0.90
+Version: 0.90.2
 """
 # Standard library imports
 import logging
 import os
 import sqlite3
 
+# Local imports
+from config import project_path
+
 # ============================================================================
 # Directory Setup
 # ============================================================================
 
-os.makedirs('logs', exist_ok=True)
-os.makedirs('db', exist_ok=True)
+LOGS_DIR = project_path('logs')
+DB_DIR = project_path('db')
+DB_PATH = project_path('db', 'quiz_leaderboard.db')
+SQLITE_TIMEOUT_SECONDS = 5.0
+
+os.makedirs(LOGS_DIR, exist_ok=True)
+os.makedirs(DB_DIR, exist_ok=True)
 
 # ============================================================================
 # Logging Setup
@@ -39,7 +47,7 @@ logger = logging.getLogger('DBManagerLogger')
 logger.setLevel(logging.INFO)
 
 try:
-    log_handler = logging.FileHandler('logs/database.log')
+    log_handler = logging.FileHandler(project_path('logs', 'database.log'))
     log_formatter = logging.Formatter(
         '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
     )
@@ -53,7 +61,7 @@ except (OSError, PermissionError) as e:
     ))
     logger.addHandler(console_handler)
     logger.warning(
-        f"Could not create log file 'logs/database.log': {e}. "
+        f"Could not create log file '{project_path('logs', 'database.log')}': {e}. "
         f"Using console logging."
     )
 
@@ -70,7 +78,7 @@ def create_database():
         OSError: If database file cannot be created
     """
     try:
-        with sqlite3.connect('db/quiz_leaderboard.db') as conn:
+        with sqlite3.connect(DB_PATH, timeout=SQLITE_TIMEOUT_SECONDS) as conn:
             cursor = conn.cursor()
             cursor.execute('''
                 CREATE TABLE IF NOT EXISTS scores (
@@ -83,7 +91,7 @@ def create_database():
             ''')
             conn.commit()
     except (OSError, PermissionError) as e:
-        logger.error(f"Could not create database 'db/quiz_leaderboard.db': {e}")
+        logger.error(f"Could not create database '{DB_PATH}': {e}")
         raise
 
 def store_score(user, score):
@@ -94,20 +102,22 @@ def store_score(user, score):
         user: Username/nickname
         score: Score to store
         
+    Returns:
+        True when the score is stored, False if persistence failed.
+
     Note:
         Errors are logged but don't raise exceptions to avoid disrupting quiz flow.
     """
-    logger.info("store_score function called")
-    logger.info(f"store_score called with user: {user}, score: {score}")
     try:
-        with sqlite3.connect('db/quiz_leaderboard.db') as conn:
+        with sqlite3.connect(DB_PATH, timeout=SQLITE_TIMEOUT_SECONDS) as conn:
             cursor = conn.cursor()
-            logger.info(f"Attempting to store score: User = {user}, Score = {score}")
             cursor.execute('INSERT INTO scores (user, score) VALUES (?, ?)', (user, score))
             conn.commit()
-            logger.info(f"Score stored: {user} - {score}")
+            logger.debug(f"Score stored for user '{user}'")
+            return True
     except Exception as e:
         logger.error(f"Error storing score for User = {user}, Score = {score}: {e}")
+        return False
 
 def get_leaderboard():
     """
@@ -118,7 +128,7 @@ def get_leaderboard():
         Returns empty list on error.
     """
     try:
-        with sqlite3.connect('db/quiz_leaderboard.db') as conn:
+        with sqlite3.connect(DB_PATH, timeout=SQLITE_TIMEOUT_SECONDS) as conn:
             cursor = conn.cursor()
             cursor.execute('''
                 SELECT user, SUM(score) as total_score

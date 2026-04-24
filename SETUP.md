@@ -6,7 +6,7 @@ Complete step-by-step setup instructions for the Quizzer IRC Bot.
 
 ### Required
 
-- **Python 3.6+** (Python 3.8+ recommended)
+- **Python 3.8+**
 - **IRC server access** (or your own IRC server)
 - **NickServ account** (if your IRC network requires authentication)
 
@@ -124,13 +124,13 @@ nickserv_settings:
   use_nickserv: true           # Set to false if not using NickServ
   nickserv_name: "N"           # NickServ service name (usually "N" or "NickServ")
   nickserv_account: "Quizzer"  # Your NickServ account name
-  nickserv_password: ""        # Leave empty, use environment variable instead
+  # Set NICKSERV_PASSWORD in .env or the environment instead of storing it here
   nickserv_command_format: "IDENTIFY {account} {password}"
 
 bot_log_settings:
   enable_logging: true         # Enable file logging
   enable_debug: false         # Enable debug logging
-  log_filename: "Quizzer.log" # Log file name
+  log_filename: "logs/Quizzer.log" # Log file name
 
 admin_settings:
   # Verification method: "nickserv" (default), "password", "hostmask", or "combined"
@@ -253,12 +253,12 @@ Once verified, admins can use commands via PM to the bot:
 - `!admin set_rate_limit <seconds>` - Change rate limit
 - `!admin msg <target> <message>` - Send message from bot
 
-**Password-based only commands:**
-- `!admin verify <password>` - Verify and start session
-- `!admin add_admin <nick> <password>` - Add new admin
+**Additional admin management commands:**
 - `!admin remove_admin <nick>` - Remove admin
-- `!admin set_password <nick> <password>` - Set/update password
 - `!admin list_admins` - List all admins
+- `!admin verify <password>` - Verify and start session (password/combined modes)
+- `!admin add_admin <nick> <password>` - Add new admin (requires password storage support)
+- `!admin set_password <nick> <password>` - Set/update password (requires password storage support)
 
 See `README.md` for complete command reference.
 
@@ -288,16 +288,8 @@ cp .env.example .env
 # ADMIN_PASSWORD_YourNick=your_admin_password_here
 ```
 
-**To make environment variable permanent:**
-
-**Linux/Mac** - Add to `~/.bashrc` or `~/.zshrc`:
-
-```bash
-echo 'export NICKSERV_PASSWORD="your_password"' >> ~/.bashrc
-source ~/.bashrc
-```
-
-**Windows** - Set as system environment variable through Control Panel.
+Prefer storing NickServ credentials in the project-local `.env` file instead of
+persisting them in shell startup files or global system environment settings.
 
 ## Step 4: Question Database
 
@@ -348,7 +340,7 @@ source .venv/bin/activate
 ### 5.1 Test Configuration Loading
 
 ```bash
-python3 -c "from config import load_config; config = load_config(); print('✓ Config loaded successfully')"
+python3 -c "from config import load_env_file, load_config; load_env_file(); config = load_config(); print('✓ Config loaded successfully')"
 ```
 
 ### 5.2 Test Database
@@ -387,7 +379,7 @@ chmod +x tools/startbot.sh
 ./tools/startbot.sh start
 
 # Check if running
-./tools/startbot.sh check
+./tools/startbot.sh status
 
 # View bot output
 screen -r quizzer
@@ -395,6 +387,12 @@ screen -r quizzer
 # Stop bot
 ./tools/startbot.sh stop
 ```
+
+`tools/startbot.sh` is best for manual operation and recovery. For unattended
+production use, configure a real supervisor such as `systemd` so the bot is
+restarted automatically after a fatal exit or reconnect exhaustion.
+Do not combine `systemd` with cron-based `startbot.sh check` recovery for the same
+bot instance.
 
 ### Option C: Using Screen Manually
 
@@ -412,28 +410,33 @@ python3 run.py
 
 ### Option D: Using Systemd (Linux)
 
-Create `/etc/systemd/system/quizzer.service`:
+Copy and edit `tools/quizzer.service.example`, then install it as
+`/etc/systemd/system/quizzer.service`:
 
 ```ini
 [Unit]
 Description=Quizzer IRC Bot
-After=network.target
+After=network-online.target
+Wants=network-online.target
 
 [Service]
 Type=simple
 User=quizzer
 WorkingDirectory=/home/quizzer/quizzer
-Environment="NICKSERV_PASSWORD=your_password_here"
+EnvironmentFile=-/home/quizzer/quizzer/.env
 # IMPORTANT: Use the venv Python, not system Python
 ExecStart=/home/quizzer/quizzer/.venv/bin/python3 /home/quizzer/quizzer/run.py
 Restart=always
 RestartSec=10
+RestartPreventExitStatus=0
+StandardOutput=append:/home/quizzer/quizzer/logs/systemd.stdout.log
+StandardError=append:/home/quizzer/quizzer/logs/systemd.stderr.log
 
 [Install]
 WantedBy=multi-user.target
 ```
 
-**Note:** Update the paths (`/home/quizzer/quizzer`) to match your actual bot directory location.
+**Note:** Update the paths (`/home/quizzer/quizzer`) and `User=` value to match your actual installation.
 
 Then:
 
@@ -478,13 +481,13 @@ echo $NICKSERV_PASSWORD  # Should show your password
 **Check configuration:**
 
 ```bash
-python3 -c "from config import load_config; load_config()"
+python3 -c "from config import load_env_file, load_config; load_env_file(); load_config()"
 ```
 
 **Check Python version:**
 
 ```bash
-python3 --version  # Should be 3.6+
+python3 --version  # Should be 3.8+
 ```
 
 ### Can't Connect to IRC
@@ -541,6 +544,14 @@ tail -f logs/quiz_game.log
 
 ## Post-Setup
 
+### Validation
+
+Run the project validation script before deploying changes or after major setup work:
+
+```bash
+.venv/bin/python3 tools/validate.py
+```
+
 ### Update Questions Database
 
 The bot comes with a pre-loaded database, but you can update it:
@@ -586,6 +597,7 @@ If you update the bot code:
 - Read `README.md` for usage instructions
 - Read `CATEGORIES.md` for category system details
 - Read `FILE_GUIDE.md` to understand the codebase
+- Read `OPERATIONS.md` for runtime recovery guidance
 - Customize `config.yaml` for your needs
 
 ## Getting Help

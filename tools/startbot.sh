@@ -9,7 +9,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BOT_DIRECTORY="$(cd "$SCRIPT_DIR/.." && pwd)"
 VENV_PATH="$BOT_DIRECTORY/.venv"
 SCREEN_NAME="quizzer"
-BOT_SCRIPT="run.py"  # Use run.py as entry point (recommended) or "bot.py" for direct execution
+BOT_SCRIPT="run.py"  # Use run.py as the supported entry point
 LOG_FILE="$BOT_DIRECTORY/bot_management.log"
 SLEEP_DURATION=10  # Configurable sleep duration for restarts
 CRON_CHECK_INTERVAL="*/15 * * * *"  # Interval for cron check, e.g., every 15 minutes
@@ -47,8 +47,18 @@ load_env_file() {
 # Load .env file before checking environment variables
 load_env_file
 
+# Check whether config.yaml disables NickServ
+function nickserv_disabled_in_config {
+    local config_file="$BOT_DIRECTORY/config.yaml"
+    if [ ! -f "$config_file" ]; then
+        return 1
+    fi
+
+    grep -Eiq '^[[:space:]]*use_nickserv:[[:space:]]*(false|no|off|0)$' "$config_file"
+}
+
 # Check for required environment variable
-if [ -z "$NICKSERV_PASSWORD" ] && [ "$1" != "check" ]; then
+if [ -z "$NICKSERV_PASSWORD" ] && [ "$1" != "check" ] && [ "$1" != "status" ] && ! nickserv_disabled_in_config; then
     echo "Warning: NICKSERV_PASSWORD environment variable not set"
     echo "The bot may fail to authenticate with NickServ"
     echo "Note: Check that NICKSERV_PASSWORD is set in .env file or as an environment variable"
@@ -64,19 +74,61 @@ function log_activity {
     echo "$(date): $1" >> "$LOG_FILE"
 }
 
+# Detect an active systemd service for Quizzer
+function systemd_service_running {
+    if ! command -v systemctl >/dev/null 2>&1; then
+        return 1
+    fi
+
+    systemctl is-active --quiet quizzer 2>/dev/null
+}
+
+# Check if screen session exists
+function screen_session_exists {
+    screen -list 2>&1 | grep -q "$SCREEN_NAME"
+}
+
+# Check if the bot process itself is running
+function bot_process_running {
+    pgrep -af "$BOT_SCRIPT" | grep -F -- "$BOT_DIRECTORY/$BOT_SCRIPT" >/dev/null 2>&1
+}
+
+function get_file_mode {
+    if stat -c "%a" "$1" >/dev/null 2>&1; then
+        stat -c "%a" "$1"
+    elif stat -f "%Lp" "$1" >/dev/null 2>&1; then
+        stat -f "%Lp" "$1"
+    else
+        return 1
+    fi
+}
+
+# Remove a stale screen session if the bot process is gone
+function cleanup_stale_screen_session {
+    if screen_session_exists && ! bot_process_running; then
+        echo "Found stale screen session '$SCREEN_NAME' without a running bot process. Cleaning it up..."
+        log_activity "Found stale screen session without running bot process; cleaning it up"
+        screen -S "$SCREEN_NAME" -X quit 2>/dev/null || true
+        sleep 1
+        screen -wipe >/dev/null 2>&1 || true
+    fi
+}
+
 # Check if bot is running
 function is_bot_running {
-    if screen -list | grep -q "$SCREEN_NAME"; then
-        # Further check if the bot process is actually running
-        if pgrep -f "$BOT_SCRIPT" > /dev/null; then
-            return 0
-        fi
+    if systemd_service_running; then
+        return 0
+    fi
+    if screen_session_exists && bot_process_running; then
+        return 0
     fi
     return 1
 }
 
 # Function to check if the bot is actually running
 function check_bot {
+    cleanup_stale_screen_session
+
     if is_bot_running; then
         echo "Bot is running."
         log_activity "Bot running check: Bot is running."
@@ -94,8 +146,32 @@ function check_bot {
     fi
 }
 
+# Read-only status check that never starts the bot
+function status_bot {
+    cleanup_stale_screen_session
+
+    if is_bot_running; then
+        echo "Bot is running."
+        log_activity "Bot status check: Bot is running."
+        return 0
+    fi
+
+    echo "Bot is not running."
+    log_activity "Bot status check: Bot is not running."
+    return 1
+}
+
 # Start bot
 function start_bot {
+    cleanup_stale_screen_session
+
+    if systemd_service_running; then
+        echo "quizzer.service is already active."
+        echo "Use 'systemctl restart quizzer' or 'systemctl stop quizzer' instead of starting a screen instance."
+        log_activity "Refused to start screen instance because quizzer.service is active"
+        return 0
+    fi
+
     if is_bot_running; then
         echo "Bot is already running."
         log_activity "Attempted to start bot, but it's already running."
@@ -201,10 +277,10 @@ function start_bot {
     sleep 2
     
     # Check if bot process is actually running (screen session might exit if command fails)
-    if ! pgrep -f "$BOT_SCRIPT" > /dev/null; then
+    if ! bot_process_running; then
         # Process not running - check if screen session still exists
         local screen_still_exists=0
-        if screen -list 2>&1 | grep -q "$SCREEN_NAME"; then
+        if screen_session_exists; then
             screen_still_exists=1
         fi
         
@@ -230,7 +306,7 @@ function start_bot {
         echo "1. Check the log file: tail -f $LOG_FILE"
         echo "2. Attach to screen session: screen -r $SCREEN_NAME"
         echo "3. Check if Python dependencies are installed: source $VENV_PATH/bin/activate && pip list"
-        echo "4. Verify configuration: python3 -c \"from config import load_config; load_config()\""
+        echo "4. Verify configuration: python3 -c \"from config import load_env_file, load_config; load_env_file(); load_config()\""
         
         log_activity "Failed to start bot: Process not running after start attempt"
         return 1
@@ -257,6 +333,13 @@ function start_bot {
 
 # Stop bot
 function stop_bot {
+    if systemd_service_running && ! screen_session_exists; then
+        echo "quizzer.service is active."
+        echo "Use 'systemctl stop quizzer' to stop the supervised service."
+        log_activity "Refused to stop via screen script because quizzer.service is active"
+        return 1
+    fi
+
     if is_bot_running; then
         echo "Stopping bot..."
         screen -S $SCREEN_NAME -X quit
@@ -276,6 +359,13 @@ function stop_bot {
 
 # Restart bot
 function restart_bot {
+    if systemd_service_running && ! screen_session_exists; then
+        echo "quizzer.service is active."
+        echo "Use 'systemctl restart quizzer' to restart the supervised service."
+        log_activity "Refused to restart via screen script because quizzer.service is active"
+        return 1
+    fi
+
     if is_bot_running; then
         echo "Stopping bot..."
         log_activity "Stopping bot..."
@@ -312,6 +402,13 @@ function update_crontab {
         echo "  RedHat/CentOS: sudo yum install cronie"
         echo "  Arch Linux: sudo pacman -S cronie"
         log_activity "Failed to update crontab: crontab command not found"
+        return 1
+    fi
+
+    if systemd_service_running; then
+        echo "ERROR: quizzer.service is active."
+        echo "Do not combine cron healing with systemd supervision for the same bot instance."
+        log_activity "Refused to install cron because quizzer.service is active"
         return 1
     fi
 
@@ -457,7 +554,14 @@ function validate_configuration {
 
 # Set script permissions
 function set_script_permissions {
-    if [[ $(stat -c "%a" "$0") != "700" ]]; then
+    local current_mode
+    if ! current_mode=$(get_file_mode "$0"); then
+        echo "Warning: Could not determine script permissions for $0"
+        log_activity "Could not determine script permissions for $0"
+        return 0
+    fi
+
+    if [[ "$current_mode" != "700" ]]; then
         echo "Setting script permissions to 700..."
         chmod 700 "$0"
         echo "Permissions set."
@@ -487,6 +591,10 @@ case "$1" in
         check_bot
         exit $?
         ;;
+    status)
+        status_bot
+        exit $?
+        ;;
     cron)
         update_crontab
         exit $?
@@ -496,6 +604,6 @@ case "$1" in
         exit $?
         ;;
     *)
-        echo "Usage: $0 { start | stop | restart | check | cron | remove-cron }"
+        echo "Usage: $0 { start | stop | restart | check | status | cron | remove-cron }"
         exit 1
 esac

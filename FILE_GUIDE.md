@@ -9,7 +9,7 @@ Quick reference for understanding the codebase.
 ## 📁 Core Bot Files
 
 ### `bot.py` - **Main IRC Bot**
-**What it does:** The main entry point that connects to IRC and handles all IRC events.
+**What it does:** The IRC engine that connects to IRC and handles all IRC events. The supported process entrypoint is `run.py`.
 
 **Key responsibilities:**
 - Connects to IRC server
@@ -70,9 +70,9 @@ Quick reference for understanding the codebase.
 - `set_rate_limit()` - Changes rate limit for commands
 - `send_message()` - Sends message from bot
 - `get_bot_stats()` - Shows comprehensive bot statistics
-- `add_admin()` - Add new admin (password method)
-- `remove_admin()` - Remove admin (password method)
-- `set_password()` - Set/update admin password
+- `add_admin()` - Add new admin (requires password storage support)
+- `remove_admin()` - Remove admin
+- `set_password()` - Set/update admin password (requires password storage support)
 - `list_admins()` - List all admin nicknames
 
 ---
@@ -294,7 +294,8 @@ python3 fetch_all.py --output ../quiz_data --delay 5.0
 
 ## 🔄 How It All Works Together
 
-1. **Bot starts** (`bot.py`)
+1. **Bot starts** (`run.py`)
+   - Loads `.env`
    - Loads config
    - Connects to IRC
    - Creates `QuizGame` instance

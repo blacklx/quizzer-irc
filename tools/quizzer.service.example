@@ -1,0 +1,19 @@
+[Unit]
+Description=Quizzer IRC Bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=quizzer
+WorkingDirectory=/home/quizzer/quizzer
+EnvironmentFile=-/home/quizzer/quizzer/.env
+ExecStart=/home/quizzer/quizzer/.venv/bin/python3 /home/quizzer/quizzer/run.py
+Restart=always
+RestartSec=10
+RestartPreventExitStatus=0
+StandardOutput=append:/home/quizzer/quizzer/logs/systemd.stdout.log
+StandardError=append:/home/quizzer/quizzer/logs/systemd.stderr.log
+
+[Install]
+WantedBy=multi-user.target

@@ -17,7 +17,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-Version: 0.90
+Version: 0.90.2
 """
 # Standard library imports
 import os
@@ -30,6 +30,14 @@ import yaml
 # ============================================================================
 # Exceptions
 # ============================================================================
+
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+
+def project_path(*parts: str) -> str:
+    """Build an absolute path inside the project root."""
+    return os.path.join(BASE_DIR, *parts)
 
 
 class ConfigError(Exception):
@@ -55,14 +63,17 @@ class Config:
         Raises:
             ConfigError: If config file is missing or invalid
         """
-        self.config_path = config_path
+        if os.path.isabs(config_path):
+            self.config_path = config_path
+        else:
+            self.config_path = project_path(config_path)
         self.config = self._load_config()
         self._validate()
     
     def _load_config(self) -> Dict[str, Any]:
         """Load configuration from YAML file."""
         try:
-            with open(self.config_path, 'r') as config_file:
+            with open(self.config_path, 'r', encoding='utf-8') as config_file:
                 return yaml.safe_load(config_file)
         except FileNotFoundError:
             raise ConfigError(f"Configuration file '{self.config_path}' not found.")
@@ -72,7 +83,7 @@ class Config:
     def _validate(self):
         """Validate that all required configuration keys are present."""
         required_keys = {
-            'quiz_settings': ['question_count', 'answer_time_limit'],
+            'quiz_settings': ['question_count', 'answer_time_limit', 'RATE_LIMIT'],
             'bot_settings': [
                 'server', 'port', 'channel', 'nickname', 'realname', 'use_ssl',
                 'reconnect_interval', 'rejoin_interval', 'nickname_retry_interval'
@@ -91,6 +102,51 @@ class Config:
             for key in keys:
                 if key not in self.config[category]:
                     raise ConfigError(f"Missing '{key}' in '{category}' section of config.yaml")
+
+        verification_method = self.get(
+            'admin_settings',
+            'verification_method',
+            default='nickserv'
+        )
+        allowed_methods = {'nickserv', 'password', 'hostmask', 'combined'}
+        if str(verification_method).lower() not in allowed_methods:
+            raise ConfigError(
+                "Invalid admin verification method. "
+                f"Expected one of: {', '.join(sorted(allowed_methods))}"
+            )
+
+        self._validate_positive_int('quiz_settings', 'question_count', minimum=1)
+        self._validate_positive_int('quiz_settings', 'answer_time_limit', minimum=1)
+        self._validate_positive_int('quiz_settings', 'RATE_LIMIT', minimum=0)
+        self._validate_positive_int('bot_settings', 'port', minimum=1, maximum=65535)
+        self._validate_positive_int('bot_settings', 'reconnect_interval', minimum=1)
+        self._validate_positive_int('bot_settings', 'rejoin_interval', minimum=1)
+        self._validate_positive_int('bot_settings', 'nickname_retry_interval', minimum=1)
+        self._validate_bool('bot_settings', 'use_ssl')
+        self._validate_bool('nickserv_settings', 'use_nickserv')
+        self._validate_bool('bot_log_settings', 'enable_logging')
+        self._validate_bool('bot_log_settings', 'enable_debug')
+
+    def _validate_positive_int(
+        self,
+        section: str,
+        key: str,
+        *,
+        minimum: int,
+        maximum: Optional[int] = None,
+    ) -> None:
+        value = self.get(section, key)
+        if isinstance(value, bool) or not isinstance(value, int):
+            raise ConfigError(f"'{section}.{key}' must be an integer.")
+        if value < minimum:
+            raise ConfigError(f"'{section}.{key}' must be >= {minimum}.")
+        if maximum is not None and value > maximum:
+            raise ConfigError(f"'{section}.{key}' must be <= {maximum}.")
+
+    def _validate_bool(self, section: str, key: str) -> None:
+        value = self.get(section, key)
+        if not isinstance(value, bool):
+            raise ConfigError(f"'{section}.{key}' must be true or false.")
     
     def get(self, *keys, default: Any = None) -> Any:
         """
@@ -116,7 +172,7 @@ class Config:
     
     def get_nickserv_password(self) -> str:
         """
-        Get NickServ password from environment variable or config.
+        Get NickServ password from the environment.
         
         Returns:
             NickServ password
@@ -124,14 +180,13 @@ class Config:
         Raises:
             ConfigError: If password is not set
         """
-        password = os.getenv(
-            'NICKSERV_PASSWORD',
-            self.config['nickserv_settings'].get('nickserv_password', '')
-        )
+        if not self.get('nickserv_settings', 'use_nickserv', default=True):
+            return ''
+
+        password = os.getenv('NICKSERV_PASSWORD', '')
         if not password:
             raise ConfigError(
-                "NICKSERV_PASSWORD environment variable must be set, "
-                "or nickserv_password must be in config.yaml"
+                "NICKSERV_PASSWORD environment variable must be set when NickServ is enabled."
             )
         return password
 
@@ -162,6 +217,31 @@ def load_config(config_path: str = "config.yaml") -> Config:
     if _config_instance is None:
         _config_instance = Config(config_path)
     return _config_instance
+
+
+def load_env_file(env_file: str = '.env'):
+    """
+    Load KEY=VALUE pairs from a local .env file into the process environment.
+
+    Existing environment variables win over file values.
+    """
+    env_path = project_path(env_file)
+    if not os.path.exists(env_path):
+        return
+
+    try:
+        with open(env_path, 'r', encoding='utf-8') as env_handle:
+            for line in env_handle:
+                line = line.strip()
+                if not line or line.startswith('#') or '=' not in line:
+                    continue
+                key, value = line.split('=', 1)
+                key = key.strip()
+                value = value.strip().strip('"').strip("'")
+                if key and value and key not in os.environ:
+                    os.environ[key] = value
+    except OSError as exc:
+        raise ConfigError(f"Could not load environment file '{env_file}': {exc}")
 
 
 def get_config() -> Config:

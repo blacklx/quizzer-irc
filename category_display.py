@@ -17,20 +17,24 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-Version: 0.90
+Version: 0.90.2
 """
 # Standard library imports
 import os
 from collections import defaultdict
 
+# Local imports
+from config import project_path
+
 
 def get_all_categories():
     """Get all available categories from quiz_data directory."""
     categories = []
-    if not os.path.exists('quiz_data'):
+    quiz_data_dir = project_path('quiz_data')
+    if not os.path.exists(quiz_data_dir):
         return categories
     
-    for filename in os.listdir('quiz_data'):
+    for filename in os.listdir(quiz_data_dir):
         if filename.endswith('_questions.json'):
             category = filename.replace('_questions.json', '').replace("_", " ")
             categories.append(category)

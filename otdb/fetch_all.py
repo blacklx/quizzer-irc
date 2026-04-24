@@ -18,7 +18,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-Version: 0.90
+Version: 0.90.2
 """
 # Standard library imports
 import html
@@ -324,7 +324,7 @@ def fetch_all_questions(output_dir='data', max_iterations_per_category=100, requ
             iterations += 1
             total_requests += 1
             
-            logger.info(f"  Request #{iterations} (Total: {total_requests})...", end='')
+            logger.info(f"  Request #{iterations} (Total: {total_requests})...")
             
             # Fetch questions with retry logic for rate limiting
             retry_count = 0

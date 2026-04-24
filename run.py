@@ -18,7 +18,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-Version: 0.90
+Version: 0.90.2
 """
 # Standard library imports
 import logging
@@ -28,43 +28,13 @@ import sys
 # Add current directory to path to ensure imports work
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-# ============================================================================
-# Environment Variable Loading
-# ============================================================================
-
-
-def load_env_file(env_file='.env'):
-    """
-    Load environment variables from .env file.
-    
-    Simple .env file parser - reads KEY=VALUE lines and sets environment variables.
-    """
-    env_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), env_file)
-    if os.path.exists(env_path):
-        try:
-            with open(env_path, 'r') as f:
-                for line in f:
-                    line = line.strip()
-                    # Skip comments and empty lines
-                    if not line or line.startswith('#'):
-                        continue
-                    # Parse KEY=VALUE
-                    if '=' in line:
-                        key, value = line.split('=', 1)
-                        key = key.strip()
-                        value = value.strip().strip('"').strip("'")
-                        # Only set if not already in environment
-                        if key and value and key not in os.environ:
-                            os.environ[key] = value
-        except Exception as e:
-            logging.warning(f"Could not load .env file: {e}")
+# Local imports
+from config import load_config, load_env_file, ConfigError
 
 # Load .env file before importing bot modules
 load_env_file()
 
-# Local imports
 from bot import QuizzerBot
-from config import load_config, ConfigError
 from database import create_database
 
 # ============================================================================
@@ -152,14 +122,14 @@ def main():
                 )
                 logger.info(f"Admin verification method: {admin_verification_method}")
             except Exception as e:
-                logger.error(f"Failed to initialize AdminVerifier: {e}")
-                logger.warning("Falling back to NickServ verification")
-                admin_verifier = None
-                admin_verification_method = 'nickserv'
+                raise ConfigError(
+                    "Failed to initialize AdminVerifier for "
+                    f"'{admin_verification_method}' mode: {e}"
+                )
         else:
             logger.info(f"Admin verification method: {admin_verification_method} (NickServ)")
         
-        bot_version = "Quizzer v0.90"
+        bot_version = "Quizzer v0.90.2"
         
         logger.info(f"Starting {bot_version}...")
         logger.info(f"Connecting to {server}:{port} as {nickname}")

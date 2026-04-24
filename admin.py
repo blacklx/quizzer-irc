@@ -17,25 +17,28 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-Version: 0.90
+Version: 0.90.2
 """
 # Standard library imports
 import logging
 import os
 import subprocess
+import tempfile
 
 # Third-party imports
 import yaml
 
 # Local imports
 from admin_verifier import AdminVerifier
+from config import project_path
+from database import SQLITE_TIMEOUT_SECONDS
 from quiz_game import QuizGame
 
 # ============================================================================
 # Directory Setup
 # ============================================================================
 
-os.makedirs('logs', exist_ok=True)
+os.makedirs(project_path('logs'), exist_ok=True)
 
 # ============================================================================
 # Logging Setup
@@ -45,7 +48,7 @@ admin_logger = logging.getLogger('AdminLogger')
 admin_logger.setLevel(logging.INFO)
 
 try:
-    file_handler = logging.FileHandler('logs/admin_actions.log')
+    file_handler = logging.FileHandler(project_path('logs', 'admin_actions.log'))
     formatter = logging.Formatter(
         '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
     )
@@ -59,9 +62,42 @@ except (OSError, PermissionError) as e:
     ))
     admin_logger.addHandler(console_handler)
     admin_logger.warning(
-        f"Could not create log file 'logs/admin_actions.log': {e}. "
+        f"Could not create log file '{project_path('logs', 'admin_actions.log')}': {e}. "
         f"Using console logging."
     )
+
+
+def load_project_config():
+    """Load the project config file, defaulting to an empty mapping."""
+    with open(project_path('config.yaml'), 'r', encoding='utf-8') as handle:
+        return yaml.safe_load(handle) or {}
+
+
+def write_project_config(config):
+    """Atomically persist config.yaml to avoid partial writes."""
+    config_path = project_path('config.yaml')
+    directory = os.path.dirname(config_path) or '.'
+    fd, temp_path = tempfile.mkstemp(
+        prefix='.config.',
+        suffix='.yaml.tmp',
+        dir=directory,
+        text=True,
+    )
+    try:
+        with os.fdopen(fd, 'w', encoding='utf-8') as handle:
+            yaml.dump(config, handle, default_flow_style=False, sort_keys=False)
+        os.replace(temp_path, config_path)
+    except Exception:
+        try:
+            os.unlink(temp_path)
+        except FileNotFoundError:
+            pass
+        raise
+
+
+def sanitize_irc_message(message):
+    """Collapse IRC line breaks to prevent accidental multi-line sends."""
+    return str(message).replace('\r', ' ').replace('\n', ' ').strip()
 
 
 # ============================================================================
@@ -92,16 +128,38 @@ class AdminCommands:
             admin_verifier: AdminVerifier instance (optional, for password/hostmask verification)
         """
         self.quiz_game = quiz_game
-        self.admin_nicks = set(admin_nicks)  # Set of admin nicks for faster lookup
+        self.admin_nicks = {nick.lower() for nick in admin_nicks}
+        self.nickserv_name = nickserv_name
         self.admin_verifier = admin_verifier
 
     def is_admin(self, user):
         # Check if a user is an admin
-        return user in self.admin_nicks
+        return user.lower() in self.admin_nicks
 
     def request_nickserv_info(self, connection, nick):
         # Send a request to NickServ for information about the nick
-        connection.privmsg("N", f"INFO {nick}")
+        connection.privmsg(self.nickserv_name, f"INFO {nick}")
+
+    def nickserv_response_complete(self, nick, responses):
+        """Best-effort detection that we have enough INFO output to decide."""
+        if not responses:
+            return False
+
+        nick_lower = nick.lower()
+        response_text = ' '.join(responses).lower()
+        completion_markers = (
+            f"{nick_lower} is currently online",
+            f"{nick_lower} is online",
+            f"{nick_lower} is currently logged in",
+            "status: online",
+            "end of info",
+            "end of information",
+            "no such nick",
+            "is not registered",
+            "is currently offline",
+            "status: offline",
+        )
+        return any(marker in response_text for marker in completion_markers)
 
     def process_nickserv_response(self, nick, responses):
         """
@@ -119,15 +177,27 @@ class AdminCommands:
         """
         is_registered = False
         is_online = False
+        nick_lower = nick.lower()
         
         # Log the raw response for debugging (to see exact format)
         admin_logger.debug(f"NickServ INFO response for {nick}: {responses}")
         
         # Original parsing logic (customized for your server)
         for response in responses:
-            if f"Account: {nick}" in response:
+            response_lower = response.lower()
+            if (
+                f"account: {nick_lower}" in response_lower or
+                f"account name: {nick_lower}" in response_lower or
+                f"is registered under account: {nick_lower}" in response_lower or
+                f"account {nick_lower}" in response_lower
+            ):
                 is_registered = True
-            if f"{nick} is currently online." in response:
+            if (
+                f"{nick_lower} is currently online" in response_lower or
+                f"{nick_lower} is online" in response_lower or
+                f"{nick_lower} is currently logged in" in response_lower or
+                "status: online" in response_lower
+            ):
                 is_online = True
         
         result = is_registered and is_online
@@ -142,23 +212,29 @@ class AdminCommands:
         if self.is_admin(nick):
             try:
                 new_limit = int(new_limit)
+                if new_limit < 0:
+                    connection.notice(nick, "Rate limit must be 0 or greater.")
+                    return
                 self.quiz_game.set_rate_limit(new_limit)
                 connection.notice(nick, f"Rate limit updated to {new_limit} seconds.")
             except ValueError:
                 connection.notice(nick, "Invalid rate limit value.")
 
     def stop_game(self, connection, nick):
-        if self.quiz_game.game_active:
-            self.quiz_game.game_active = False
+        if self.quiz_game.cancel_quiz():
+            try:
+                connection.mode(self.quiz_game.channel, "-m")
+            except Exception as exc:
+                admin_logger.warning(f"Could not remove moderated mode after admin stop: {exc}")
             connection.privmsg(self.quiz_game.channel, "Game has been stopped by an admin.")
             admin_logger.info(f"Game stopped by admin.")
         else:
-            connection.privmsg(nick, "No active game to stop.")
+            connection.notice(nick, "No active or scheduled game to stop.")
 
     def get_admin_help_message(self):
         help_msg = (
             "Admin Commands Help:\n"
-            "!admin stop - Stops the bot with a shutdown message.\n"
+            "!admin stop - Stops the bot.\n"
             "!admin restart - Restarts the bot with a maintenance message.\n"
             "!admin msg <user/#channel> <message> - Sends a message from the bot.\n"
             "!admin set_rate_limit <seconds> - Sets a new rate limit for quiz commands.\n"
@@ -195,37 +271,57 @@ class AdminCommands:
             connection.notice(nick, f"Admin '{new_admin_nick}' already exists.")
             return False
         
-        # Add to config.yaml
         try:
-            with open('config.yaml', 'r') as f:
-                config = yaml.safe_load(f)
-            
-            if 'admin_settings' not in config:
-                config['admin_settings'] = {}
-            
-            if 'admins' not in config['admin_settings']:
-                config['admin_settings']['admins'] = []
-            
-            if new_admin_nick not in config['admin_settings']['admins']:
-                config['admin_settings']['admins'].append(new_admin_nick)
-            
-            with open('config.yaml', 'w') as f:
-                yaml.dump(config, f, default_flow_style=False)
-            
-            # Update in-memory list
+            # Update in-memory list first so the verifier can set a password.
             self.admin_nicks.add(new_admin_lower)
+            if self.admin_verifier:
+                self.admin_verifier.admin_nicks.add(new_admin_lower)
             
             # Set password
             success, msg = self.admin_verifier.set_password(new_admin_nick, password)
             if success:
-                connection.notice(nick, f"✓ Admin '{new_admin_nick}' added successfully.")
-                connection.notice(nick, "Password hashed and saved. New admin can verify now.")
+                # Persist config only after the password hash is stored successfully.
+                config = load_project_config()
+
+                if 'admin_settings' not in config:
+                    config['admin_settings'] = {}
+
+                if 'admins' not in config['admin_settings']:
+                    config['admin_settings']['admins'] = []
+
+                if new_admin_nick not in config['admin_settings']['admins']:
+                    config['admin_settings']['admins'].append(new_admin_nick)
+
+                write_project_config(config)
+
                 admin_logger.info(f"Admin '{new_admin_nick}' added by {nick}")
+                try:
+                    connection.notice(nick, f"✓ Admin '{new_admin_nick}' added successfully.")
+                    connection.notice(nick, "Password hashed and saved. New admin can verify now.")
+                except Exception as notice_error:
+                    admin_logger.warning(
+                        "Admin '%s' was added but confirmation notice failed: %s",
+                        new_admin_nick,
+                        notice_error,
+                    )
                 return True
             else:
+                self.admin_nicks.discard(new_admin_lower)
+                if self.admin_verifier:
+                    self.admin_verifier.admin_nicks.discard(new_admin_lower)
                 connection.notice(nick, f"Error setting password: {msg}")
                 return False
         except Exception as e:
+            self.admin_nicks.discard(new_admin_lower)
+            if self.admin_verifier:
+                self.admin_verifier.admin_nicks.discard(new_admin_lower)
+                self.admin_verifier.password_hashes.pop(new_admin_lower, None)
+                try:
+                    self.admin_verifier.save_password_hashes()
+                except Exception as rollback_exc:
+                    admin_logger.warning(
+                        f"Failed to roll back password hash file after add_admin error: {rollback_exc}"
+                    )
             connection.notice(nick, f"Error adding admin: {e}")
             admin_logger.error(f"Error adding admin: {e}")
             return False
@@ -248,8 +344,7 @@ class AdminCommands:
         
         # Remove from config.yaml
         try:
-            with open('config.yaml', 'r') as f:
-                config = yaml.safe_load(f)
+            config = load_project_config()
             
             if 'admin_settings' in config and 'admins' in config['admin_settings']:
                 config['admin_settings']['admins'] = [
@@ -257,32 +352,33 @@ class AdminCommands:
                     if a.lower() != admin_to_remove_lower
                 ]
             
-            with open('config.yaml', 'w') as f:
-                yaml.dump(config, f, default_flow_style=False)
+            write_project_config(config)
             
             # Update in-memory list
             self.admin_nicks.discard(admin_to_remove_lower)
+            if self.admin_verifier:
+                self.admin_verifier.admin_nicks.discard(admin_to_remove_lower)
+                self.admin_verifier.sessions.pop(admin_to_remove_lower, None)
+                self.admin_verifier.failed_attempts.pop(admin_to_remove_lower, None)
             
+            hash_cleanup_warning = None
+
             # Remove password hash if verifier exists
             if self.admin_verifier and admin_to_remove_lower in self.admin_verifier.password_hashes:
                 del self.admin_verifier.password_hashes[admin_to_remove_lower]
                 # Update hash file
-                hash_file = 'admin_passwords.yaml'
-                if os.path.exists(hash_file):
-                    try:
-                        with open(hash_file, 'r') as f:
-                            data = yaml.safe_load(f) or {}
-                        if 'passwords' in data:
-                            data['passwords'] = {
-                                k: v for k, v in data['passwords'].items() 
-                                if k.lower() != admin_to_remove_lower
-                            }
-                        with open(hash_file, 'w') as f:
-                            yaml.dump(data, f, default_flow_style=False)
-                    except Exception as e:
-                        admin_logger.warning(f"Could not update password hash file: {e}")
-            
-            connection.notice(nick, f"✓ Admin '{admin_to_remove}' removed successfully.")
+                try:
+                    self.admin_verifier.save_password_hashes()
+                except Exception as e:
+                    hash_cleanup_warning = (
+                        f"Admin '{admin_to_remove}' was removed, but password hash cleanup failed."
+                    )
+                    admin_logger.warning(f"{hash_cleanup_warning} Error: {e}")
+
+            if hash_cleanup_warning:
+                connection.notice(nick, hash_cleanup_warning)
+            else:
+                connection.notice(nick, f"✓ Admin '{admin_to_remove}' removed successfully.")
             admin_logger.info(f"Admin '{admin_to_remove}' removed by {nick}")
             return True
         except Exception as e:
@@ -327,8 +423,11 @@ class AdminCommands:
     def restart_bot(self, connection):
         """Restart the bot using the startbot.sh script."""
         connection.quit("Restarting for maintenance.")
+        if os.getenv('INVOCATION_ID'):
+            admin_logger.info("Restart requested under systemd; external supervisor will restart the process.")
+            return
         # Use absolute path to prevent path injection
-        script_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'tools', 'startbot.sh')
+        script_path = project_path('tools', 'startbot.sh')
         if os.path.exists(script_path) and os.access(script_path, os.X_OK):
             subprocess.run([script_path, 'restart'], check=False)
         else:
@@ -337,20 +436,25 @@ class AdminCommands:
     def stop_bot(self, connection):
         """Stop the bot using the startbot.sh script."""
         connection.quit("Received signal to shut down.")
+        if os.getenv('INVOCATION_ID'):
+            admin_logger.info("Stop requested under systemd; process will exit cleanly without wrapper intervention.")
+            return
         # Use absolute path to prevent path injection
-        script_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'tools', 'startbot.sh')
+        script_path = project_path('tools', 'startbot.sh')
         if os.path.exists(script_path) and os.access(script_path, os.X_OK):
             subprocess.run([script_path, 'stop'], check=False)
         else:
             admin_logger.error(f"startbot.sh not found or not executable: {script_path}")
 
     def send_message(self, connection, target, message):
-        connection.privmsg(target, message)
-        admin_logger.info(f"Message sent to {target}: {message}")
-
-    def broadcast_message(self, message):
-        # Logic to broadcast a message to all channels or specific channel
-        pass
+        sanitized_message = sanitize_irc_message(message)
+        connection.privmsg(target, sanitized_message)
+        admin_logger.info(
+            "Message sent to %s (length=%s, sanitized=%s)",
+            target,
+            len(sanitized_message),
+            sanitized_message != message,
+        )
 
     def get_bot_stats(self, connection, nick):
         """
@@ -363,7 +467,6 @@ class AdminCommands:
         - Database statistics
         - Current game state
         """
-        import os
         import json
         import sqlite3
         from category_hierarchy import build_category_hierarchy
@@ -388,7 +491,7 @@ class AdminCommands:
         stats_lines.append("")
         
         # Questions by category (from files)
-        quiz_data_dir = 'quiz_data'
+        quiz_data_dir = project_path('quiz_data')
         if os.path.exists(quiz_data_dir):
             category_counts = {}
             total_in_files = 0
@@ -425,7 +528,7 @@ class AdminCommands:
         # Category hierarchy
         try:
             hierarchy = build_category_hierarchy()
-            main_cats = len([k for k in hierarchy.keys() if isinstance(hierarchy[k], dict)])
+            main_cats = len(hierarchy)
             stats_lines.append("Category System:")
             stats_lines.append(f"  Main categories: {main_cats}")
             stats_lines.append(f"  Hierarchical structure: Active")
@@ -437,7 +540,10 @@ class AdminCommands:
         
         # Database statistics
         try:
-            with sqlite3.connect('db/quiz_leaderboard.db') as conn:
+            with sqlite3.connect(
+                project_path('db', 'quiz_leaderboard.db'),
+                timeout=SQLITE_TIMEOUT_SECONDS,
+            ) as conn:
                 cursor = conn.cursor()
                 
                 # Total entries

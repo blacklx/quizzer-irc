@@ -20,13 +20,14 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-Version: 0.90
+Version: 0.90.2
 """
 # Standard library imports
 import logging
 import os
-import secrets
+import re
 import threading
+import tempfile
 import time
 from typing import Dict, List, Optional, Tuple
 
@@ -38,14 +39,19 @@ try:
     import bcrypt
     HAS_BCRYPT = True
 except ImportError:
-    import hashlib
     HAS_BCRYPT = False
+
+from config import project_path
+
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+HASH_FILE = os.path.join(BASE_DIR, 'admin_passwords.yaml')
 
 # ============================================================================
 # Directory Setup
 # ============================================================================
 
-os.makedirs('logs', exist_ok=True)
+os.makedirs(project_path('logs'), exist_ok=True)
 
 # ============================================================================
 # Logging Setup
@@ -55,7 +61,7 @@ verifier_logger = logging.getLogger('AdminVerifier')
 verifier_logger.setLevel(logging.INFO)
 
 try:
-    file_handler = logging.FileHandler('logs/admin_verification.log')
+    file_handler = logging.FileHandler(project_path('logs', 'admin_verification.log'))
     formatter = logging.Formatter(
         '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
     )
@@ -68,7 +74,7 @@ except (OSError, PermissionError) as e:
     ))
     verifier_logger.addHandler(console_handler)
     verifier_logger.warning(
-        f"Could not create log file 'logs/admin_verification.log': {e}. "
+        f"Could not create log file '{project_path('logs', 'admin_verification.log')}': {e}. "
         f"Using console logging."
     )
 
@@ -108,10 +114,15 @@ class AdminVerifier:
         self.admin_nicks = set(nick.lower() for nick in admin_nicks)  # Case-insensitive
         self.verification_method = verification_method.lower()
         self.password_settings = password_settings or {}
-        self.hostmask_settings = hostmask_settings or {}
+        self.hostmask_settings = self._normalize_hostmask_settings(hostmask_settings or {})
+
+        if self.verification_method in ['password', 'combined'] and not HAS_BCRYPT:
+            raise RuntimeError(
+                "bcrypt is required for password-based admin verification."
+            )
         
         # Session management
-        self.sessions: Dict[str, Tuple[float, str]] = {}  # {nick: (expiry_time, token)}
+        self.sessions: Dict[str, float] = {}  # {nick: expiry_time}
         self.session_timeout = self.password_settings.get('session_timeout', 3600)  # 1 hour default
         self._session_lock = threading.Lock()
         
@@ -124,36 +135,40 @@ class AdminVerifier:
         # Password storage
         self.password_hashes: Dict[str, str] = {}
         self._load_passwords()
+
+    def _normalize_hostmask_settings(self, hostmask_settings: Dict) -> Dict:
+        """Normalize hostmask keys to lowercase for case-insensitive admin matching."""
+        normalized = dict(hostmask_settings)
+        hostmasks = normalized.get('hostmasks', {})
+        normalized['hostmasks'] = {
+            str(nick).lower(): patterns
+            for nick, patterns in hostmasks.items()
+        }
+        return normalized
     
     def _load_passwords(self):
         """Load password hashes from files."""
         if self.verification_method not in ['password', 'combined']:
             return
         
-        # Load from .env file (plaintext, will be hashed)
+        # Load admin passwords from the environment.
+        # config.load_env_file() already imports project .env into os.environ, so
+        # this supports both real environment variables and a project-local .env.
         env_passwords = {}
-        if os.path.exists('.env'):
-            try:
-                with open('.env', 'r') as f:
-                    for line in f:
-                        line = line.strip()
-                        if line.startswith('ADMIN_PASSWORD_') and '=' in line:
-                            key, value = line.split('=', 1)
-                            nick = key.replace('ADMIN_PASSWORD_', '').strip()
-                            env_passwords[nick.lower()] = value.strip()
-            except (OSError, IOError) as e:
-                verifier_logger.warning(f"Could not read .env file: {e}")
+        for key, value in os.environ.items():
+            if key.startswith('ADMIN_PASSWORD_') and value:
+                nick = key.replace('ADMIN_PASSWORD_', '').strip()
+                env_passwords[nick.lower()] = value.strip()
         
         # Load from admin_passwords.yaml (hashed)
-        hash_file = 'admin_passwords.yaml'
         hashed_passwords = {}
-        if os.path.exists(hash_file):
+        if os.path.exists(HASH_FILE):
             try:
-                with open(hash_file, 'r') as f:
+                with open(HASH_FILE, 'r', encoding='utf-8') as f:
                     data = yaml.safe_load(f) or {}
                     hashed_passwords = data.get('passwords', {})
             except (OSError, IOError, yaml.YAMLError) as e:
-                verifier_logger.warning(f"Could not read {hash_file}: {e}")
+                verifier_logger.warning(f"Could not read {HASH_FILE}: {e}")
         
         # Process passwords: hash plaintext, use existing hashes
         passwords_to_hash = {}
@@ -185,13 +200,12 @@ class AdminVerifier:
         """Hash a plaintext password."""
         if HAS_BCRYPT:
             return bcrypt.hashpw(plaintext.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
-        else:
-            # Fallback to SHA-256 (less secure, but works)
-            verifier_logger.warning("bcrypt not available, using SHA-256 (less secure)")
-            return hashlib.sha256(plaintext.encode('utf-8')).hexdigest()
+        raise RuntimeError("bcrypt is required for password hashing.")
     
     def _verify_password(self, plaintext: str, hashed: str) -> bool:
         """Verify a plaintext password against a hash."""
+        if not hashed:
+            return False
         if HAS_BCRYPT:
             if hashed.startswith('$2b$') or hashed.startswith('$2a$'):
                 try:
@@ -202,9 +216,7 @@ class AdminVerifier:
             else:
                 # Old SHA-256 hash, upgrade it
                 return False
-        else:
-            # Fallback to SHA-256
-            return hashlib.sha256(plaintext.encode('utf-8')).hexdigest() == hashed
+        raise RuntimeError("bcrypt is required for password verification.")
     
     def _hash_and_save_passwords(self, passwords: Dict[str, str]):
         """Hash plaintext passwords and save to files."""
@@ -219,12 +231,16 @@ class AdminVerifier:
             self.password_hashes[nick] = hashed
         
         # Save to admin_passwords.yaml
-        hash_file = 'admin_passwords.yaml'
         try:
-            data = {'passwords': hashed_passwords}
-            with open(hash_file, 'w') as f:
-                yaml.dump(data, f, default_flow_style=False)
-            os.chmod(hash_file, 0o600)  # rw-------
+            existing_hashes = {}
+            if os.path.exists(HASH_FILE):
+                with open(HASH_FILE, 'r', encoding='utf-8') as f:
+                    existing_data = yaml.safe_load(f) or {}
+                    existing_hashes = existing_data.get('passwords', {})
+
+            existing_hashes.update(hashed_passwords)
+            self.password_hashes.update(existing_hashes)
+            self.save_password_hashes()
             verifier_logger.info(f"Hashed and saved passwords for {len(hashed_passwords)} admins")
         except (OSError, IOError) as e:
             verifier_logger.error(f"Could not save password hashes: {e}")
@@ -273,11 +289,10 @@ class AdminVerifier:
         hashed = self.password_hashes[nick_lower]
         if self._verify_password(password, hashed):
             # Grant session
-            token = secrets.token_urlsafe(32)
             expiry = time.time() + self.session_timeout
             
             with self._session_lock:
-                self.sessions[nick_lower] = (expiry, token)
+                self.sessions[nick_lower] = expiry
             
             # Reset failed attempts
             with self._rate_limit_lock:
@@ -312,7 +327,7 @@ class AdminVerifier:
             if nick_lower not in self.sessions:
                 return False
             
-            expiry, token = self.sessions[nick_lower]
+            expiry = self.sessions[nick_lower]
             if time.time() > expiry:
                 # Session expired
                 del self.sessions[nick_lower]
@@ -334,7 +349,10 @@ class AdminVerifier:
         allowed = hostmasks[nick_lower]
         for pattern in allowed:
             if self._match_hostmask(hostmask, pattern):
-                verifier_logger.info(f"Hostmask verification successful for {nick}: {hostmask} matches {pattern}")
+                verifier_logger.info(
+                    "Hostmask verification successful for %s",
+                    nick,
+                )
                 return True
         
         return False
@@ -352,10 +370,8 @@ class AdminVerifier:
             if p == '*':
                 continue
             if '*' in p:
-                # Simple glob matching
-                p_regex = p.replace('*', '.*')
-                import re
-                if not re.match(p_regex, h):
+                escaped_pattern = re.escape(p).replace(r'\*', '.*')
+                if not re.fullmatch(escaped_pattern, h):
                     return False
             elif p != h:
                 return False
@@ -430,47 +446,33 @@ class AdminVerifier:
         self.password_hashes[nick_lower] = hashed
         
         # Save to file
-        hash_file = 'admin_passwords.yaml'
         try:
-            data = {'passwords': self.password_hashes}
-            with open(hash_file, 'w') as f:
-                yaml.dump(data, f, default_flow_style=False)
-            os.chmod(hash_file, 0o600)
-            
-            # Update .env if it exists
-            self._update_env_password(nick_lower, new_password)
-            
+            self.save_password_hashes()
             verifier_logger.info(f"Password updated for {nick}")
             return True, f"Password updated for {nick}."
         except (OSError, IOError) as e:
             verifier_logger.error(f"Could not save password: {e}")
             return False, f"Error saving password: {e}"
-    
-    def _update_env_password(self, nick: str, password: str):
-        """Update password in .env file."""
-        if not os.path.exists('.env'):
-            return
-        
+
+    def save_password_hashes(self):
+        """Persist password hashes to disk."""
+        data = {'passwords': self.password_hashes}
+        directory = os.path.dirname(HASH_FILE) or '.'
+        fd, temp_path = tempfile.mkstemp(
+            prefix='.admin-passwords.',
+            suffix='.yaml.tmp',
+            dir=directory,
+            text=True,
+        )
         try:
-            lines = []
-            updated = False
-            env_key = f"ADMIN_PASSWORD_{nick}"
-            
-            with open('.env', 'r') as f:
-                for line in f:
-                    if line.startswith(env_key + '='):
-                        lines.append(f"{env_key}={password}\n")
-                        updated = True
-                    else:
-                        lines.append(line)
-            
-            if not updated:
-                lines.append(f"{env_key}={password}\n")
-            
-            with open('.env', 'w') as f:
-                f.writelines(lines)
-            
-            os.chmod('.env', 0o600)
-        except (OSError, IOError) as e:
-            verifier_logger.warning(f"Could not update .env file: {e}")
+            with os.fdopen(fd, 'w', encoding='utf-8') as handle:
+                yaml.dump(data, handle, default_flow_style=False, sort_keys=False)
+            os.chmod(temp_path, 0o600)
+            os.replace(temp_path, HASH_FILE)
+        except Exception:
+            try:
+                os.unlink(temp_path)
+            except FileNotFoundError:
+                pass
+            raise
 

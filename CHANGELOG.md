@@ -5,6 +5,26 @@ All notable changes to the Quizzer IRC Bot project will be documented in this fi
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.90.2] - 2026-04-24
+
+### Added
+- `OPERATIONS.md` runbook covering downtime response, supervision, logs, and recovery steps
+- `tools/validate.py` for repeatable compile, unit-test, and smoke-check validation
+- Focused regression tests for config loading, admin verification, quiz lifecycle, and bot scheduling behavior
+- `tools/quizzer.service.example` as a recommended `systemd` service template
+
+### Changed
+- Hardened admin and config persistence with atomic writes for `config.yaml` and `admin_passwords.yaml`
+- Standardized version metadata to `v0.90.2` across the runtime entry points and docs
+- Reduced sensitive log exposure in admin messaging, quiz answer handling, hostmask verification, and NickServ failure logging
+- Updated setup and operations docs to reflect environment-variable-based secrets, validation workflow, and supported runtime models
+
+### Fixed
+- Bot recovery path after disconnect/reconnect exhaustion by improving supervision guidance and fatal-exit handling
+- Quiz cancellation, join-window scheduling, and delayed reactor actions to avoid orphaned timers and duplicate starts
+- NickServ-based admin verification correlation, multi-word admin password handling, and admin membership persistence edge cases
+- SQLite access consistency, config validation, and several low-risk maintenance issues in fetch scripts and operator tooling
+
 ## [0.90.1] - 2026-01-02
 
 ### Fixed
@@ -196,6 +216,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Version History Summary
 
+- **v0.90.2** (2026-04-24) - Reliability hardening, validation tooling, operations runbook, and regression coverage
+- **v0.90.1** (2026-01-02) - Crontab startup and virtual environment fixes
 - **v0.90** (2026-01-02) - Legal documentation, admin verification improvements, IPv6 support
 - **v0.80** (2025-11-15) - Hierarchical category system, improved question fetching
 - **v0.70** (2025-08-20) - Code organization, documentation, entry point improvements

@@ -17,7 +17,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-Version: 0.90
+Version: 0.90.2
 """
 # Standard library imports
 import html
@@ -187,32 +187,6 @@ def save_to_json(sorted_questions, output_dir="data"):
                 json.dump(file_questions, file, ensure_ascii=False, indent=4)
 
     return total_new_questions
-
-
-def load_existing_questions(output_dir):
-    """
-    Load all existing questions from all JSON files in output directory.
-    
-    Returns:
-        Dictionary mapping filename -> list of questions
-    """
-    existing = {}
-    if not os.path.exists(output_dir):
-        return existing
-    
-    for filename in os.listdir(output_dir):
-        if not filename.endswith('_questions.json'):
-            continue
-        
-        filepath = os.path.join(output_dir, filename)
-        try:
-            with open(filepath, 'r', encoding='utf-8') as f:
-                existing[filename] = json.load(f)
-        except (FileNotFoundError, json.JSONDecodeError, OSError, IOError) as e:
-            logger.warning(f"Could not load {filename}: {e}")
-            existing[filename] = []
-    
-    return existing
 
 
 def load_existing_questions(output_dir):

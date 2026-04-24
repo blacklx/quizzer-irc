@@ -15,7 +15,7 @@ An IRC bot that hosts interactive quiz games on IRC channels.
 ## Quick Start
 
 ### Prerequisites
-- Python 3.6+ (Python 3.8+ recommended)
+- Python 3.8+
 - IRC server access
 - NickServ account (if using NickServ authentication)
 
@@ -44,7 +44,6 @@ An IRC bot that hosts interactive quiz games on IRC channels.
      ```bash
      export NICKSERV_PASSWORD="your_nickserv_password"
      ```
-   - **Option C:** Add password directly to `config.yaml` (not recommended for production)
 
 4. **Verify questions (optional):**
    The bot comes with a pre-loaded question database. To verify:
@@ -66,8 +65,12 @@ An IRC bot that hosts interactive quiz games on IRC channels.
    ```
    
    The management script automatically activates the virtual environment.
+   Use `./tools/startbot.sh status` for a read-only health check, or
+   `./tools/startbot.sh check` to ensure the bot is running.
 
 **For detailed setup instructions, see [SETUP.md](SETUP.md)**
+
+For runtime recovery and maintenance, see [OPERATIONS.md](OPERATIONS.md).
 
 ## Commands
 
@@ -104,12 +107,12 @@ The bot supports multiple admin verification methods (configurable in `config.ya
 - `!admin msg <target> <message>` - Send message from bot
 - `!admin stats` - Show comprehensive bot statistics
 
-**Password-Based Admin Commands** (if using password verification):
-- `!admin verify <password>` - Verify password and start session
-- `!admin add_admin <nick> <password>` - Add new admin
+**Additional Admin Management Commands:**
 - `!admin remove_admin <nick>` - Remove admin
-- `!admin set_password <nick> <password>` - Set/update admin password
 - `!admin list_admins` - List all admin nicknames
+- `!admin verify <password>` - Verify password and start session (password/combined modes)
+- `!admin add_admin <nick> <password>` - Add new admin (requires password storage support)
+- `!admin set_password <nick> <password>` - Set/update admin password (requires password storage support)
 
 ## File Structure
 
@@ -221,12 +224,21 @@ Use `tools/startbot.sh` to manage the bot:
 ./tools/startbot.sh start      # Start bot in screen session
 ./tools/startbot.sh stop       # Stop bot
 ./tools/startbot.sh restart    # Restart bot
-./tools/startbot.sh check      # Check if bot is running
+./tools/startbot.sh status     # Read-only status check
+./tools/startbot.sh check      # Ensure the bot is running
 ```
+
+For unattended production use, prefer a real process supervisor such as `systemd`.
+`tools/startbot.sh` is useful for manual operations, but it should not be the only
+thing standing between a fatal bot exit and a long outage. A ready-to-edit service
+template is provided at `tools/quizzer.service.example`.
+Do not run both `systemd` and cron / `startbot.sh check` against the same bot
+instance.
 
 ## Troubleshooting
 
 See [SETUP.md](SETUP.md) for detailed troubleshooting steps.
+For ongoing runtime operations and outage recovery, see [OPERATIONS.md](OPERATIONS.md).
 
 **Common issues:**
 
@@ -234,6 +246,8 @@ See [SETUP.md](SETUP.md) for detailed troubleshooting steps.
 - Check `NICKSERV_PASSWORD` environment variable is set
 - Verify IRC server details in `config.yaml`
 - Check log files in `logs/` directory
+- If the bot exits after repeated reconnect failures, use a supervisor such as
+  `systemd` so it is restarted automatically
 
 **Can't connect to IRC:**
 - Verify server address and port
@@ -258,7 +272,7 @@ See [SETUP.md](SETUP.md) for detailed troubleshooting steps.
 
 ## Version
 
-Quizzer v0.90
+Quizzer v0.90.2
 
 ## License
 

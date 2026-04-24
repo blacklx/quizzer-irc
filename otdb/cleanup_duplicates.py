@@ -37,9 +37,21 @@ def get_category_from_file(filepath):
             if data and isinstance(data, list) and len(data) > 0:
                 if 'category' in data[0]:
                     return data[0]['category']
-    except:
-        pass
+    except (OSError, json.JSONDecodeError, TypeError, KeyError):
+        return None
     return None
+
+
+def get_question_count(filepath):
+    """Return the number of question entries in a JSON file."""
+    try:
+        with open(filepath, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+            if isinstance(data, list):
+                return len(data)
+    except (OSError, json.JSONDecodeError, TypeError):
+        return 0
+    return 0
 
 
 def load_all_questions(data_dir):
@@ -103,9 +115,9 @@ def merge_category_files(data_dir, dry_run=True):
             size = os.path.getsize(filepath)
             print(f"  - {filename} ({size} bytes)")
         
-        # Choose the file with most questions as the target
-        file_sizes = [(f[0], os.path.getsize(f[1])) for f in files]
-        target_file = max(file_sizes, key=lambda x: x[1])[0]
+        # Choose the file with the most questions as the target.
+        question_counts = [(f[0], get_question_count(f[1])) for f in files]
+        target_file = max(question_counts, key=lambda x: x[1])[0]
         source_files = [f[0] for f in files if f[0] != target_file]
         
         merge_plan[normalized] = {

@@ -247,11 +247,11 @@ verify_python() {
     PYTHON_VERSION=$(python3 --version 2>&1 | awk '{print $2}')
     echo "Python version: $PYTHON_VERSION"
     
-    # Check if version is 3.6+
+    # Check if version is 3.8+
     MAJOR=$(echo $PYTHON_VERSION | cut -d. -f1)
     MINOR=$(echo $PYTHON_VERSION | cut -d. -f2)
-    if [ "$MAJOR" -lt 3 ] || ([ "$MAJOR" -eq 3 ] && [ "$MINOR" -lt 6 ]); then
-        echo -e "${RED}✗ Python 3.6+ required (found $PYTHON_VERSION)${NC}"
+    if [ "$MAJOR" -lt 3 ] || ([ "$MAJOR" -eq 3 ] && [ "$MINOR" -lt 8 ]); then
+        echo -e "${RED}✗ Python 3.8+ required (found $PYTHON_VERSION)${NC}"
         return 1
     fi
     
@@ -272,8 +272,8 @@ create_venv() {
     
     if [ -d "$VENV_PATH" ]; then
         echo "Virtual environment already exists at $VENV_PATH"
-        echo "Removing old virtual environment..."
-        rm -rf "$VENV_PATH"
+        echo "Reusing existing virtual environment."
+        return 0
     fi
     
     echo "Creating virtual environment..."
@@ -352,6 +352,7 @@ verify_installation() {
     "$VENV_PYTHON" -c "import irc" 2>/dev/null || MISSING+=("irc")
     "$VENV_PYTHON" -c "import yaml" 2>/dev/null || MISSING+=("yaml")
     "$VENV_PYTHON" -c "import requests" 2>/dev/null || MISSING+=("requests")
+    "$VENV_PYTHON" -c "import bcrypt" 2>/dev/null || MISSING+=("bcrypt")
     
     if [ ${#MISSING[@]} -eq 0 ]; then
         echo -e "${GREEN}✓ All required modules are installed${NC}"
@@ -359,7 +360,7 @@ verify_installation() {
         # Show versions
         echo ""
         echo "Installed packages:"
-        "$VENV_PYTHON" -m pip list | grep -E "^(irc|PyYAML|requests)" || true
+        "$VENV_PYTHON" -m pip list | grep -E "^(bcrypt|irc|PyYAML|requests)" || true
         
         return 0
     else

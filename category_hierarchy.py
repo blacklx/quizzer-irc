@@ -17,12 +17,15 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-Version: 0.90
+Version: 0.90.2
 """
 # Standard library imports
 import json
 import os
 from collections import defaultdict
+
+# Local imports
+from config import project_path
 
 
 def normalize_category_name(category_name):
@@ -54,7 +57,7 @@ def normalize_category_name(category_name):
     return normalized
 
 
-def build_category_hierarchy(quiz_data_dir='quiz_data'):
+def build_category_hierarchy(quiz_data_dir=None):
     """
     Dynamically build category hierarchy from actual files.
     
@@ -64,6 +67,8 @@ def build_category_hierarchy(quiz_data_dir='quiz_data'):
     Returns:
         Dictionary mapping main_category -> list of subcategories (or None for standalone)
     """
+    quiz_data_dir = quiz_data_dir or project_path('quiz_data')
+
     if not os.path.exists(quiz_data_dir):
         return {}
     
@@ -134,22 +139,44 @@ def build_category_hierarchy(quiz_data_dir='quiz_data'):
     return hierarchy
 
 
-# Cache the hierarchy (built on first access)
+# Cache the hierarchy (rebuilt automatically when quiz_data changes)
 _cached_hierarchy = None
+_cached_hierarchy_signature = None
+
+
+def _get_hierarchy_signature(quiz_data_dir=None):
+    """Build a lightweight signature so the cache refreshes after file changes."""
+    quiz_data_dir = quiz_data_dir or project_path('quiz_data')
+    if not os.path.exists(quiz_data_dir):
+        return ()
+
+    entries = []
+    for filename in sorted(os.listdir(quiz_data_dir)):
+        if not filename.endswith('_questions.json'):
+            continue
+        filepath = os.path.join(quiz_data_dir, filename)
+        try:
+            entries.append((filename, os.path.getmtime(filepath)))
+        except OSError:
+            entries.append((filename, None))
+    return tuple(entries)
 
 
 def get_category_hierarchy():
     """Get the category hierarchy (cached)."""
-    global _cached_hierarchy
-    if _cached_hierarchy is None:
+    global _cached_hierarchy, _cached_hierarchy_signature
+    signature = _get_hierarchy_signature()
+    if _cached_hierarchy is None or _cached_hierarchy_signature != signature:
         _cached_hierarchy = build_category_hierarchy()
+        _cached_hierarchy_signature = signature
     return _cached_hierarchy
 
 
 def clear_hierarchy_cache():
     """Clear the hierarchy cache (call after adding new categories)."""
-    global _cached_hierarchy
+    global _cached_hierarchy, _cached_hierarchy_signature
     _cached_hierarchy = None
+    _cached_hierarchy_signature = None
 
 
 def get_main_categories():
@@ -176,6 +203,31 @@ def has_subcategories(category_name):
     hierarchy = get_category_hierarchy()
     subcats = hierarchy.get(category_name)
     return subcats is not None and len(subcats) > 0
+
+
+def _match_subcategory_name(user_input, subcategories):
+    """Prefer exact and prefix matches before loose substring matches."""
+    normalized_input = user_input.strip().lower()
+
+    exact_matches = [subcat for subcat in subcategories if normalized_input == subcat.lower()]
+    if exact_matches:
+        return exact_matches[0]
+
+    prefix_matches = [
+        subcat for subcat in subcategories
+        if subcat.lower().startswith(normalized_input)
+    ]
+    if len(prefix_matches) == 1:
+        return prefix_matches[0]
+
+    substring_matches = [
+        subcat for subcat in subcategories
+        if normalized_input in subcat.lower()
+    ]
+    if len(substring_matches) == 1:
+        return substring_matches[0]
+
+    return None
 
 
 def find_category_match(user_input):
@@ -216,27 +268,20 @@ def find_category_match(user_input):
         
         for main_cat, subcats in hierarchy.items():
             if subcats and main_part == main_cat.lower():
-                # Find matching subcategory
-                for subcat in subcats:
-                    # Subcategories already have prefix removed
-                    subcat_lower = subcat.lower()
-                    if sub_part in subcat_lower or subcat_lower in sub_part:
-                        # Convert to filename format (add main category prefix back)
-                        full_name = f"{main_cat} {subcat}"
-                        filename = full_name.replace(' ', '_')
-                        return main_cat, filename, False
+                matched_subcat = _match_subcategory_name(sub_part, subcats)
+                if matched_subcat:
+                    full_name = f"{main_cat} {matched_subcat}"
+                    filename = full_name.replace(' ', '_')
+                    return main_cat, filename, False
     
     # Check if it's a subcategory name directly (e.g., "music", "video games")
     for main_cat, subcats in hierarchy.items():
         if subcats:
-            for subcat in subcats:
-                # Subcategories already have prefix removed
-                subcat_lower = subcat.lower()
-                if user_input == subcat_lower or user_input in subcat_lower:
-                    # Convert to filename format (add main category prefix back)
-                    full_name = f"{main_cat} {subcat}"
-                    filename = full_name.replace(' ', '_')
-                    return main_cat, filename, False
+            matched_subcat = _match_subcategory_name(user_input, subcats)
+            if matched_subcat:
+                full_name = f"{main_cat} {matched_subcat}"
+                filename = full_name.replace(' ', '_')
+                return main_cat, filename, False
     
     # Check for filename match (backward compatibility)
     for main_cat, subcats in hierarchy.items():

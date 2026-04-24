@@ -20,16 +20,23 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-Version: 0.90
+Version: 0.90.2
 """
 # Standard library imports
 import re
 import sqlite3
 import sys
 
+# Local imports
+from config import project_path
+from database import SQLITE_TIMEOUT_SECONDS
+
+
+DB_PATH = project_path('db', 'quiz_leaderboard.db')
+
 # Connect to the SQLite database
 try:
-    with sqlite3.connect('db/quiz_leaderboard.db') as conn:
+    with sqlite3.connect(DB_PATH, timeout=SQLITE_TIMEOUT_SECONDS) as conn:
         cursor = conn.cursor()
         
         # Get a list of all tables in the database
@@ -61,9 +68,9 @@ try:
                     print(row)
             else:
                 print("(empty)")
-except FileNotFoundError:
-    print("Error: Database file 'db/quiz_leaderboard.db' not found.", file=sys.stderr)
-    print("Make sure the bot has been run at least once to create the database.", file=sys.stderr)
+except (FileNotFoundError, sqlite3.OperationalError):
+    print(f"Error: Could not open database '{DB_PATH}'.", file=sys.stderr)
+    print("Make sure the bot has been run at least once and the db/ directory exists.", file=sys.stderr)
     sys.exit(1)
 except Exception as e:
     print(f"Error: {e}", file=sys.stderr)
