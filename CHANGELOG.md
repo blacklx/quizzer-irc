@@ -5,6 +5,13 @@ All notable changes to the Quizzer IRC Bot project will be documented in this fi
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.90.3] - 2026-04-24
+
+### Fixed
+
+- `tools/startbot.sh` now checks for the real bot process instead of matching its own wrapper invocation
+- Status and startup checks no longer report false positives when only a stale `screen` session exists
+
 ## [0.90.2] - 2026-04-24
 
 ### Added
@@ -216,6 +223,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Version History Summary
 
+- **v0.90.3** (2026-04-24) - Fixed `startbot.sh` bot-process detection during status and startup checks
 - **v0.90.2** (2026-04-24) - Reliability hardening, validation tooling, operations runbook, and regression coverage
 - **v0.90.1** (2026-01-02) - Crontab startup and virtual environment fixes
 - **v0.90** (2026-01-02) - Legal documentation, admin verification improvements, IPv6 support

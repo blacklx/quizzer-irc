@@ -272,7 +272,7 @@ For ongoing runtime operations and outage recovery, see [OPERATIONS.md](OPERATIO
 
 ## Version
 
-Quizzer v0.90.2
+Quizzer v0.90.3
 
 ## License
 

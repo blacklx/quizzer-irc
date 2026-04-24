@@ -90,7 +90,7 @@ function screen_session_exists {
 
 # Check if the bot process itself is running
 function bot_process_running {
-    pgrep -af "$BOT_SCRIPT" | grep -F -- "$BOT_DIRECTORY/$BOT_SCRIPT" >/dev/null 2>&1
+    pgrep -af "python3 $BOT_SCRIPT" >/dev/null 2>&1 || pgrep -af "python $BOT_SCRIPT" >/dev/null 2>&1
 }
 
 function get_file_mode {
