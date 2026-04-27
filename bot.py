@@ -17,7 +17,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-Version: 0.90.2
+Version: 0.90.4
 """
 # Standard library imports
 import logging
@@ -280,6 +280,10 @@ class QuizzerBot(SingleServerIRCBot):
         self.reconnection_attempts = 0
         self.max_reconnection_attempts = 5  # Maximum reconnection attempts
         self.max_reconnect_wait = 300  # Maximum wait time in seconds
+        self.connection_idle_timeout = max(300, reconnect_interval * 10)
+        self.liveness_check_interval = min(30, max(5, reconnect_interval))
+        self.last_irc_activity_at = time.monotonic()
+        self._liveness_disconnect_pending = False
         self.should_reconnect = True
         self.restart_requested = False
         self.stop_requested = False
@@ -301,6 +305,35 @@ class QuizzerBot(SingleServerIRCBot):
             logger.info(f"Admin verification method: {admin_verification_method}")
         else:
             logger.info(f"Admin verification method: {admin_verification_method} (NickServ)")
+        self.reactor.scheduler.execute_every(
+            period=self.liveness_check_interval,
+            func=self._check_connection_liveness,
+        )
+
+    def _mark_irc_activity(self):
+        self.last_irc_activity_at = time.monotonic()
+        self._liveness_disconnect_pending = False
+
+    def _check_connection_liveness(self):
+        if not self.should_reconnect or self.stop_requested or self.restart_requested:
+            return
+        if self._liveness_disconnect_pending or not self.connection.is_connected():
+            return
+
+        idle_for = time.monotonic() - self.last_irc_activity_at
+        if idle_for < self.connection_idle_timeout:
+            return
+
+        self._liveness_disconnect_pending = True
+        logger.error(
+            "No IRC traffic observed for %.0f seconds; forcing a reconnect.",
+            idle_for,
+        )
+        try:
+            self.connection.disconnect("Connection liveness watchdog triggered.")
+        except Exception as exc:
+            logger.exception(f"Liveness watchdog could not disconnect cleanly: {exc}")
+            exit_for_supervisor("IRC liveness watchdog failed to disconnect cleanly.")
 
     def send_category_list_in_parts(self, connection, categories, max_length=400):
         """
@@ -361,6 +394,7 @@ class QuizzerBot(SingleServerIRCBot):
     def on_welcome(self, c, e):
         """Handle welcome message from IRC server."""
         self.reconnection_attempts = 0
+        self._mark_irc_activity()
         logger.info("=" * 60)
         logger.info("✓ Connected to IRC server successfully")
         logger.info(f"✓ Server welcome message received")
@@ -388,6 +422,7 @@ class QuizzerBot(SingleServerIRCBot):
             c: IRC connection
             e: IRC event containing message
         """
+        self._mark_irc_activity()
         nick = e.source.nick
         message = e.arguments[0]
         if not message.strip():
@@ -539,6 +574,7 @@ class QuizzerBot(SingleServerIRCBot):
             c: IRC connection
             e: IRC event containing message
         """
+        self._mark_irc_activity()
         nick = e.source.nick
         message = e.arguments[0]
         if not message.strip():
@@ -739,6 +775,7 @@ class QuizzerBot(SingleServerIRCBot):
 
     def on_notice(self, c, e):
         """Handle NOTICE messages from IRC server (including NickServ)."""
+        self._mark_irc_activity()
         notice_source = e.source.nick.lower() if e.source.nick else ""
         notice_message = ' '.join(e.arguments)
         self._expire_pending_admin_verifications(c)
@@ -792,12 +829,14 @@ class QuizzerBot(SingleServerIRCBot):
 
     def on_motd(self, c, e):
         """Handle Message of the Day from IRC server."""
+        self._mark_irc_activity()
         motd_line = ' '.join(e.arguments)
         if motd_line.strip():
             logger.info(f"MOTD: {motd_line}")
 
     def on_join(self, c, e):
         """Handle channel join event."""
+        self._mark_irc_activity()
         joined_channel = e.target
         joined_nick = e.source.nick
         if joined_nick.lower() == c.get_nickname().lower():
@@ -830,6 +869,7 @@ class QuizzerBot(SingleServerIRCBot):
             logger.debug(f"User {joined_nick} joined {joined_channel}")
 
     def on_kick(self, c, e):
+        self._mark_irc_activity()
         logger.info("Kicked from channel. Attempting to rejoin.")
         time.sleep(rejoin_interval)
         c.join(self.channel)
@@ -842,6 +882,7 @@ class QuizzerBot(SingleServerIRCBot):
         Handles connection errors gracefully to prevent bot crashes.
         If a game is active, it will be cancelled.
         """
+        self._liveness_disconnect_pending = False
         if not self.should_reconnect:
             if self.restart_requested:
                 exit_for_supervisor("Intentional restart requested.")
@@ -885,6 +926,7 @@ class QuizzerBot(SingleServerIRCBot):
             # The on_disconnect will be called again when the failed connection is detected
 
     def on_ping(self, c, e):
+        self._mark_irc_activity()
         logger.info(f"Received PING, sending PONG.")
         c.pong(e.target)
 

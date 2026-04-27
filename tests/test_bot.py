@@ -12,6 +12,11 @@ class QuizzerBotTests(unittest.TestCase):
         bot._admin_lock = threading.Lock()
         bot.pending_admin_commands = {}
         bot.admin_commands = Mock()
+        bot.should_reconnect = True
+        bot.stop_requested = False
+        bot.restart_requested = False
+        bot._liveness_disconnect_pending = False
+        bot.connection = Mock()
         return bot
 
     def test_match_pending_admin_notice_uses_exact_nick_tokens(self):
@@ -75,6 +80,32 @@ class QuizzerBotTests(unittest.TestCase):
         call_args[2]()
         connection.join.assert_called_once_with("#quizzer")
         delayed_handle.start.assert_called_once_with()
+
+    def test_check_connection_liveness_disconnects_stale_connection(self):
+        bot = self._make_bot()
+        bot.connection.is_connected.return_value = True
+        bot.connection_idle_timeout = 300
+        bot.last_irc_activity_at = 100.0
+
+        with patch("bot.time.monotonic", return_value=450.0):
+            bot._check_connection_liveness()
+
+        bot.connection.disconnect.assert_called_once_with(
+            "Connection liveness watchdog triggered."
+        )
+        self.assertTrue(bot._liveness_disconnect_pending)
+
+    def test_check_connection_liveness_ignores_recent_activity(self):
+        bot = self._make_bot()
+        bot.connection.is_connected.return_value = True
+        bot.connection_idle_timeout = 300
+        bot.last_irc_activity_at = 200.0
+
+        with patch("bot.time.monotonic", return_value=450.0):
+            bot._check_connection_liveness()
+
+        bot.connection.disconnect.assert_not_called()
+        self.assertFalse(bot._liveness_disconnect_pending)
 
 
 if __name__ == "__main__":

@@ -18,7 +18,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-Version: 0.90.3
+Version: 0.90.4
 """
 # Standard library imports
 import logging
@@ -129,7 +129,7 @@ def main():
         else:
             logger.info(f"Admin verification method: {admin_verification_method} (NickServ)")
         
-        bot_version = "Quizzer v0.90.3"
+        bot_version = "Quizzer v0.90.4"
         
         logger.info(f"Starting {bot_version}...")
         logger.info(f"Connecting to {server}:{port} as {nickname}")

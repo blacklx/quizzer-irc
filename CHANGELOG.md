@@ -5,6 +5,13 @@ All notable changes to the Quizzer IRC Bot project will be documented in this fi
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.90.4] - 2026-04-27
+
+### Fixed
+
+- Added an IRC liveness watchdog so stale half-open connections are forced back through the reconnect path
+- Prevented the bot from staying alive indefinitely after IRC traffic stops without a local disconnect event
+
 ## [0.90.3] - 2026-04-24
 
 ### Fixed
@@ -223,6 +230,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Version History Summary
 
+- **v0.90.4** (2026-04-27) - Added IRC liveness watchdog recovery for stale silent connections
 - **v0.90.3** (2026-04-24) - Fixed `startbot.sh` bot-process detection during status and startup checks
 - **v0.90.2** (2026-04-24) - Reliability hardening, validation tooling, operations runbook, and regression coverage
 - **v0.90.1** (2026-01-02) - Crontab startup and virtual environment fixes
